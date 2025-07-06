@@ -8,7 +8,8 @@ scripts = [
     "1_download_pdf.py",
     "2_create_xlsx.py",
     "3_parser.py",
-    "4_validation.py"
+    "4_clean.py",
+    "5_validation.py"
 ]
 
 for script in scripts:
