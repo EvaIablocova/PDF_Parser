@@ -1,20 +1,19 @@
 PDF Parser Project
 This project automates the process of downloading PDF files, parsing the data, and validating the results. It is designed to streamline workflows involving PDF data extraction and processing.
 
-<hr />
+---
 
 Requirements:
 Python 3.13 or higher
 
-<hr />
+---
 
 Installation:
 
 Clone the repository:
 git clone https://github.com/EvaIablocova/PDF_Parser.git
 
-
-<hr />
+---
 
 Usage:
 
@@ -31,7 +30,7 @@ The script will:
 4_validation.py
 3. Display the execution time for each script.
 
-<hr />
+---
 
 Notes:
 Ensure all required scripts are present in the project directory.
