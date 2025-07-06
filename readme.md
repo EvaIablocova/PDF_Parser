@@ -1,5 +1,6 @@
 PDF Parser Project
-This project automates the process of downloading PDF files, parsing the data, and validating the results. It is designed to streamline workflows involving PDF data extraction and processing.
+---
+This project automates the process of downloading PDF files, parsing the data, validating the results and loading it into SQL table. It is designed to streamline workflows involving PDF data extraction and processing.
 
 ---
 
@@ -17,9 +18,11 @@ git clone https://github.com/EvaIablocova/PDF_Parser.git
 
 Usage:
 
-Run the entry point script to execute the workflow:
+1. Set url path in 1_download_pdf.py
+2. Set sql connection data in 6_load_sql.py (and create the database if it does not exist)
+3. Run the entry point script to execute the workflow (python 0_entry_point.py)
 
-python 0_entry_point.py
+---
 
 The script will:
 1. Install all dependencies.

@@ -9,7 +9,8 @@ scripts = [
     "2_create_xlsx.py",
     "3_parser.py",
     "4_clean.py",
-    "5_validation.py"
+    "5_validation.py",
+    "6_load_sql.py"
 ]
 
 for script in scripts:
