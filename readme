@@ -1,5 +1,46 @@
-pip install requests
+PDF Parser Project
+This project automates the process of downloading PDF files, converting them to Excel format, parsing the data, and validating the results. It is designed to streamline workflows involving PDF data extraction and processing.
 
-pip install openpyxl
+<hr></hr>
 
-pip install pandas pdfplumber openpyxl PyPDF2
+Features:
+Download PDFs: Automatically fetch PDF files from specified sources.
+Convert to Excel: Transform PDF data into Excel spreadsheets for easier manipulation.
+Parse Data: Extract and process structured data from the Excel files.
+Validate Results: Ensure the accuracy and integrity of the processed data.
+
+<hr></hr>
+
+Requirements:
+Python 3.13 or higher
+
+<hr></hr>
+
+Installation:
+1. Clone the repository:
+git clone https://github.com/EvaIablocova/PDF_Parser.git
+cd PDF_Parser
+
+<hr></hr>
+
+Usage:
+
+Run the entry point script to execute the workflow:
+
+python 0_entry_point.py
+
+The script will:
+Install all dependencies.
+Sequentially execute the following scripts:
+1_download_pdf.py
+2_create_xlsx.py
+3_parser.py
+4_validation.py
+Display the execution time for each script.
+
+<hr></hr>
+
+Notes:
+Ensure all required scripts are present in the project directory.
+Update requirments if additional dependencies are needed.
+For troubleshooting, check the console output for error messages.
