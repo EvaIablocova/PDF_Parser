@@ -24,15 +24,9 @@ python 0_entry_point.py
 The script will:
 1. Install all dependencies.
 2. Sequentially execute the following scripts:
-1_download_pdf.py
-2_create_xlsx.py
-3_parser.py
+1_download_pdf.py,
+2_create_xlsx.py,
+3_parser.py,
 4_validation.py
 3. Display the execution time for each script.
 
----
-
-Notes:
-Ensure all required scripts are present in the project directory.
-Update requirments if additional dependencies are needed.
-For troubleshooting, check the console output for error messages.
