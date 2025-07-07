@@ -1,10 +1,13 @@
 import requests
+import json
+import os
 
-url = 'https://www.asp.gov.md/sites/default/files/date-deschise/avizele-agentilor-economici/total/Denumirea_2008_2024.pdf'
-# url = 'https://www.asp.gov.md/sites/default/files/date-deschise/avizele-agentilor-economici/Denumirea.pdf'
+file_config = json.loads(os.environ['FILE_CONFIG'])
+
+url = file_config['url_to_download_from']
+goal_file = file_config['pdf_file_name']
+
 response = requests.get(url)
-
-goal_file = 'Denumirea_2008_2024.pdf'
 
 with open(goal_file, 'wb') as f:
     f.write(response.content)
