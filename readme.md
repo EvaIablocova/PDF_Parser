@@ -1,4 +1,4 @@
-# Data Processing Pipeline
+# PDF Parser Pipeline
 
 ## Overview
 This project automates the processing of data files, including downloading PDFs, parsing, cleaning, validating, and loading data into SQL databases. It uses Python scripts and a configuration file (`config.json`) to manage the pipeline.
@@ -25,11 +25,11 @@ This project automates the processing of data files, including downloading PDFs,
     python 0_1_entry_point.py
    
 ## Scripts
-1_download_pdf.py: Downloads PDF files.
-2_parser.py: Parses the downloaded files.
-3_clean.py: Cleans the parsed data.
-4_validation.py: Validates the cleaned data.
-5_load_sql.py: Loads the validated data into an SQL database.
+- **1_download_pdf.py**: Downloads PDF files.
+- **2_parser.py**: Parses the downloaded files.
+- **3_clean.py**: Cleans the parsed data.
+- **4_validation.py**: Validates the cleaned data.
+- **5_load_sql.py**: Loads the validated data into an SQL database.
 
 ## Configuration
 The config.json file contains settings for each keyword (file).
