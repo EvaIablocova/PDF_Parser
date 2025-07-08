@@ -2,13 +2,13 @@ import pandas as pd
 import pyodbc
 import os
 import json
+from sqlalchemy import create_engine
 
 file_config = json.loads(os.environ['FILE_CONFIG'])
 
 sql_table_name = file_config['sql_table_name']
 headers = file_config['headers']
 parsed_data_file_name = file_config['parsed_data_file_name']
-
 
 with open('config.json', 'r', encoding='utf-8') as file:
     config = json.load(file)
@@ -20,16 +20,6 @@ server_name = database_config['server_name']
 username = database_config['username']
 password = database_config['password']
 
-
-create_table_query = f"""
-IF EXISTS (SELECT * FROM sys.tables WHERE name = '{sql_table_name}')
-    DROP TABLE {sql_table_name};
-
-CREATE TABLE [{sql_table_name}] (
-    {', '.join([f"[{header}] NVARCHAR(255)" for header in headers])}
-);
-"""
-
 conn = pyodbc.connect(
     f'DRIVER={{ODBC Driver 18 for SQL Server}};'
     f'SERVER={server_name};'
@@ -40,18 +30,50 @@ conn = pyodbc.connect(
 )
 cursor = conn.cursor()
 
+# Check if the table exists
+table_exists_query = f"SELECT COUNT(*) FROM sys.tables WHERE name = '{sql_table_name}'"
+cursor.execute(table_exists_query)
+table_exists = cursor.fetchone()[0] > 0
 
-cursor.execute(create_table_query)
-conn.commit()
+if table_exists:
+    # Read existing table data into a DataFrame
+    existing_data_query = f"SELECT * FROM [{sql_table_name}]"
 
-df = pd.read_csv(parsed_data_file_name, sep='|', header=None, names=headers)
+    engine = create_engine(
+        f"mssql+pyodbc://{username}:{password}@{server_name}/{database_name}?driver=ODBC+Driver+18+for+SQL+Server&TrustServerCertificate=yes"
+    )
 
-# Convert all columns to string type
-df = df.astype(str)
+    existing_data = pd.read_sql(existing_data_query, engine)
 
-insert_query = f"INSERT INTO {sql_table_name} ({', '.join(headers)}) VALUES ({', '.join(['?' for _ in headers])})"
-for _, row in df.iterrows():
-    cursor.execute(insert_query, tuple(row))
+    # Load new data
+    df = pd.read_csv(parsed_data_file_name, sep='|', header=None, names=headers)
+    df = df.astype(str)
+
+    # Find the difference between the new data and the existing data
+    new_rows = pd.concat([df, existing_data]).drop_duplicates(keep=False)
+
+    if not new_rows.empty:
+        insert_query = f"INSERT INTO {sql_table_name} ({', '.join(headers)}) VALUES ({', '.join(['?' for _ in headers])})"
+        for _, row in new_rows.iterrows():
+            cursor.execute(insert_query, tuple(row))
+    else:
+        print("No data to insert into the table.")
+else:
+    # Create the table and insert all rows
+    create_table_query = f"""
+    CREATE TABLE [{sql_table_name}] (
+        {', '.join([f"[{header}] NVARCHAR(255)" for header in headers])}
+    );
+    """
+    cursor.execute(create_table_query)
+    conn.commit()
+
+    df = pd.read_csv(parsed_data_file_name, sep='|', header=None, names=headers)
+    df = df.astype(str)
+
+    insert_query = f"INSERT INTO {sql_table_name} ({', '.join(headers)}) VALUES ({', '.join(['?' for _ in headers])})"
+    for _, row in df.iterrows():
+        cursor.execute(insert_query, tuple(row))
 
 
 conn.commit()

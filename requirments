@@ -3,3 +3,5 @@ openpyxl
 pandas
 pdfplumber
 PyPDF2
+sqlalchemy
+bs4
