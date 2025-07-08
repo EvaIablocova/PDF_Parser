@@ -6,6 +6,23 @@ import os
 import requests
 from bs4 import BeautifulSoup
 
+keyword = "Reducere_2007_2024"
+
+def update_stored_date_in_config_json(file_config, new_date_range):
+
+    with open('config.json', 'r', encoding='utf-8') as file:
+        config = json.load(file)
+
+    for fc in config['file_configs']:
+        if fc['keyword'] == file_config['keyword']:
+            fc['stored_date_range'] = new_date_range
+            break
+
+    with open('config.json', 'w', encoding='utf-8') as file:
+        json.dump(config, file, ensure_ascii=False, indent=4)
+
+    print(f"Updated in config.json stored date range to: {new_date_range}")
+
 def check_data_change(file_config):
     url = "https://www.asp.gov.md/ro/date-deschise/avizele-agentilor-economici"
     response = requests.get(url)
@@ -35,15 +52,11 @@ def check_data_change(file_config):
                 stored_date_range = file_config['stored_date_range']
                 if date_range != stored_date_range:
                     print(f"Date range has changed: {date_range}")
+                    update_stored_date_in_config_json(file_config, date_range)
                     return True
 
     print("Date range has not changed.")
     return False
-
-
-
-
-keyword = "Denumirea_2008_2024"
 
 with open('config.json', 'r', encoding='utf-8') as file:
     config = json.load(file)
@@ -79,5 +92,7 @@ for script in scripts:
         print(f"Script {script} failed with exit code {result.returncode}")
         sys.exit(result.returncode)
     print(f"{script} finished successfully in {elapsed:.2f} seconds.\n")
+
+
 
 
