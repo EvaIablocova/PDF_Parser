@@ -18,6 +18,9 @@ def check_address_format(df, address_column_numbers):
     return report
 
 def check_column_equality(df, equal_columns_numbers):
+    if not equal_columns_numbers:
+        return ["No columns specified for equality check"]
+
     report = []
     col1 = df.iloc[:, 0].astype(str)
 
@@ -94,7 +97,7 @@ def validate_parsed_data(df, estimated_rows_count):
     if df.shape[0] < estimated_rows_count:
         report.append(f"Error: Too few rows in the table, expected at least {estimated_rows_count} rows")
     else:
-        report.append(f"Table has {df.shape[0] + 1} rows, which is sufficient")
+        report.append(f"Table has {df.shape[0]} rows, which is sufficient")
 
     if df.duplicated().sum() > 0:
         report.append(f"Found {df.duplicated().sum()} duplicate rows")

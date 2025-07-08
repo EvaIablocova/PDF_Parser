@@ -1,7 +1,7 @@
 {
   "database_config": {
     "server_name": "localhost",
-    "database_name": "DenumireaDB",
+    "database_name": "ASPdb",
     "username": "SA",
     "password": "MyStr0ngPass123"
   },
@@ -52,7 +52,7 @@
       "pdf_file_name": "Sediul.pdf",
       "document_type_name": "Sediul",
       "count_columns": 7,
-      "sizes": [0, 55, 100, 170, 313, 473, 640, 820],
+      "sizes": [0, 58, 100, 170, 313, 473, 640, 820],
       "search_pattern": "MD-\\d{4}",
       "parsed_data_file_name": "parsed_Sediul.csv",
       "address_column_number": [4, 5, 6],
@@ -72,7 +72,7 @@
       "pdf_file_name": "Sediul_2008_2024.pdf",
       "document_type_name": "Sediul",
       "count_columns": 7,
-      "sizes": [0, 55, 100, 170, 313, 473, 640, 820],
+      "sizes": [0, 58, 100, 170, 313, 473, 640, 820],
       "search_pattern": "MD-\\d{4}",
       "parsed_data_file_name": "parsed_Sediul_2008_2024.csv",
       "address_column_number": [4, 5, 6],
@@ -105,6 +105,46 @@
       "need_cleaning_columns": null,
       "headers": ["No", "Date_of_announcement", "IDNO", "Name", "Address", "Date_of_dissolution"],
       "sql_table_name": "Inactive_extracted"
+    },
+    {
+      "keyword": "Reducere",
+      "url_to_download_from": "https://www.asp.gov.md/sites/default/files/date-deschise/avizele-agentilor-economici/Reducere.pdf",
+      "pdf_file_name": "Reducere.pdf",
+      "document_type_name": "Reducere",
+      "count_columns": 7,
+      "sizes": [0, 55, 100, 170, 310, 535, 700, 820],
+      "search_pattern": "MD-\\d{4}",
+      "parsed_data_file_name": "parsed_Reducere.csv",
+      "address_column_number": [4],
+      "equal_columns_numbers": null,
+      "idno_column_number": 2,
+      "date_column_number": 1,
+      "start_date": "2025-01-01",
+      "end_date": "2025-06-27",
+      "estimated_rows_count": 89,
+      "need_cleaning_columns": null,
+      "headers": ["No", "Date_of_announcement", "IDNO", "Name", "Address", "From_price", "Into_price"],
+      "sql_table_name": "Reducere_extracted"
+    },
+    {
+      "keyword": "Reducere_2007_2024",
+      "url_to_download_from": "https://www.asp.gov.md/sites/default/files/date-deschise/avizele-agentilor-economici/total/Reducere_2007_2024.pdf",
+      "pdf_file_name": "Reducere_2007_2024.pdf",
+      "document_type_name": "Reducere",
+      "count_columns": 7,
+      "sizes": [0, 55, 100, 170, 310, 535, 700, 820],
+      "search_pattern": "MD-\\d{4}",
+      "parsed_data_file_name": "parsed_Reducere_2007_2024.csv",
+      "address_column_number": [4],
+      "equal_columns_numbers": null,
+      "idno_column_number": 2,
+      "date_column_number": 1,
+      "start_date": "2007-11-20",
+      "end_date": "2024-12-31",
+      "estimated_rows_count": 2557,
+      "need_cleaning_columns": null,
+      "headers": ["No", "Date_of_announcement", "IDNO", "Name", "Address", "From_price", "Into_price"],
+      "sql_table_name": "Reducere_2007_2024_extracted"
     }
   ]
 }

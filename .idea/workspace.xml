@@ -4,11 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="93ca5b42-e6fc-4b64-8f92-a42f9495dfe5" name="Changes" comment="JSON. Sediul">
+    <list default="true" id="93ca5b42-e6fc-4b64-8f92-a42f9495dfe5" name="Changes" comment="Inactive">
+      <change afterPath="$PROJECT_DIR$/6.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/0_entry_point.py" beforeDir="false" afterPath="$PROJECT_DIR$/0_entry_point.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2_parser.py" beforeDir="false" afterPath="$PROJECT_DIR$/2_parser.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/3_clean.py" beforeDir="false" afterPath="$PROJECT_DIR$/3_clean.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/4_validation.py" beforeDir="false" afterPath="$PROJECT_DIR$/4_validation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/5_load_sql.py" beforeDir="false" afterPath="$PROJECT_DIR$/5_load_sql.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/config.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -221,7 +223,7 @@
       <option name="presentableId" value="Default" />
       <updated>1751781187170</updated>
       <workItem from="1751781188457" duration="3399000" />
-      <workItem from="1751784996614" duration="36380000" />
+      <workItem from="1751784996614" duration="44705000" />
     </task>
     <task id="LOCAL-00001" summary="parser - 788 sec">
       <option name="closed" value="true" />
@@ -303,7 +305,15 @@
       <option name="project" value="LOCAL" />
       <updated>1751904804830</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Inactive">
+      <option name="closed" value="true" />
+      <created>1751959280704</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1751959280704</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -315,50 +325,16 @@
     <MESSAGE value="5 steps" />
     <MESSAGE value="ETL" />
     <MESSAGE value="JSON. Sediul" />
-    <option name="LAST_COMMIT_MESSAGE" value="JSON. Sediul" />
+    <MESSAGE value="Inactive" />
+    <option name="LAST_COMMIT_MESSAGE" value="Inactive" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/2_parser.py</url>
-          <line>23</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/2_parser.py</url>
-          <line>43</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/2_parser.py</url>
-          <line>70</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/2_parser.py</url>
-          <line>59</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/2_parser.py</url>
-          <line>37</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/2_parser.py</url>
-          <line>64</line>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/2_parser.py</url>
-          <line>68</line>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/2_parser.py</url>
-          <line>52</line>
-          <option name="timeStamp" value="10" />
+          <url>file://$PROJECT_DIR$/4_validation.py</url>
+          <line>54</line>
+          <option name="timeStamp" value="11" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -367,7 +343,7 @@
     <SUITE FILE_PATH="coverage/PDF_Parser$5_load_sql.coverage" NAME="5_load_sql Coverage Results" MODIFIED="1751898105192" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/PDF_Parser$2_create_xlsx.coverage" NAME="2_create_xlsx Coverage Results" MODIFIED="1751781403545" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/PDF_Parser$3_parser.coverage" NAME="3_parser Coverage Results" MODIFIED="1751781516344" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/PDF_Parser$0_entry_point.coverage" NAME="0_entry_point Coverage Results" MODIFIED="1751958974777" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/PDF_Parser$0_entry_point.coverage" NAME="0_entry_point Coverage Results" MODIFIED="1751967876688" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/PDF_Parser$1_download_pdf.coverage" NAME="1_download_pdf Coverage Results" MODIFIED="1751781337924" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/PDF_Parser$4_validation.coverage" NAME="4_validation Coverage Results" MODIFIED="1751782354953" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>

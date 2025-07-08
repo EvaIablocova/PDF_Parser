@@ -76,6 +76,32 @@ def clean_data_by_type (df, document_type_name):
     elif document_type_name == 'Sediul':
         df[4] = df[4].astype(str).str.replace(r'\br l\b', 'r-l', regex=True)
 
+    elif document_type_name == 'Reducere':
+        if len(df) > 716:
+            df.loc[716] = [
+                int('717'),
+                '6.05.2014',
+                '1003600020651',
+                'Societatea Comercială ""BUGE-PETRICANCA"" S.R.L.',
+                'MD-2069, str. Petricani 19/2, mun. Chisinau, Republica Moldova',
+                '888436,00',
+                '822630,00'
+            ]
+
+            new_row = pd.DataFrame(
+                {
+                    0: [int('718')],
+                    1: ['6.05.2014'],
+                    2: ['1002604000030'],
+                    3: ['SOCIETATEA CU RĂSPUNDERE LIMITATĂ ""REFORMA C.M."""'],
+                    4: ['s. Terebna, rl. Edinet, Republica Moldova'],
+                    5: ['4951176,00'],
+                    6: ['1651176,00']
+                }
+            )
+
+            df = pd.concat([df.iloc[:717], new_row, df.iloc[717:]]).reset_index(drop=True)
+
     return df
 
 file_config = json.loads(os.environ['FILE_CONFIG'])

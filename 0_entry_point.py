@@ -4,7 +4,16 @@ import time
 import json
 import os
 
-keyword = "Inactive"
+keyword = "Reducere_2007_2024"
+
+is_data_changed = True
+
+if not is_data_changed:
+    print("Data has not changed, skipping the pipeline.")
+    sys.exit(0)
+else:
+    print("Data has changed, proceeding with the pipeline.")
+
 
 with open('config.json', 'r', encoding='utf-8') as file:
     config = json.load(file)

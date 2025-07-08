@@ -44,9 +44,10 @@ cursor = conn.cursor()
 cursor.execute(create_table_query)
 conn.commit()
 
-
 df = pd.read_csv(parsed_data_file_name, sep='|', header=None, names=headers)
 
+# Convert all columns to string type
+df = df.astype(str)
 
 insert_query = f"INSERT INTO {sql_table_name} ({', '.join(headers)}) VALUES ({', '.join(['?' for _ in headers])})"
 for _, row in df.iterrows():
