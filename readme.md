@@ -1,35 +1,35 @@
-PDF Parser Project
----
-This project automates the process of downloading PDF files, parsing the data, validating the results and loading it into SQL table. It is designed to streamline workflows involving PDF data extraction and processing.
+# Data Processing Pipeline
 
----
+## Overview
+This project automates the processing of data files, including downloading PDFs, parsing, cleaning, validating, and loading data into SQL databases. It uses Python scripts and a configuration file (`config.json`) to manage the pipeline.
 
-Requirements:
-Python 3.13 or higher
+## Features
+- **Dynamic Configuration**: Uses `config.json` to manage file-specific settings.
+- **Keyword Processing**: Processes data based on predefined keywords.
+- **Change Detection**: Checks if data has changed before running the pipeline.
+- **Modular Scripts**: Executes individual scripts for each stage of the pipeline.
 
----
+## Requirements
+- Python 3.x
 
-Installation:
+## Installation
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+   cd <repository-folder>
 
-Clone the repository:
-git clone https://github.com/EvaIablocova/PDF_Parser.git
+## Usage
+1. Ensure config.json is properly configured with file_configs for each keyword.
+2. Run the entry point script:
+    ```bash
+    python 0_1_entry_point.py
+   
+## Scripts
+1_download_pdf.py: Downloads PDF files.
+2_parser.py: Parses the downloaded files.
+3_clean.py: Cleans the parsed data.
+4_validation.py: Validates the cleaned data.
+5_load_sql.py: Loads the validated data into an SQL database.
 
----
-
-Usage:
-
-1. Set url path in 1_download_pdf.py
-2. Set sql connection data in 6_load_sql.py (and create the database if it does not exist)
-3. Run the entry point script to execute the workflow (python 0_entry_point.py)
-
----
-
-The script will:
-1. Install all dependencies.
-2. Sequentially execute the following scripts:
-1_download_pdf.py,
-2_create_xlsx.py,
-3_parser.py,
-4_validation.py
-3. Display the execution time for each script.
-
+## Configuration
+The config.json file contains settings for each keyword (file).
