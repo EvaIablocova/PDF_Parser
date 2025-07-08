@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="93ca5b42-e6fc-4b64-8f92-a42f9495dfe5" name="Changes" comment="date change">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/0_entry_point.py" beforeDir="false" afterPath="$PROJECT_DIR$/0_entry_point.py" afterDir="false" />
+    <list default="true" id="93ca5b42-e6fc-4b64-8f92-a42f9495dfe5" name="Changes" comment="update stored_date in config.json">
+      <change afterPath="$PROJECT_DIR$/0_2_date.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/0_entry_point.py" beforeDir="false" afterPath="$PROJECT_DIR$/0_1_entry_point.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/config.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -49,6 +49,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Python.0_1_entry_point.executor": "Run",
     "Python.0_entry_point.executor": "Run",
     "Python.1_download_pdf.executor": "Run",
     "Python.2_create_xlsx.executor": "Run",
@@ -76,7 +77,7 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.0_entry_point">
+  <component name="RunManager" selected="Python.0_1_entry_point">
     <configuration name="0_1_create_xlsx" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="PDF_Parser" />
       <option name="ENV_FILES" value="" />
@@ -100,7 +101,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="0_entry_point" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="0_1_entry_point" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="PDF_Parser" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -114,7 +115,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/0_entry_point.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/0_1_entry_point.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -194,7 +195,7 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.0_entry_point" />
+        <item itemvalue="Python.0_1_entry_point" />
         <item itemvalue="Python.5_load_sql" />
         <item itemvalue="Python.4_validation" />
         <item itemvalue="Python.2_parser" />
@@ -219,7 +220,7 @@
       <option name="presentableId" value="Default" />
       <updated>1751781187170</updated>
       <workItem from="1751781188457" duration="3399000" />
-      <workItem from="1751784996614" duration="50163000" />
+      <workItem from="1751784996614" duration="50953000" />
     </task>
     <task id="LOCAL-00001" summary="parser - 788 sec">
       <option name="closed" value="true" />
@@ -333,7 +334,15 @@
       <option name="project" value="LOCAL" />
       <updated>1751972581406</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="update stored_date in config.json">
+      <option name="closed" value="true" />
+      <created>1751973548198</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1751973548198</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -349,7 +358,8 @@
     <MESSAGE value="files: Denumirea, Denumirea_2008_2024, Sediul, Sediul_2008_2024, Inactive, Reducere, Reducere_2007_2024" />
     <MESSAGE value="merge delta" />
     <MESSAGE value="date change" />
-    <option name="LAST_COMMIT_MESSAGE" value="date change" />
+    <MESSAGE value="update stored_date in config.json" />
+    <option name="LAST_COMMIT_MESSAGE" value="update stored_date in config.json" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -366,7 +376,7 @@
     <SUITE FILE_PATH="coverage/PDF_Parser$5_load_sql.coverage" NAME="5_load_sql Coverage Results" MODIFIED="1751898105192" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/PDF_Parser$2_create_xlsx.coverage" NAME="2_create_xlsx Coverage Results" MODIFIED="1751781403545" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/PDF_Parser$3_parser.coverage" NAME="3_parser Coverage Results" MODIFIED="1751781516344" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/PDF_Parser$0_entry_point.coverage" NAME="0_entry_point Coverage Results" MODIFIED="1751973467383" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/PDF_Parser$0_entry_point.coverage" NAME="0_1_entry_point Coverage Results" MODIFIED="1751974294846" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/PDF_Parser$1_download_pdf.coverage" NAME="1_download_pdf Coverage Results" MODIFIED="1751781337924" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/PDF_Parser$4_validation.coverage" NAME="4_validation Coverage Results" MODIFIED="1751782354953" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>

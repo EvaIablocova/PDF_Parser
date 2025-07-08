@@ -1,12 +1,6 @@
-import subprocess
-import sys
-import time
 import json
-import os
 import requests
 from bs4 import BeautifulSoup
-
-keyword = "Reducere_2007_2024"
 
 def update_stored_date_in_config_json(file_config, new_date_range):
 
@@ -57,42 +51,3 @@ def check_data_change(file_config):
 
     print("Date range has not changed.")
     return False
-
-with open('config.json', 'r', encoding='utf-8') as file:
-    config = json.load(file)
-
-file_config = next((fc for fc in config['file_configs'] if fc['keyword'] == keyword), None)
-os.environ['FILE_CONFIG'] = json.dumps(file_config)
-
-subprocess.check_call([sys.executable, "-m", "pip", "install", "-r", "requirments"])
-
-is_data_changed = check_data_change(file_config)
-
-if not is_data_changed:
-    print("Data has not changed, skipping the pipeline.")
-    sys.exit(0)
-else:
-    print("Data has changed, proceeding with the pipeline.")
-
-
-scripts = [
-    "1_download_pdf.py",
-    "2_parser.py",
-    "3_clean.py",
-    "4_validation.py",
-    "5_load_sql.py"
-]
-
-for script in scripts:
-    print(f"Running {script}...")
-    start_time = time.time()
-    result = subprocess.run([sys.executable, script, keyword], env=os.environ)
-    elapsed = time.time() - start_time
-    if result.returncode != 0:
-        print(f"Script {script} failed with exit code {result.returncode}")
-        sys.exit(result.returncode)
-    print(f"{script} finished successfully in {elapsed:.2f} seconds.\n")
-
-
-
-
