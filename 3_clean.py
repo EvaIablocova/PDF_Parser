@@ -64,7 +64,7 @@ def clean_data_by_type (df, document_type_name):
     if document_type_name == 'Denumirea':
         if len(df) > 3320:
             df.loc[3319] = [
-                '3320',
+                int('3320'),
                 '07.08.2014',
                 '1005603002522',
                 'Întreprinderea Mixtă ""VINAGROFOROS"" S.R.L.',

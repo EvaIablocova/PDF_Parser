@@ -4,7 +4,7 @@ import time
 import json
 import os
 
-keyword = "Sediul"
+keyword = "Inactive"
 
 with open('config.json', 'r', encoding='utf-8') as file:
     config = json.load(file)

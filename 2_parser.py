@@ -27,7 +27,7 @@ def process_pdf(pdf_url, x, search_pattern):
                 text_line = " ".join(word['text'] for word in line_words)
                 other.append({'top': top, 'text': text_line})
 
-            md_tops = [entry['top'] - 2 for entry in other if md_pattern.search(entry['text'])]
+            md_tops = [entry['top'] - 1 for entry in other if md_pattern.search(entry['text'])]
             y = sorted(set(md_tops))
             if y and y[-1] < page.height:
                 y.append(page.height - 40)
@@ -51,18 +51,6 @@ def parse_pdf(pdf_url, x, search_pattern):
 
     all_data = []
     all_data= process_pdf(pdf_url, x, search_pattern)
-
-
-    # if len(all_data) >3320 and re.search(r'Denumirea', pdf_url):
-    #     all_data[3319] = [
-    #         '3320',
-    #         '07.08.2014',
-    #         '1005603002522',
-    #         'Întreprinderea Mixtă ""VINAGROFOROS"" S.R.L.',
-    #         'MD-7320, s. Cîşla, r-l Cantemir, Republica Moldova',
-    #         'INTREPRINDEREA MIXTA ""VINAGROFOROS"" SRL',
-    #         'Întreprinderea Mixtă ""VINAGROFOROS"" S.R.L.'
-    #     ]
 
 
     # Step 4: Create DataFrame

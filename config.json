@@ -85,6 +85,26 @@
       "need_cleaning_columns": null,
       "headers": ["No", "Date_of_announcement", "IDNO", "Name", "Address", "From_address", "Into_address"],
       "sql_table_name": "Sediul_2008_2024_extracted"
+    },
+    {
+      "keyword": "Inactive",
+      "url_to_download_from": "https://www.asp.gov.md/sites/default/files/date-deschise/avizele-agentilor-economici/Inactive.pdf",
+      "pdf_file_name": "Inactive.pdf",
+      "document_type_name": "Inactive",
+      "count_columns": 6,
+      "sizes": [0, 60, 110, 170, 370, 680, 820],
+      "search_pattern": "MD-\\d{4}",
+      "parsed_data_file_name": "parsed_Inactive.csv",
+      "address_column_number": [4],
+      "equal_columns_numbers": [1, 5],
+      "idno_column_number": 2,
+      "date_column_number": 1,
+      "start_date": "2008-06-01",
+      "end_date": "2025-06-27",
+      "estimated_rows_count": 2314,
+      "need_cleaning_columns": null,
+      "headers": ["No", "Date_of_announcement", "IDNO", "Name", "Address", "Date_of_dissolution"],
+      "sql_table_name": "Inactive_extracted"
     }
   ]
 }
