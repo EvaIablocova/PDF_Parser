@@ -5,10 +5,13 @@ import json
 from sqlalchemy import create_engine
 
 file_config = json.loads(os.environ['FILE_CONFIG'])
+path_to_file = json.loads(os.environ['path_to_file'])
 
-sql_table_name = file_config['sql_table_name']
+
 headers = file_config['headers']
-parsed_data_file_name = file_config['parsed_data_file_name']
+
+parsed_data_file_name = "parsed_files/" + os.path.splitext(os.path.basename(path_to_file))[0] + ".csv"
+sql_table_name = os.path.splitext(os.path.basename(path_to_file))[0]
 
 with open('config.json', 'r', encoding='utf-8') as file:
     config = json.load(file)

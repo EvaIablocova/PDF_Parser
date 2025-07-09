@@ -51,24 +51,27 @@ def check_third_column_13_digits(df, idno_column_number):
         report.append(f"Rows with invalid values in the idno column (not 13 digits): {invalid_rows.index.tolist()}")
     return report
 
-def check_dates_in_range(df, date_column_number, start_date, end_date):
+
+def check_dates_in_range(df, date_column_numbers, start_date, end_date):
     report = []
 
-    try:
-        dates = pd.to_datetime(df.iloc[:, date_column_number], dayfirst=True, errors='coerce')
-    except Exception as e:
-        report.append(f"Error parsing dates: {e}")
-        return report
+    for column_number in date_column_numbers:
+        try:
+            dates = pd.to_datetime(df.iloc[:, column_number], dayfirst=True, errors='coerce')
+        except Exception as e:
+            report.append(f"Error parsing dates in column {column_number + 1}: {e}")
+            continue
 
-    if dates.isna().any():
-        report.append(f"Found {dates.isna().sum()} unparsable date values")
+        if dates.isna().any():
+            report.append(f"Column {column_number + 1}: Found {dates.isna().sum()} unparsable date values")
 
-    out_of_range = df.loc[(dates < start_date) | (dates > end_date)]
-    if not out_of_range.empty:
-        report.append(f"Found {len(out_of_range)} dates out of set range")
-        report.append(out_of_range.iloc[:, date_column_number].tolist())
-    else:
-        report.append("All dates in the date column are within the specified range")
+        out_of_range = df.loc[(dates < start_date) | (dates > end_date)]
+        if not out_of_range.empty:
+            report.append(f"Column {column_number + 1}: Found {len(out_of_range)} dates out of set range")
+            report.append(out_of_range.iloc[:, column_number].tolist())
+        else:
+            report.append(f"Column {column_number + 1}: All dates are within the specified range")
+
     return report
 
 def find_sequence_breaks(df):
@@ -126,8 +129,10 @@ def validate_parsed_data(df, estimated_rows_count):
     return report
 
 file_config = json.loads(os.environ['FILE_CONFIG'])
+path_to_file = json.loads(os.environ['path_to_file'])
 
-parsed_data_file_name = file_config['parsed_data_file_name']
+parsed_data_file_name = "parsed_files/" + os.path.splitext(os.path.basename(path_to_file))[0] + ".csv"
+
 address_column_number = file_config['address_column_number']
 equal_columns_numbers = file_config['equal_columns_numbers']
 idno_column_number = file_config['idno_column_number']

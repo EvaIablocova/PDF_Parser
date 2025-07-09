@@ -1,0 +1,496 @@
+{
+    "download_dir": "downloaded_pdf_files",
+    "database_config": {
+        "server_name": "localhost",
+        "database_name": "ASPdb1",
+        "username": "SA",
+        "password": "MyStr0ngPass123"
+    },
+    "file_configs": [
+        {
+            "keyword": "Denumirea",
+            "heading_string": "Schimbarea denumirii",
+            "stored_date_range": "01.01.2025 - 27.06.2025",
+            "row_in_table": 1,
+            "url_to_download_from": "https://www.asp.gov.md/sites/default/files/date-deschise/avizele-agentilor-economici/Denumirea.pdf",
+            "pdf_file_name": "Denumirea.pdf",
+            "document_type_name": "Denumirea",
+            "count_columns": 7,
+            "sizes": [
+                0,
+                55,
+                100,
+                170,
+                313,
+                470,
+                640,
+                820
+            ],
+            "search_pattern": "MD-\\d{4}",
+            "parsed_data_file_name": "parsed_denumirea.csv",
+            "address_column_number": [
+                4
+            ],
+            "equal_columns_numbers": [
+                3,
+                6
+            ],
+            "idno_column_number": 2,
+            "date_column_number": 1,
+            "start_date": "2025-01-01",
+            "end_date": "2025-06-27",
+            "estimated_rows_count": 238,
+            "need_cleaning_columns": [
+                3,
+                6
+            ],
+            "headers": [
+                "No",
+                "Date_of_announcement",
+                "IDNO",
+                "Name",
+                "Address",
+                "From_name",
+                "Into_name"
+            ],
+            "sql_table_name": "denumirea_extracted"
+        },
+        {
+            "keyword": "Denumirea_2008_2024",
+            "heading_string": "Schimbarea denumirii",
+            "stored_date_range": "01.06.2008 - 31.12.2024",
+            "row_in_table": 2,
+            "url_to_download_from": "https://www.asp.gov.md/sites/default/files/date-deschise/avizele-agentilor-economici/total/Denumirea_2008_2024.pdf",
+            "pdf_file_name": "Denumirea_2008_2024.pdf",
+            "document_type_name": "Denumirea",
+            "count_columns": 7,
+            "sizes": [
+                0,
+                55,
+                100,
+                170,
+                313,
+                470,
+                640,
+                820
+            ],
+            "search_pattern": "MD-\\d{4}",
+            "parsed_data_file_name": "parsed_denumirea_2008_2024.csv",
+            "address_column_number": [
+                4
+            ],
+            "equal_columns_numbers": [
+                3,
+                6
+            ],
+            "idno_column_number": 2,
+            "date_column_number": 1,
+            "start_date": "2008-01-01",
+            "end_date": "2024-12-31",
+            "estimated_rows_count": 9121,
+            "need_cleaning_columns": [
+                3,
+                6
+            ],
+            "headers": [
+                "No",
+                "Date_of_announcement",
+                "IDNO",
+                "Name",
+                "Address",
+                "From_name",
+                "Into_name"
+            ],
+            "sql_table_name": "denumirea_2008_2024_extracted"
+        },
+        {
+            "keyword": "Sediul",
+            "heading_string": "Schimbarea sediului",
+            "stored_date_range": "01.01.2025 - 27.06.2025",
+            "row_in_table": 1,
+            "url_to_download_from": "https://www.asp.gov.md/sites/default/files/date-deschise/avizele-agentilor-economici/Sediul.pdf",
+            "pdf_file_name": "Sediul.pdf",
+            "document_type_name": "Sediul",
+            "count_columns": 7,
+            "sizes": [
+                0,
+                58,
+                100,
+                170,
+                313,
+                473,
+                640,
+                820
+            ],
+            "search_pattern": "MD-\\d{4}",
+            "parsed_data_file_name": "parsed_Sediul.csv",
+            "address_column_number": [
+                4,
+                5,
+                6
+            ],
+            "equal_columns_numbers": [
+                4,
+                6
+            ],
+            "idno_column_number": 2,
+            "date_column_number": 1,
+            "start_date": "2025-01-01",
+            "end_date": "2025-06-27",
+            "estimated_rows_count": 933,
+            "need_cleaning_columns": null,
+            "headers": [
+                "No",
+                "Date_of_announcement",
+                "IDNO",
+                "Name",
+                "Address",
+                "From_address",
+                "Into_address"
+            ],
+            "sql_table_name": "Sediul_extracted"
+        },
+        {
+            "keyword": "Sediul_2008_2024",
+            "heading_string": "Schimbarea sediului",
+            "stored_date_range": "01.06.2008 - 31.12.2024",
+            "row_in_table": 2,
+            "url_to_download_from": "https://www.asp.gov.md/sites/default/files/date-deschise/avizele-agentilor-economici/total/Sediul_2008_2024.pdf",
+            "pdf_file_name": "Sediul_2008_2024.pdf",
+            "document_type_name": "Sediul",
+            "count_columns": 7,
+            "sizes": [
+                0,
+                58,
+                100,
+                170,
+                313,
+                473,
+                640,
+                820
+            ],
+            "search_pattern": "MD-\\d{4}",
+            "parsed_data_file_name": "parsed_Sediul_2008_2024.csv",
+            "address_column_number": [
+                4,
+                5,
+                6
+            ],
+            "equal_columns_numbers": [
+                4,
+                6
+            ],
+            "idno_column_number": 2,
+            "date_column_number": 1,
+            "start_date": "2008-06-01",
+            "end_date": "2024-12-31",
+            "estimated_rows_count": 28900,
+            "need_cleaning_columns": null,
+            "headers": [
+                "No",
+                "Date_of_announcement",
+                "IDNO",
+                "Name",
+                "Address",
+                "From_address",
+                "Into_address"
+            ],
+            "sql_table_name": "Sediul_2008_2024_extracted"
+        },
+        {
+            "keyword": "Inactive",
+            "heading_string": "Inițierea procedurii de radiere a întreprinzătorilor individuali inactivi, persoanelor juridice inactive și a contribuabililor ale căror obligații fiscale au fost stinse simplificat prin scădere",
+            "stored_date_range": "01.06.2008 - 27.06.2025",
+            "row_in_table": 1,
+            "url_to_download_from": "https://www.asp.gov.md/sites/default/files/date-deschise/avizele-agentilor-economici/Inactive.pdf",
+            "pdf_file_name": "Inactive.pdf",
+            "document_type_name": "Inactive",
+            "count_columns": 6,
+            "sizes": [
+                0,
+                60,
+                110,
+                170,
+                370,
+                680,
+                820
+            ],
+            "search_pattern": "MD-\\d{4}",
+            "parsed_data_file_name": "parsed_Inactive.csv",
+            "address_column_number": [
+                4
+            ],
+            "equal_columns_numbers": [
+                1,
+                5
+            ],
+            "idno_column_number": 2,
+            "date_column_number": 1,
+            "start_date": "2008-06-01",
+            "end_date": "2025-06-27",
+            "estimated_rows_count": 2314,
+            "need_cleaning_columns": null,
+            "headers": [
+                "No",
+                "Date_of_announcement",
+                "IDNO",
+                "Name",
+                "Address",
+                "Date_of_dissolution"
+            ],
+            "sql_table_name": "Inactive_extracted"
+        },
+        {
+            "keyword": "Reducere",
+            "heading_string": "Reducerea capitalului social",
+            "stored_date_range": "01.01.2025 - 27.06.2025",
+            "row_in_table": 1,
+            "url_to_download_from": "https://www.asp.gov.md/sites/default/files/date-deschise/avizele-agentilor-economici/Reducere.pdf",
+            "pdf_file_name": "Reducere.pdf",
+            "document_type_name": "Reducere",
+            "count_columns": 7,
+            "sizes": [
+                0,
+                55,
+                100,
+                170,
+                310,
+                535,
+                700,
+                820
+            ],
+            "search_pattern": "MD-\\d{4}",
+            "parsed_data_file_name": "parsed_Reducere.csv",
+            "address_column_number": [
+                4
+            ],
+            "equal_columns_numbers": null,
+            "idno_column_number": 2,
+            "date_column_number": 1,
+            "start_date": "2025-01-01",
+            "end_date": "2025-06-27",
+            "estimated_rows_count": 89,
+            "need_cleaning_columns": null,
+            "headers": [
+                "No",
+                "Date_of_announcement",
+                "IDNO",
+                "Name",
+                "Address",
+                "From_price",
+                "Into_price"
+            ],
+            "sql_table_name": "Reducere_extracted"
+        },
+        {
+            "keyword": "Reducere_2007_2024",
+            "heading_string": "Reducerea capitalului social",
+            "stored_date_range": "20.11.2007 - 31.12.2024",
+            "row_in_table": 2,
+            "url_to_download_from": "https://www.asp.gov.md/sites/default/files/date-deschise/avizele-agentilor-economici/total/Reducere_2007_2024.pdf",
+            "pdf_file_name": "Reducere_2007_2024.pdf",
+            "document_type_name": "Reducere",
+            "count_columns": 7,
+            "sizes": [
+                0,
+                55,
+                100,
+                170,
+                310,
+                535,
+                700,
+                820
+            ],
+            "search_pattern": "MD-\\d{4}",
+            "parsed_data_file_name": "parsed_Reducere_2007_2024.csv",
+            "address_column_number": [
+                4
+            ],
+            "equal_columns_numbers": null,
+            "idno_column_number": 2,
+            "date_column_number": 1,
+            "start_date": "2007-11-20",
+            "end_date": "2024-12-31",
+            "estimated_rows_count": 2557,
+            "need_cleaning_columns": null,
+            "headers": [
+                "No",
+                "Date_of_announcement",
+                "IDNO",
+                "Name",
+                "Address",
+                "From_price",
+                "Into_price"
+            ],
+            "sql_table_name": "Reducere_2007_2024_extracted"
+        },
+        {
+            "keyword": "Reducere_2007_2024",
+            "heading_string": "Reducerea capitalului social",
+            "stored_date_range": "20.11.2007 - 31.12.2024",
+            "row_in_table": 2,
+            "url_to_download_from": "https://www.asp.gov.md/sites/default/files/date-deschise/avizele-agentilor-economici/total/Reducere_2007_2024.pdf",
+            "pdf_file_name": "Reducere_2007_2024.pdf",
+            "document_type_name": "Reducere",
+            "count_columns": 7,
+            "sizes": [
+                0,
+                55,
+                100,
+                170,
+                310,
+                535,
+                700,
+                820
+            ],
+            "search_pattern": "MD-\\d{4}",
+            "parsed_data_file_name": "parsed_Reducere_2007_2024.csv",
+            "address_column_number": [
+                4
+            ],
+            "equal_columns_numbers": null,
+            "idno_column_number": 2,
+            "date_column_number": 1,
+            "start_date": "2007-11-20",
+            "end_date": "2024-12-31",
+            "estimated_rows_count": 2557,
+            "need_cleaning_columns": null,
+            "headers": [
+                "No",
+                "Date_of_announcement",
+                "IDNO",
+                "Name",
+                "Address",
+                "From_price",
+                "Into_price"
+            ],
+            "sql_table_name": "Reducere_2007_2024_extracted"
+        },
+        {
+            "keyword": "Reducere_2007_2024",
+            "heading_string": "Reducerea capitalului social",
+            "stored_date_range": "20.11.2007 - 31.12.2024",
+            "row_in_table": 2,
+            "url_to_download_from": "https://www.asp.gov.md/sites/default/files/date-deschise/avizele-agentilor-economici/total/Reducere_2007_2024.pdf",
+            "pdf_file_name": "Reducere_2007_2024.pdf",
+            "document_type_name": "Reducere",
+            "count_columns": 7,
+            "sizes": [
+                0,
+                55,
+                100,
+                170,
+                310,
+                535,
+                700,
+                820
+            ],
+            "search_pattern": "MD-\\d{4}",
+            "parsed_data_file_name": "parsed_Reducere_2007_2024.csv",
+            "address_column_number": [
+                4
+            ],
+            "equal_columns_numbers": null,
+            "idno_column_number": 2,
+            "date_column_number": 1,
+            "start_date": "2007-11-20",
+            "end_date": "2024-12-31",
+            "estimated_rows_count": 2557,
+            "need_cleaning_columns": null,
+            "headers": [
+                "No",
+                "Date_of_announcement",
+                "IDNO",
+                "Name",
+                "Address",
+                "From_price",
+                "Into_price"
+            ],
+            "sql_table_name": "Reducere_2007_2024_extracted"
+        },
+        {
+            "keyword": "Reducere_2007_2024",
+            "heading_string": "Reducerea capitalului social",
+            "stored_date_range": "20.11.2007 - 31.12.2024",
+            "row_in_table": 2,
+            "url_to_download_from": "https://www.asp.gov.md/sites/default/files/date-deschise/avizele-agentilor-economici/total/Reducere_2007_2024.pdf",
+            "pdf_file_name": "Reducere_2007_2024.pdf",
+            "document_type_name": "Reducere",
+            "count_columns": 7,
+            "sizes": [
+                0,
+                55,
+                100,
+                170,
+                310,
+                535,
+                700,
+                820
+            ],
+            "search_pattern": "MD-\\d{4}",
+            "parsed_data_file_name": "parsed_Reducere_2007_2024.csv",
+            "address_column_number": [
+                4
+            ],
+            "equal_columns_numbers": null,
+            "idno_column_number": 2,
+            "date_column_number": 1,
+            "start_date": "2007-11-20",
+            "end_date": "2024-12-31",
+            "estimated_rows_count": 2557,
+            "need_cleaning_columns": null,
+            "headers": [
+                "No",
+                "Date_of_announcement",
+                "IDNO",
+                "Name",
+                "Address",
+                "From_price",
+                "Into_price"
+            ],
+            "sql_table_name": "Reducere_2007_2024_extracted"
+        },
+        {
+            "keyword": "Reducere_2007_2024",
+            "heading_string": "Reducerea capitalului social",
+            "stored_date_range": "20.11.2007 - 31.12.2024",
+            "row_in_table": 2,
+            "url_to_download_from": "https://www.asp.gov.md/sites/default/files/date-deschise/avizele-agentilor-economici/total/Reducere_2007_2024.pdf",
+            "pdf_file_name": "Reducere_2007_2024.pdf",
+            "document_type_name": "Reducere",
+            "count_columns": 7,
+            "sizes": [
+                0,
+                55,
+                100,
+                170,
+                310,
+                535,
+                700,
+                820
+            ],
+            "search_pattern": "MD-\\d{4}",
+            "parsed_data_file_name": "parsed_Reducere_2007_2024.csv",
+            "address_column_number": [
+                4
+            ],
+            "equal_columns_numbers": null,
+            "idno_column_number": 2,
+            "date_column_number": 1,
+            "start_date": "2007-11-20",
+            "end_date": "2024-12-31",
+            "estimated_rows_count": 2557,
+            "need_cleaning_columns": null,
+            "headers": [
+                "No",
+                "Date_of_announcement",
+                "IDNO",
+                "Name",
+                "Address",
+                "From_price",
+                "Into_price"
+            ],
+            "sql_table_name": "Reducere_2007_2024_extracted"
+        }
+    ]
+}

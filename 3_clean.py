@@ -59,9 +59,9 @@ def clean_data(parsed_data_file_name, need_cleaning_columns):
     return df
 
 
-def clean_data_by_type (df, document_type_name):
+def clean_data_by_type (df, keyword):
 
-    if document_type_name == 'Denumirea':
+    if keyword == 'Denumirea':
         if len(df) > 3320:
             df.loc[3319] = [
                 int('3320'),
@@ -73,10 +73,10 @@ def clean_data_by_type (df, document_type_name):
                 'Întreprinderea Mixtă ""VINAGROFOROS"" S.R.L.'
             ]
 
-    elif document_type_name == 'Sediul':
+    elif keyword == 'Sediul':
         df[4] = df[4].astype(str).str.replace(r'\br l\b', 'r-l', regex=True)
 
-    elif document_type_name == 'Reducere':
+    elif keyword == 'Reducere':
         if len(df) > 716:
             df.loc[716] = [
                 int('717'),
@@ -105,12 +105,16 @@ def clean_data_by_type (df, document_type_name):
     return df
 
 file_config = json.loads(os.environ['FILE_CONFIG'])
-parsed_data_file_name = file_config['parsed_data_file_name']
+path_to_file = json.loads(os.environ['path_to_file'])
+
+parsed_data_file_name = "parsed_files/" + os.path.splitext(os.path.basename(path_to_file))[0] + ".csv"
+
+
 need_cleaning_columns = file_config['need_cleaning_columns']
-document_type_name = file_config['document_type_name']
+keyword = file_config['keyword']
 
 df = clean_data(parsed_data_file_name, need_cleaning_columns)
 
-df = clean_data_by_type(df, document_type_name)
+df = clean_data_by_type(df, keyword)
 
 df.to_csv(parsed_data_file_name, sep='|', index=False, header=False)

@@ -64,11 +64,14 @@ def parse_pdf(pdf_url, x, search_pattern):
 
 file_config = json.loads(os.environ['FILE_CONFIG'])
 
-pdf_url = file_config['pdf_file_name']
-parsed_data_file_name = file_config['parsed_data_file_name']
+path_to_file = json.loads(os.environ['path_to_file'])
+
+os.makedirs("parsed_files", exist_ok=True)
+parsed_data_file_name = "parsed_files/" + os.path.splitext(os.path.basename(path_to_file))[0] + ".csv"
+
 x = file_config['sizes']
 search_pattern = file_config['search_pattern']
 
-df = parse_pdf(pdf_url, x, search_pattern)
+df = parse_pdf(path_to_file, x, search_pattern)
 
 df.to_csv(parsed_data_file_name, sep='|', index=False, header=False)
