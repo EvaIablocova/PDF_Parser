@@ -3,12 +3,15 @@ import pyodbc
 import os
 import json
 from sqlalchemy import create_engine
+from datetime import datetime
 
 file_config = json.loads(os.environ['FILE_CONFIG'])
 path_to_file = json.loads(os.environ['path_to_file'])
 
 
 headers = file_config['headers']
+if "last_updated_date" not in headers:
+    headers.append("last_updated_date")
 
 parsed_data_file_name = "parsed_files/" + os.path.splitext(os.path.basename(path_to_file))[0] + ".csv"
 sql_table_name = os.path.splitext(os.path.basename(path_to_file))[0]
@@ -38,47 +41,60 @@ table_exists_query = f"SELECT COUNT(*) FROM sys.tables WHERE name = '{sql_table_
 cursor.execute(table_exists_query)
 table_exists = cursor.fetchone()[0] > 0
 
-if table_exists:
-    # Read existing table data into a DataFrame
-    existing_data_query = f"SELECT * FROM [{sql_table_name}]"
 
-    engine = create_engine(
-        f"mssql+pyodbc://{username}:{password}@{server_name}/{database_name}?driver=ODBC+Driver+18+for+SQL+Server&TrustServerCertificate=yes"
-    )
+engine = create_engine(
+    f"mssql+pyodbc://{username}:{password}@{server_name}/{database_name}?driver=ODBC+Driver+18+for+SQL+Server&TrustServerCertificate=yes"
+)
 
-    existing_data = pd.read_sql(existing_data_query, engine)
-
-    # Load new data
-    df = pd.read_csv(parsed_data_file_name, sep='|', header=None, names=headers)
-    df = df.astype(str)
-
-    # Find the difference between the new data and the existing data
-    new_rows = pd.concat([df, existing_data]).drop_duplicates(keep=False)
-
-    if not new_rows.empty:
-        insert_query = f"INSERT INTO {sql_table_name} ({', '.join(headers)}) VALUES ({', '.join(['?' for _ in headers])})"
-        for _, row in new_rows.iterrows():
-            cursor.execute(insert_query, tuple(row))
-    else:
-        print("No data to insert into the table.")
-else:
-    # Create the table and insert all rows
+if not table_exists:
     create_table_query = f"""
     CREATE TABLE [{sql_table_name}] (
-        {', '.join([f"[{header}] NVARCHAR(255)" for header in headers])}
+        {', '.join([f"[{header}] NVARCHAR(255)" for header in headers[:-1]])},
+        [last_updated_date] DATETIME
     );
     """
     cursor.execute(create_table_query)
     conn.commit()
 
-    df = pd.read_csv(parsed_data_file_name, sep='|', header=None, names=headers)
-    df = df.astype(str)
+new_data = pd.read_csv(parsed_data_file_name, sep='|', header=None, names=headers)
+new_data = new_data.astype(str)
 
-    insert_query = f"INSERT INTO {sql_table_name} ({', '.join(headers)}) VALUES ({', '.join(['?' for _ in headers])})"
-    for _, row in df.iterrows():
-        cursor.execute(insert_query, tuple(row))
+staging_table_name = f"staging_{sql_table_name}"
 
 
+staging_table_exists_query = f"SELECT COUNT(*) FROM sys.tables WHERE name = '{staging_table_name}'"
+cursor.execute(staging_table_exists_query)
+staging_table_exists = cursor.fetchone()[0] > 0
+
+if  staging_table_exists:
+    drop_staging_table_query = f"DROP TABLE [{staging_table_name}];"
+    cursor.execute(drop_staging_table_query)
+
+create_staging_table_query = f"""
+CREATE TABLE [{staging_table_name}] (
+    {', '.join([f"[{header}] NVARCHAR(255)" for header in headers[:-1]])},
+    [last_updated_date] DATETIME
+);
+"""
+cursor.execute(create_staging_table_query)
 conn.commit()
+
+
+insert_staging_query = f"INSERT INTO {staging_table_name} ({', '.join(headers)}) VALUES ({', '.join(['?' for _ in headers])})"
+for _, row in new_data.iterrows():
+    row_data = tuple(row[:-1]) + (datetime.now().strftime('%Y-%m-%d %H:%M:%S'),)
+    cursor.execute(insert_staging_query, row_data)
+conn.commit()
+
+insert_delta_query = f"""
+INSERT INTO {sql_table_name} ({', '.join(headers)})
+SELECT * FROM {staging_table_name}
+EXCEPT
+SELECT * FROM {sql_table_name};
+"""
+cursor.execute(insert_delta_query)
+conn.commit()
+
+
 cursor.close()
 conn.close()

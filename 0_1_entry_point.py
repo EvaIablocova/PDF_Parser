@@ -21,7 +21,7 @@ subprocess.run([sys.executable, "0_0_1_load_dates_from_site.py", today_file], en
 # result = subprocess.run([sys.executable, "0_1_1_download_all_pdf.py", download_dir], env=os.environ)
 
 # for changing dates
-# subprocess.run([sys.executable, "once_create_json_with_dates.py"])
+subprocess.run([sys.executable, "once_create_json_with_dates.py"])
 
 files_to_process = date_module.compare_dates(config_dates, today_file)
 # files_to_process = [file for file in os.listdir(download_dir) if file.endswith(".pdf")]
