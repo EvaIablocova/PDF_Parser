@@ -2,7 +2,7 @@
     "download_dir": "downloaded_pdf_files",
     "database_config": {
         "server_name": "localhost",
-        "database_name": "ASPdb3",
+        "database_name": "ASPdb2",
         "username": "SA",
         "password": "MyStr0ngPass123"
     },
@@ -32,7 +32,7 @@
                 6
             ],
             "idno_column_number": 2,
-            "date_column_number": 1,
+            "date_column_number": [1],
             "start_date": "2025-01-01",
             "end_date": "2025-06-27",
             "estimated_rows_count": 238,
@@ -77,7 +77,7 @@
                 6
             ],
             "idno_column_number": 2,
-            "date_column_number": 1,
+            "date_column_number": [1],
             "start_date": "2025-01-01",
             "end_date": "2025-06-27",
             "estimated_rows_count": 933,
@@ -116,7 +116,7 @@
                 5
             ],
             "idno_column_number": 2,
-            "date_column_number": 1,
+            "date_column_number": [1],
             "start_date": "2008-06-01",
             "end_date": "2025-06-27",
             "estimated_rows_count": 2314,
@@ -152,7 +152,7 @@
             ],
             "equal_columns_numbers": null,
             "idno_column_number": 2,
-            "date_column_number": 1,
+            "date_column_number": [1],
             "start_date": "2025-01-01",
             "end_date": "2025-06-27",
             "estimated_rows_count": 89,
@@ -167,14 +167,6 @@
                 "Into_price"
             ]
         },
-
-
-
-
-
-
-
-
         {
             "keyword": "Lichidarea",
             "heading_string": "Reducerea capitalului social",
@@ -183,11 +175,11 @@
             "count_columns": 6,
             "sizes": [
                 0,
-                55,
-                100,
+                60,
+                110,
                 170,
-                310,
-                535,
+                370,
+                680,
                 820
             ],
             "search_pattern": "MD-\\d{4}",
@@ -213,19 +205,9 @@
                 "IDNO",
                 "Name",
                 "Address",
-                "From_price",
-                "Into_price"
+                "Date_of_deregistretion"
             ]
         },
-
-
-
-
-
-
-
-
-
         {
             "keyword": "Init_reorg",
             "heading_string": "Reducerea capitalului social",
@@ -236,31 +218,33 @@
                 0,
                 55,
                 100,
-                170,
-                310,
-                535,
-                700,
+                165,
+                340,
+                490,
+                630,
                 820
             ],
             "search_pattern": "MD-\\d{4}",
             "address_column_number": [
-                4
+                6
             ],
             "equal_columns_numbers": null,
             "idno_column_number": 2,
-            "date_column_number": 1,
+            "date_column_number": [
+                1
+            ],
             "start_date": "2025-01-01",
             "end_date": "2025-06-27",
-            "estimated_rows_count": 89,
+            "estimated_rows_count": 53,
             "need_cleaning_columns": null,
             "headers": [
                 "No",
                 "Date_of_announcement",
                 "IDNO",
                 "Name",
-                "Address",
-                "From_price",
-                "Into_price"
+                "Type_of_reorganization_1",
+                "Type_of_reorganization_2",
+                "Address"
             ]
         },
         {
@@ -268,15 +252,13 @@
             "heading_string": "Reducerea capitalului social",
             "stored_date_range": "01.01.2025 - 27.06.2025",
             "row_in_table": 1,
-            "count_columns": 7,
+            "count_columns": 5,
             "sizes": [
                 0,
-                55,
-                100,
+                60,
+                110,
                 170,
-                310,
-                535,
-                700,
+                370,
                 820
             ],
             "search_pattern": "MD-\\d{4}",
@@ -285,56 +267,19 @@
             ],
             "equal_columns_numbers": null,
             "idno_column_number": 2,
-            "date_column_number": 1,
+            "date_column_number": [
+                1
+            ],
             "start_date": "2025-01-01",
             "end_date": "2025-06-27",
-            "estimated_rows_count": 89,
+            "estimated_rows_count": 599,
             "need_cleaning_columns": null,
             "headers": [
                 "No",
                 "Date_of_announcement",
                 "IDNO",
                 "Name",
-                "Address",
-                "From_price",
-                "Into_price"
-            ]
-        },
-        {
-            "keyword": "Finaliz_proced_reord",
-            "heading_string": "Reducerea capitalului social",
-            "stored_date_range": "01.01.2025 - 27.06.2025",
-            "row_in_table": 1,
-            "count_columns": 7,
-            "sizes": [
-                0,
-                55,
-                100,
-                170,
-                310,
-                535,
-                700,
-                820
-            ],
-            "search_pattern": "MD-\\d{4}",
-            "address_column_number": [
-                4
-            ],
-            "equal_columns_numbers": null,
-            "idno_column_number": 2,
-            "date_column_number": 1,
-            "start_date": "2025-01-01",
-            "end_date": "2025-06-27",
-            "estimated_rows_count": 89,
-            "need_cleaning_columns": null,
-            "headers": [
-                "No",
-                "Date_of_announcement",
-                "IDNO",
-                "Name",
-                "Address",
-                "From_price",
-                "Into_price"
+                "Address"
             ]
         }
     ]

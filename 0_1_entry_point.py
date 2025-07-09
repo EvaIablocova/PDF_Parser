@@ -17,14 +17,15 @@ download_dir = config['download_dir']
 
 
 # files_to_process = [file for file in os.listdir(download_dir) if file.endswith(".pdf")]
-files_to_process = "Lichidarea.pdf"
-# files_to_process = "Init_reorg.pdf"
-# files_to_process = "Init_lichid.pdf"
-# files_to_process = "Finaliz_proced_reord.pdf"
+
+files_to_process = ["Init_lichid_2014_2024_MO.pdf"]
+# files_to_process = ["Init_lichid.pdf", "Init_lichid_2014_2024_MO.pdf"]
+# files_to_process = ["Finaliz_proced_reord.pdf"]
 
 print("files_to_process: ", files_to_process)
 
-keywords = [fc['keyword'] for fc in config['file_configs'] if fc['keyword'] in [os.path.splitext(file)[0] for file in files_to_process]]
+# keywords = [fc['keyword'] for fc in config['file_configs'] if fc['keyword'] in [os.path.splitext(file)[0] for file in files_to_process]]
+keywords = [fc['keyword'] for fc in config['file_configs'] if fc['keyword'] in os.path.splitext(files_to_process[0])[0]]
 
 print("keywords: ",keywords)
 

@@ -104,11 +104,12 @@ def clean_data_by_type (df, keyword):
 
     return df
 
+
+
 file_config = json.loads(os.environ['FILE_CONFIG'])
 path_to_file = json.loads(os.environ['path_to_file'])
 
 parsed_data_file_name = "parsed_files/" + os.path.splitext(os.path.basename(path_to_file))[0] + ".csv"
-
 
 need_cleaning_columns = file_config['need_cleaning_columns']
 keyword = file_config['keyword']

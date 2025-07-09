@@ -7,7 +7,6 @@ import os
 import json
 
 def process_pdf(pdf_url, x, search_pattern):
-    step2_start = time.time()
     all_data = []
 
     line_tolerance = 2
@@ -43,8 +42,6 @@ def process_pdf(pdf_url, x, search_pattern):
                         text = text.replace('\n', ' ')
                     row_data.append(text)
                 all_data.append(row_data)
-    step2_duration = time.time() - step2_start
-    print(f"Step 2 (Process PDF): {step2_duration:.2f} seconds")
     return all_data
 
 def parse_pdf(pdf_url, x, search_pattern):
@@ -52,13 +49,7 @@ def parse_pdf(pdf_url, x, search_pattern):
     all_data = []
     all_data= process_pdf(pdf_url, x, search_pattern)
 
-
-    # Step 4: Create DataFrame
-    step4_start = time.time()
     df = pd.DataFrame(all_data)
-    step4_duration = time.time() - step4_start
-    print(f"Step 4 (Create DataFrame): {step4_duration:.2f} seconds")
-
     return df
 
 
