@@ -49,6 +49,7 @@ engine = create_engine(
 if not table_exists:
     create_table_query = f"""
     CREATE TABLE [{sql_table_name}] (
+        [id] INT IDENTITY(1,1) PRIMARY KEY,
         {', '.join([f"[{header}] NVARCHAR(255)" for header in headers[:-1]])},
         [last_updated_date] DATETIME
     );
@@ -72,6 +73,7 @@ if  staging_table_exists:
 
 create_staging_table_query = f"""
 CREATE TABLE [{staging_table_name}] (
+    [id] INT IDENTITY(1,1) PRIMARY KEY,
     {', '.join([f"[{header}] NVARCHAR(255)" for header in headers[:-1]])},
     [last_updated_date] DATETIME
 );
@@ -86,11 +88,47 @@ for _, row in new_data.iterrows():
     cursor.execute(insert_staging_query, row_data)
 conn.commit()
 
+# insert_delta_query = f"""
+# INSERT INTO {sql_table_name} ({', '.join(headers)})
+# SELECT {', '.join(headers[:-1])}, [last_updated_date]
+# FROM {staging_table_name}
+# EXCEPT
+# SELECT {', '.join(headers[:-1])}, [last_updated_date]
+# FROM {sql_table_name};
+# """
+
 insert_delta_query = f"""
-INSERT INTO {sql_table_name} ({', '.join(headers)})
-SELECT * FROM {staging_table_name}
+
+IF OBJECT_ID('tempdb..#sql_table_name_tmp') IS NOT NULL DROP TABLE #sql_table_name_tmp;
+IF OBJECT_ID('tempdb..#staging_table_name_tmp') IS NOT NULL DROP TABLE #staging_table_name_tmp;
+IF OBJECT_ID('tempdb..#missing_row_indices') IS NOT NULL DROP TABLE #missing_row_indices;
+
+-- Create temporary tables
+SELECT id, {', '.join(headers[:-1])}
+INTO #sql_table_name_tmp
+FROM {sql_table_name};
+
+SELECT id, {', '.join(headers[:-1])}
+INTO #staging_table_name_tmp
+FROM {staging_table_name};
+
+-- Find missing rows
+SELECT stg.id
+INTO #missing_row_indices
+FROM #staging_table_name_tmp stg
 EXCEPT
-SELECT * FROM {sql_table_name};
+SELECT sql.id
+FROM #sql_table_name_tmp sql;
+
+-- Insert missing rows
+INSERT INTO {sql_table_name} ({', '.join(headers)})
+SELECT {', '.join(headers)}
+FROM {staging_table_name}
+WHERE id IN (SELECT id FROM #missing_row_indices);
+
+-- Clean up temporary tables
+DROP TABLE #sql_table_name_tmp;
+DROP TABLE #staging_table_name_tmp;
 """
 cursor.execute(insert_delta_query)
 conn.commit()

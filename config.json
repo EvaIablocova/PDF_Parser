@@ -4,7 +4,7 @@
     "today_file": "today_dates.json",
     "database_config": {
         "server_name": "localhost",
-        "database_name": "ASPdb11",
+        "database_name": "ASPdb13",
         "username": "SA",
         "password": "MyStr0ngPass123"
     },
