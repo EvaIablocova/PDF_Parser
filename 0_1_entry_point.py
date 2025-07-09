@@ -12,11 +12,12 @@ with open('config.json', 'r', encoding='utf-8') as file:
     config = json.load(file)
 
 download_dir = config['download_dir']
+config_dates = config["config_last_dates_in_db"]
+today_file = config["today_file"]
 
 # result = subprocess.run([sys.executable, "0_1_1_download_all_pdf.py", download_dir], env=os.environ)
 
-config_dates = config["config_last_dates_in_db"]
-today_file = config["today_file"]
+result = subprocess.run([sys.executable, "once_create_json_with_dates.py"])
 
 result = subprocess.run([sys.executable, "0_1_2_create_json_dates_updated.py", download_dir, today_file], env=os.environ)
 
@@ -65,8 +66,6 @@ for keyword in keywords:
 
         path_to_file = os.path.join(download_dir, file_to_process)
         os.environ['path_to_file'] = json.dumps(path_to_file)
-
-
 
         scripts = [
             # "0_1_1_download_all_pdf.py",

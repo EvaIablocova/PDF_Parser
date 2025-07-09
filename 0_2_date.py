@@ -66,14 +66,4 @@ def compare_dates(config_dates, today_file):
     return files_to_process
 
 
-# config_file = "config_last_dates_in_db.json"
-# today_file = "today_dates.json"
-# differences = compare_dates(config_file, today_file)
-# print(json.dumps(differences, indent=4, ensure_ascii=False))
-
-# if differences:
-#     files_to_process = [diff["FileName"] for diff in differences]
-#     print(files_to_process)
-#
-#     update_stored_date_in_config_json (differences)
 

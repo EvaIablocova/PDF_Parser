@@ -12,7 +12,6 @@
         {
             "keyword": "Denumirea",
             "heading_string": "Schimbarea denumirii",
-            "stored_date_range": "01.01.2025 - 27.06.2025",
             "row_in_table": 1,
             "count_columns": 7,
             "sizes": [
@@ -37,8 +36,6 @@
             "date_column_number": [
                 1
             ],
-            "start_date": "2025-01-01",
-            "end_date": "2025-06-27",
             "estimated_rows_count": 238,
             "need_cleaning_columns": [
                 3,
@@ -57,7 +54,6 @@
         {
             "keyword": "Sediul",
             "heading_string": "Schimbarea sediului",
-            "stored_date_range": "01.01.2025 - 27.06.2025",
             "row_in_table": 1,
             "count_columns": 7,
             "sizes": [
@@ -84,8 +80,6 @@
             "date_column_number": [
                 1
             ],
-            "start_date": "2025-01-01",
-            "end_date": "2025-06-27",
             "estimated_rows_count": 933,
             "need_cleaning_columns": null,
             "headers": [
@@ -101,7 +95,6 @@
         {
             "keyword": "Inactive",
             "heading_string": "Inițierea procedurii de radiere a întreprinzătorilor individuali inactivi, persoanelor juridice inactive și a contribuabililor ale căror obligații fiscale au fost stinse simplificat prin scădere",
-            "stored_date_range": "01.06.2008 - 27.06.2025",
             "row_in_table": 1,
             "count_columns": 6,
             "sizes": [
@@ -125,8 +118,6 @@
             "date_column_number": [
                 1
             ],
-            "start_date": "2008-06-01",
-            "end_date": "2025-06-27",
             "estimated_rows_count": 2314,
             "need_cleaning_columns": null,
             "headers": [
@@ -141,7 +132,6 @@
         {
             "keyword": "Reducere",
             "heading_string": "Reducerea capitalului social",
-            "stored_date_range": "01.01.2025 - 27.06.2025",
             "row_in_table": 1,
             "count_columns": 7,
             "sizes": [
@@ -163,8 +153,6 @@
             "date_column_number": [
                 1
             ],
-            "start_date": "2025-01-01",
-            "end_date": "2025-06-27",
             "estimated_rows_count": 89,
             "need_cleaning_columns": null,
             "headers": [
@@ -180,7 +168,6 @@
         {
             "keyword": "Lichidarea",
             "heading_string": "Reducerea capitalului social",
-            "stored_date_range": "01.01.2025 - 27.06.2025",
             "row_in_table": 1,
             "count_columns": 6,
             "sizes": [
@@ -205,8 +192,6 @@
                 1,
                 5
             ],
-            "start_date": "2025-01-01",
-            "end_date": "2025-06-27",
             "estimated_rows_count": 2975,
             "need_cleaning_columns": null,
             "headers": [
@@ -221,7 +206,6 @@
         {
             "keyword": "Init_reorg",
             "heading_string": "Reducerea capitalului social",
-            "stored_date_range": "01.01.2025 - 27.06.2025",
             "row_in_table": 1,
             "count_columns": 7,
             "sizes": [
@@ -243,8 +227,6 @@
             "date_column_number": [
                 1
             ],
-            "start_date": "2025-01-01",
-            "end_date": "2025-06-27",
             "estimated_rows_count": 53,
             "need_cleaning_columns": null,
             "headers": [
@@ -260,7 +242,6 @@
         {
             "keyword": "Init_lichid",
             "heading_string": "Reducerea capitalului social",
-            "stored_date_range": "01.01.2025 - 27.06.2025",
             "row_in_table": 1,
             "count_columns": 5,
             "sizes": [
@@ -280,8 +261,6 @@
             "date_column_number": [
                 1
             ],
-            "start_date": "2025-01-01",
-            "end_date": "2025-06-27",
             "estimated_rows_count": 599,
             "need_cleaning_columns": null,
             "headers": [

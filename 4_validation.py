@@ -128,6 +128,8 @@ def validate_parsed_data(df, estimated_rows_count):
 
     return report
 
+
+
 file_config = json.loads(os.environ['FILE_CONFIG'])
 path_to_file = json.loads(os.environ['path_to_file'])
 
@@ -136,10 +138,28 @@ parsed_data_file_name = "parsed_files/" + os.path.splitext(os.path.basename(path
 address_column_number = file_config['address_column_number']
 equal_columns_numbers = file_config['equal_columns_numbers']
 idno_column_number = file_config['idno_column_number']
-date_column_number = file_config['date_column_number']
-start_date = file_config['start_date']
-end_date = file_config['end_date']
 estimated_rows_count = file_config['estimated_rows_count']
+
+date_column_number = file_config['date_column_number']
+
+with open('config.json', 'r', encoding='utf-8') as file:
+    config = json.load(file)
+
+config_last_dates_in_db_path = config.get("config_last_dates_in_db")
+
+with open(config_last_dates_in_db_path, 'r', encoding='utf-8') as f:
+    config_last_dates_in_db = json.load(f)
+
+file_name_to_find = os.path.splitext(os.path.basename(path_to_file))[0] + ".pdf"
+
+matching_record = next(
+    (record for record in config_last_dates_in_db if record.get("FileName") == file_name_to_find),
+    None
+)
+
+start_date = matching_record['start_date']
+end_date = matching_record['end_date']
+
 
 df = pd.read_csv(parsed_data_file_name, sep='|', header=None)
 

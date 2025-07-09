@@ -4,15 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="93ca5b42-e6fc-4b64-8f92-a42f9495dfe5" name="Changes" comment="Coordinates. Keywords: Init_lichid, Init_reorg, Lichidarea">
-      <change afterPath="$PROJECT_DIR$/0_1_2_create_json_dates_updated.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/once_create_json_with_dates.py" afterDir="false" />
+    <list default="true" id="93ca5b42-e6fc-4b64-8f92-a42f9495dfe5" name="Changes" comment="1. Warning: new file type&#10;2. Check dates in PDFs -&gt; pipeline">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/0_1_entry_point.py" beforeDir="false" afterPath="$PROJECT_DIR$/0_1_entry_point.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/0_2_date.py" beforeDir="false" afterPath="$PROJECT_DIR$/0_2_date.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/1_download_pdf.py" beforeDir="false" afterPath="$PROJECT_DIR$/1_download_pdf.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config_copy.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/4_validation.py" beforeDir="false" afterPath="$PROJECT_DIR$/4_validation.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -235,7 +231,7 @@
       <updated>1751781187170</updated>
       <workItem from="1751781188457" duration="3399000" />
       <workItem from="1751784996614" duration="59477000" />
-      <workItem from="1751990859665" duration="21578000" />
+      <workItem from="1751990859665" duration="23547000" />
     </task>
     <task id="LOCAL-00001" summary="parser - 788 sec">
       <option name="closed" value="true" />
@@ -397,7 +393,15 @@
       <option name="project" value="LOCAL" />
       <updated>1752053181101</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="1. Warning: new file type&#10;2. Check dates in PDFs -&gt; pipeline">
+      <option name="closed" value="true" />
+      <created>1752068279091</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1752068279091</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -418,7 +422,8 @@
     <MESSAGE value="readme 2" />
     <MESSAGE value="all pdfs" />
     <MESSAGE value="Coordinates. Keywords: Init_lichid, Init_reorg, Lichidarea" />
-    <option name="LAST_COMMIT_MESSAGE" value="Coordinates. Keywords: Init_lichid, Init_reorg, Lichidarea" />
+    <MESSAGE value="1. Warning: new file type&#10;2. Check dates in PDFs -&gt; pipeline" />
+    <option name="LAST_COMMIT_MESSAGE" value="1. Warning: new file type&#10;2. Check dates in PDFs -&gt; pipeline" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -429,30 +434,20 @@
           <option name="timeStamp" value="14" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/0_2_date.py</url>
-          <line>7</line>
-          <option name="timeStamp" value="45" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/0_2_date.py</url>
-          <line>27</line>
-          <option name="timeStamp" value="46" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/0_2_date.py</url>
-          <line>62</line>
-          <option name="timeStamp" value="48" />
+          <url>file://$PROJECT_DIR$/4_validation.py</url>
+          <line>144</line>
+          <option name="timeStamp" value="52" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/PDF_Parser$0_1_entry_point.coverage" NAME="0_1_entry_point Coverage Results" MODIFIED="1752068161741" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/PDF_Parser$0_1_entry_point.coverage" NAME="0_1_entry_point Coverage Results" MODIFIED="1752070143686" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/PDF_Parser$2_create_xlsx.coverage" NAME="2_create_xlsx Coverage Results" MODIFIED="1751781403545" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/PDF_Parser$3_parser.coverage" NAME="3_parser Coverage Results" MODIFIED="1751781516344" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/PDF_Parser$create_xlsx_dates_updated.coverage" NAME="0_1_2_create_json_dates_updated Coverage Results" MODIFIED="1752065324653" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/PDF_Parser$0_2_date.coverage" NAME="0_2_date Coverage Results" MODIFIED="1752065855189" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/PDF_Parser$once_create_xlsx.coverage" NAME="once_create_json_with_dates Coverage Results" MODIFIED="1752068157905" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/PDF_Parser$once_create_xlsx.coverage" NAME="once_create_json_with_dates Coverage Results" MODIFIED="1752069528998" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/PDF_Parser$4_validation.coverage" NAME="4_validation Coverage Results" MODIFIED="1751782354953" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/PDF_Parser$5_load_sql.coverage" NAME="5_load_sql Coverage Results" MODIFIED="1751898105192" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/PDF_Parser$0_entry_point.coverage" NAME="0_1_entry_point Coverage Results" MODIFIED="1751981567781" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
