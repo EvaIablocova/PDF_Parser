@@ -8,6 +8,7 @@ date_module = importlib.import_module('0_2_date')
 
 subprocess.check_call([sys.executable, "-m", "pip", "install", "-r", "requirments"])
 
+
 with open('config.json', 'r', encoding='utf-8') as file:
     config = json.load(file)
 
@@ -15,11 +16,12 @@ download_dir = config['download_dir']
 config_dates = config["config_last_dates_in_db"]
 today_file = config["today_file"]
 
+subprocess.run([sys.executable, "0_0_1_load_dates_from_site.py", today_file], env=os.environ)
+
 # result = subprocess.run([sys.executable, "0_1_1_download_all_pdf.py", download_dir], env=os.environ)
 
-result = subprocess.run([sys.executable, "once_create_json_with_dates.py"])
-
-result = subprocess.run([sys.executable, "0_1_2_create_json_dates_updated.py", download_dir, today_file], env=os.environ)
+# for changing dates
+# subprocess.run([sys.executable, "once_create_json_with_dates.py"])
 
 files_to_process = date_module.compare_dates(config_dates, today_file)
 # files_to_process = [file for file in os.listdir(download_dir) if file.endswith(".pdf")]

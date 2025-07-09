@@ -5,3 +5,4 @@ pdfplumber
 PyPDF2
 sqlalchemy
 bs4
+lxml

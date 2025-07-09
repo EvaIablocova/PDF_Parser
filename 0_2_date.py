@@ -15,6 +15,12 @@ def update_stored_date_in_config_json(differences, config_dates):
         if file_name in config_dict:
             config_dict[file_name]["start_date"] = diff["today_start_date"]
             config_dict[file_name]["end_date"] = diff["today_end_date"]
+        else:
+            config_dict[file_name] = {
+                "FileName": file_name,
+                "start_date": diff["today_start_date"],
+                "end_date": diff["today_end_date"]
+            }
 
     with open(config_dates, "w", encoding="utf-8") as f:
         json.dump(list(config_dict.values()), f, ensure_ascii=False, indent=4)
