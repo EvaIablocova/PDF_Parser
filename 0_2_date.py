@@ -1,53 +1,79 @@
 import json
-import requests
-from bs4 import BeautifulSoup
+from PyPDF2 import PdfReader
+import re
+from datetime import datetime
 
-def update_stored_date_in_config_json(file_config, new_date_range):
+def update_stored_date_in_config_json(differences, config_dates):
 
-    with open('config.json', 'r', encoding='utf-8') as file:
-        config = json.load(file)
+    with open(config_dates, "r", encoding="utf-8") as f:
+        config_data = json.load(f)
 
-    for fc in config['file_configs']:
-        if fc['keyword'] == file_config['keyword']:
-            fc['stored_date_range'] = new_date_range
-            break
+    config_dict = {item["FileName"]: item for item in config_data}
 
-    with open('config.json', 'w', encoding='utf-8') as file:
-        json.dump(config, file, ensure_ascii=False, indent=4)
+    for diff in differences:
+        file_name = diff["FileName"]
+        if file_name in config_dict:
+            config_dict[file_name]["start_date"] = diff["today_start_date"]
+            config_dict[file_name]["end_date"] = diff["today_end_date"]
 
-    print(f"Updated in config.json stored date range to: {new_date_range}")
+    with open(config_dates, "w", encoding="utf-8") as f:
+        json.dump(list(config_dict.values()), f, ensure_ascii=False, indent=4)
 
-def check_data_change(file_config):
-    url = "https://www.asp.gov.md/ro/date-deschise/avizele-agentilor-economici"
-    response = requests.get(url)
-    response.raise_for_status()
+    print("Dates updated in config_last_dates_in_db.json")
 
-    soup = BeautifulSoup(response.text, 'html.parser')
 
-    heading_string = file_config['heading_string']
 
-    heading = soup.find('h4', string=heading_string)
-    if not heading:
-        print(f"Heading {heading_string} not found on the page.")
-        return False
+def compare_dates(config_dates, today_file):
 
-    table = heading.find_next('table', class_='table')
-    if not table:
-        print(f"Table not found under the heading {heading_string}.")
-        return False
+    with open(config_dates, "r", encoding="utf-8") as f:
+        config_data = json.load(f)
+    with open(today_file, "r", encoding="utf-8") as f:
+        today_data = json.load(f)
 
-    row_in_table = file_config['row_in_table']
-    rows = table.find_all('tr')
-    for index, row in enumerate(rows):
-        if index == row_in_table:
-            cells = row.find_all('td')
-            if len(cells) >= 2:
-                date_range = cells[1].text.strip()
-                stored_date_range = file_config['stored_date_range']
-                if date_range != stored_date_range:
-                    print(f"Date range has changed: {date_range}")
-                    update_stored_date_in_config_json(file_config, date_range)
-                    return True
 
-    print("Date range has not changed.")
-    return False
+    config_dict = {item["FileName"]: item for item in config_data}
+    today_dict = {item["FileName"]: item for item in today_data}
+
+
+    differences = []
+    for file_name, today_item in today_dict.items():
+        config_item = config_dict.get(file_name)
+        if config_item:
+            if (today_item["start_date"] != config_item["start_date"] or
+                today_item["end_date"] != config_item["end_date"]):
+                differences.append({
+                    "FileName": file_name,
+                    "config_start_date": config_item["start_date"],
+                    "config_end_date": config_item["end_date"],
+                    "today_start_date": today_item["start_date"],
+                    "today_end_date": today_item["end_date"]
+                })
+        else:
+            differences.append({
+                "FileName": file_name,
+                "config_start_date": "Not Found",
+                "config_end_date": "Not Found",
+                "today_start_date": today_item["start_date"],
+                "today_end_date": today_item["end_date"]
+            })
+
+    files_to_process = []
+
+    if differences:
+        files_to_process = [diff["FileName"] for diff in differences]
+        update_stored_date_in_config_json (differences, config_dates)
+
+    return files_to_process
+
+
+# config_file = "config_last_dates_in_db.json"
+# today_file = "today_dates.json"
+# differences = compare_dates(config_file, today_file)
+# print(json.dumps(differences, indent=4, ensure_ascii=False))
+
+# if differences:
+#     files_to_process = [diff["FileName"] for diff in differences]
+#     print(files_to_process)
+#
+#     update_stored_date_in_config_json (differences)
+

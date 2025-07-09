@@ -15,19 +15,37 @@ download_dir = config['download_dir']
 
 # result = subprocess.run([sys.executable, "0_1_1_download_all_pdf.py", download_dir], env=os.environ)
 
+config_dates = config["config_last_dates_in_db"]
+today_file = config["today_file"]
 
+result = subprocess.run([sys.executable, "0_1_2_create_json_dates_updated.py", download_dir, today_file], env=os.environ)
+
+files_to_process = date_module.compare_dates(config_dates, today_file)
 # files_to_process = [file for file in os.listdir(download_dir) if file.endswith(".pdf")]
-
-files_to_process = ["Init_lichid_2014_2024_MO.pdf"]
-# files_to_process = ["Init_lichid.pdf", "Init_lichid_2014_2024_MO.pdf"]
 # files_to_process = ["Finaliz_proced_reord.pdf"]
 
-print("files_to_process: ", files_to_process)
+if files_to_process:
+    print("Dates changed. Files to process: ", files_to_process)
+else:
+    print("No files to process because dates have not changed.")
+    sys.exit(0)
 
-# keywords = [fc['keyword'] for fc in config['file_configs'] if fc['keyword'] in [os.path.splitext(file)[0] for file in files_to_process]]
-keywords = [fc['keyword'] for fc in config['file_configs'] if fc['keyword'] in os.path.splitext(files_to_process[0])[0]]
+keywords = [fc['keyword'] for fc in config['file_configs'] if fc['keyword'] in [os.path.splitext(file)[0] for file in files_to_process]]
 
 print("keywords: ",keywords)
+
+missing_keywords = [file for file in files_to_process if not any(fc['keyword'] in os.path.splitext(file)[0] for fc in config['file_configs'])]
+
+if missing_keywords:
+    print("Parsing settings have not been found for the following files:")
+    for file in missing_keywords:
+        print(f"- {file}")
+else:
+    print("Parsing settings have been found for all files.")
+
+if not keywords:
+    print("No parsing settings found for the provided files.")
+    sys.exit(0)
 
 for keyword in keywords:
     print(f"\n{'*' * 50}")
@@ -48,14 +66,6 @@ for keyword in keywords:
         path_to_file = os.path.join(download_dir, file_to_process)
         os.environ['path_to_file'] = json.dumps(path_to_file)
 
-        # is_data_changed = date_module.check_data_change(file_config)
-        is_data_changed = True
-
-        if not is_data_changed:
-            print("Data has not changed, skipping the pipeline.")
-            continue
-        else:
-            print("Data has changed, proceeding with the pipeline.")
 
 
         scripts = [

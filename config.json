@@ -1,5 +1,7 @@
 {
     "download_dir": "downloaded_pdf_files",
+    "config_last_dates_in_db": "config_last_dates_in_db.json",
+    "today_file": "today_dates.json",
     "database_config": {
         "server_name": "localhost",
         "database_name": "ASPdb2",
@@ -32,7 +34,9 @@
                 6
             ],
             "idno_column_number": 2,
-            "date_column_number": [1],
+            "date_column_number": [
+                1
+            ],
             "start_date": "2025-01-01",
             "end_date": "2025-06-27",
             "estimated_rows_count": 238,
@@ -77,7 +81,9 @@
                 6
             ],
             "idno_column_number": 2,
-            "date_column_number": [1],
+            "date_column_number": [
+                1
+            ],
             "start_date": "2025-01-01",
             "end_date": "2025-06-27",
             "estimated_rows_count": 933,
@@ -116,7 +122,9 @@
                 5
             ],
             "idno_column_number": 2,
-            "date_column_number": [1],
+            "date_column_number": [
+                1
+            ],
             "start_date": "2008-06-01",
             "end_date": "2025-06-27",
             "estimated_rows_count": 2314,
@@ -152,7 +160,9 @@
             ],
             "equal_columns_numbers": null,
             "idno_column_number": 2,
-            "date_column_number": [1],
+            "date_column_number": [
+                1
+            ],
             "start_date": "2025-01-01",
             "end_date": "2025-06-27",
             "estimated_rows_count": 89,
