@@ -102,12 +102,18 @@ def validate_parsed_data(df, estimated_rows_count):
     else:
         report.append(f"Table has {df.shape[0]} rows, which is sufficient")
 
-    if df.duplicated().sum() > 0:
-        report.append(f"Found {df.duplicated().sum()} duplicate rows")
+    duplicates_mask = df.duplicated(keep=False)
+    if duplicates_mask.sum() > 0:
+        df.loc[duplicates_mask, 'isValid'] = 0
+        df.loc[duplicates_mask, 'Error message'] += "Duplicate row; "
+        report.append(f"Found {duplicates_mask.sum()} duplicate rows")
     else:
         report.append("No duplicate rows found")
 
     if df.isna().sum().sum() > 0:
+        empty_rows_mask = df.isna().any(axis=1)
+        df.loc[empty_rows_mask, 'isValid'] = 0
+        df.loc[empty_rows_mask, 'Error message'] += "Row contains empty cells; "
         report.append(f"Found {df.isna().sum().sum()} empty cells in the table")
     else:
         report.append("No empty cells found in the table")
@@ -115,7 +121,7 @@ def validate_parsed_data(df, estimated_rows_count):
     first_col = df.iloc[:, 0]
     if pd.api.types.is_numeric_dtype(first_col):
         sorted_col = first_col.sort_values().reset_index(drop=True)
-        expected = pd.Series(range(2, estimated_rows_count+1))
+        expected = pd.Series(range(2, estimated_rows_count + 1))
         missing = set(expected) - set(sorted_col)
         if not missing:
             report.append("First column contains all consecutive numeric values from min to max")
@@ -123,8 +129,13 @@ def validate_parsed_data(df, estimated_rows_count):
             report.append(f"First column is missing values: {sorted(missing)}")
             breaks_report = find_sequence_breaks(df)
             print("Sequence breaks:", breaks_report)
+            non_consecutive_mask = ~df.iloc[:, 0].isin(sorted_col)
+            df.loc[non_consecutive_mask, 'isValid'] = 0
+            df.loc[non_consecutive_mask, 'Error message'] += "Non-consecutive values in the first column; "
     else:
         report.append("First column is not numeric, cannot check for consecutive values")
+        df['isValid'] = 0
+        df['Error message'] += "Non-numeric values in the first column; "
 
     return report
 
@@ -162,6 +173,9 @@ end_date = matching_record['end_date']
 
 
 df = pd.read_csv(parsed_data_file_name, sep='|', header=None)
+
+df['isValid'] = 1
+df['Error message'] = ''
 
 df.iloc[:, 0] = pd.to_numeric(df.iloc[:, 0], errors='coerce')
 validation_report = validate_parsed_data(df, estimated_rows_count)

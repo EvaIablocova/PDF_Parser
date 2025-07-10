@@ -4,9 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="93ca5b42-e6fc-4b64-8f92-a42f9495dfe5" name="Changes" comment="delta in sql">
+    <list default="true" id="93ca5b42-e6fc-4b64-8f92-a42f9495dfe5" name="Changes" comment="no duplicates (with timestamp column)">
+      <change afterPath="$PROJECT_DIR$/7_into_csv.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/horisontal_lines.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/read_table.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/5_load_sql.py" beforeDir="false" afterPath="$PROJECT_DIR$/5_load_sql.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/0_0_1_load_dates_from_site.py" beforeDir="false" afterPath="$PROJECT_DIR$/1_load_dates_from_site.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/0_1_1_download_all_pdf.py" beforeDir="false" afterPath="$PROJECT_DIR$/2_download_all_pdf.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/0_1_entry_point.py" beforeDir="false" afterPath="$PROJECT_DIR$/0_1_entry_point.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/1_download_pdf.py" beforeDir="false" afterPath="$PROJECT_DIR$/download_one_pdf.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2_parser.py" beforeDir="false" afterPath="$PROJECT_DIR$/3_parser.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/3_clean.py" beforeDir="false" afterPath="$PROJECT_DIR$/4_clean.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/4_validation.py" beforeDir="false" afterPath="$PROJECT_DIR$/5_validation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/5_load_sql.py" beforeDir="false" afterPath="$PROJECT_DIR$/6_load_sql.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/config.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -47,38 +57,40 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.0_0_1_load_data_from_site.executor": "Run",
-    "Python.0_0_1_load_dates_from_site.executor": "Run",
-    "Python.0_1_1_download_all_pdf.executor": "Run",
-    "Python.0_1_2_create_json_dates_updated.executor": "Run",
-    "Python.0_1_entry_point.executor": "Run",
-    "Python.0_2_date.executor": "Run",
-    "Python.0_entry_point.executor": "Run",
-    "Python.1_download_pdf.executor": "Run",
-    "Python.2_create_xlsx.executor": "Run",
-    "Python.3_parser.executor": "Run",
-    "Python.4_validation.executor": "Run",
-    "Python.5_load_sql.executor": "Run",
-    "Python.create_xlsx_dates_updated.executor": "Run",
-    "Python.extract_one_page.executor": "Run",
-    "Python.once_create_json_with_dates.executor": "Run",
-    "Python.once_create_xlsx.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "database.data.extractors.current.export.id": "Comma-separated (CSV)_id",
-    "database.data.extractors.current.id": "Comma-separated (CSV)_id",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "/Users/evaiablocova/PycharmProjects/PDF_Parser",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.0_0_1_load_data_from_site.executor&quot;: &quot;Run&quot;,
+    &quot;Python.0_0_1_load_dates_from_site.executor&quot;: &quot;Run&quot;,
+    &quot;Python.0_1_1_download_all_pdf.executor&quot;: &quot;Run&quot;,
+    &quot;Python.0_1_2_create_json_dates_updated.executor&quot;: &quot;Run&quot;,
+    &quot;Python.0_1_entry_point.executor&quot;: &quot;Run&quot;,
+    &quot;Python.0_2_date.executor&quot;: &quot;Run&quot;,
+    &quot;Python.0_entry_point.executor&quot;: &quot;Run&quot;,
+    &quot;Python.1_download_pdf.executor&quot;: &quot;Run&quot;,
+    &quot;Python.2_create_xlsx.executor&quot;: &quot;Run&quot;,
+    &quot;Python.3_parser.executor&quot;: &quot;Run&quot;,
+    &quot;Python.4_validation.executor&quot;: &quot;Run&quot;,
+    &quot;Python.5_load_sql.executor&quot;: &quot;Run&quot;,
+    &quot;Python.create_xlsx_dates_updated.executor&quot;: &quot;Run&quot;,
+    &quot;Python.extract_one_page.executor&quot;: &quot;Run&quot;,
+    &quot;Python.horisontal_lines.executor&quot;: &quot;Run&quot;,
+    &quot;Python.once_create_json_with_dates.executor&quot;: &quot;Run&quot;,
+    &quot;Python.once_create_xlsx.executor&quot;: &quot;Run&quot;,
+    &quot;Python.read_table.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;database.data.extractors.current.export.id&quot;: &quot;Comma-separated (CSV)_id&quot;,
+    &quot;database.data.extractors.current.id&quot;: &quot;Comma-separated (CSV)_id&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/evaiablocova/PycharmProjects/PDF_Parser&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
@@ -89,52 +101,6 @@
     </key>
   </component>
   <component name="RunManager" selected="Python.0_1_entry_point">
-    <configuration name="0_0_1_load_dates_from_site" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="PDF_Parser" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/0_0_1_load_dates_from_site.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="0_1_2_create_json_dates_updated" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="PDF_Parser" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/0_1_2_create_json_dates_updated.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="0_1_entry_point" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="PDF_Parser" />
       <option name="ENV_FILES" value="" />
@@ -158,7 +124,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="0_2_date" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="1_load_dates_from_site" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="PDF_Parser" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -172,7 +138,30 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/0_2_date.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/1_load_dates_from_site.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="horisontal_lines" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="PDF_Parser" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/horisontal_lines.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -204,13 +193,35 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="read_table" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="PDF_Parser" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/read_table.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Python.0_1_entry_point" />
+        <item itemvalue="Python.horisontal_lines" />
+        <item itemvalue="Python.read_table" />
         <item itemvalue="Python.once_create_json_with_dates" />
-        <item itemvalue="Python.0_0_1_load_dates_from_site" />
-        <item itemvalue="Python.0_2_date" />
-        <item itemvalue="Python.0_1_2_create_json_dates_updated" />
       </list>
     </recent_temporary>
   </component>
@@ -232,7 +243,7 @@
       <updated>1751781187170</updated>
       <workItem from="1751781188457" duration="3399000" />
       <workItem from="1751784996614" duration="59477000" />
-      <workItem from="1751990859665" duration="36349000" />
+      <workItem from="1751990859665" duration="57529000" />
     </task>
     <task id="LOCAL-00001" summary="parser - 788 sec">
       <option name="closed" value="true" />
@@ -426,7 +437,15 @@
       <option name="project" value="LOCAL" />
       <updated>1752086487330</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="no duplicates (with timestamp column)">
+      <option name="closed" value="true" />
+      <created>1752089569651</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1752089569651</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -451,21 +470,42 @@
     <MESSAGE value="validate data from config. Config without data. Added config_last_dates_in_db.json. Download -&gt; check data" />
     <MESSAGE value="dates from site" />
     <MESSAGE value="delta in sql" />
-    <option name="LAST_COMMIT_MESSAGE" value="delta in sql" />
+    <MESSAGE value="no duplicates (with timestamp column)" />
+    <option name="LAST_COMMIT_MESSAGE" value="no duplicates (with timestamp column)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/5_load_sql.py</url>
-          <line>48</line>
-          <option name="timeStamp" value="73" />
+          <url>file://$PROJECT_DIR$/read_table.py</url>
+          <line>6</line>
+          <option name="timeStamp" value="75" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/horisontal_lines.py</url>
+          <line>24</line>
+          <option name="timeStamp" value="101" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/horisontal_lines.py</url>
+          <line>4</line>
+          <option name="timeStamp" value="102" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/4_clean.py</url>
+          <line>46</line>
+          <option name="timeStamp" value="116" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/3_parser.py</url>
+          <line>25</line>
+          <option name="timeStamp" value="118" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/PDF_Parser$0_1_entry_point.coverage" NAME="0_1_entry_point Coverage Results" MODIFIED="1752089449503" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/PDF_Parser$0_1_entry_point.coverage" NAME="0_1_entry_point Coverage Results" MODIFIED="1752166831407" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/PDF_Parser$2_create_xlsx.coverage" NAME="2_create_xlsx Coverage Results" MODIFIED="1751781403545" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/PDF_Parser$0_0_1_load_data_from_site.coverage" NAME="0_0_1_load_dates_from_site Coverage Results" MODIFIED="1752081047270" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/PDF_Parser$3_parser.coverage" NAME="3_parser Coverage Results" MODIFIED="1751781516344" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -473,10 +513,12 @@
     <SUITE FILE_PATH="coverage/PDF_Parser$0_2_date.coverage" NAME="0_2_date Coverage Results" MODIFIED="1752065855189" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/PDF_Parser$once_create_xlsx.coverage" NAME="once_create_json_with_dates Coverage Results" MODIFIED="1752082735839" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/PDF_Parser$4_validation.coverage" NAME="4_validation Coverage Results" MODIFIED="1751782354953" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/PDF_Parser$horisontal_lines.coverage" NAME="horisontal_lines Coverage Results" MODIFIED="1752155328970" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/PDF_Parser$5_load_sql.coverage" NAME="5_load_sql Coverage Results" MODIFIED="1751898105192" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/PDF_Parser$0_entry_point.coverage" NAME="0_1_entry_point Coverage Results" MODIFIED="1751981567781" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/PDF_Parser$0_1_1_download_all_pdf.coverage" NAME="0_1_1_download_all_pdf Coverage Results" MODIFIED="1752040773489" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/PDF_Parser$extract_one_page.coverage" NAME="extract_one_page Coverage Results" MODIFIED="1752049465646" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/PDF_Parser$1_download_pdf.coverage" NAME="1_download_pdf Coverage Results" MODIFIED="1751781337924" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/PDF_Parser$read_table.coverage" NAME="read_table Coverage Results" MODIFIED="1752140050225" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

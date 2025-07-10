@@ -12,6 +12,7 @@ path_to_file = json.loads(os.environ['path_to_file'])
 headers = file_config['headers']
 if "last_updated_date" not in headers:
     headers.append("last_updated_date")
+    headers.append("isValid")
 
 parsed_data_file_name = "parsed_files/" + os.path.splitext(os.path.basename(path_to_file))[0] + ".csv"
 sql_table_name = os.path.splitext(os.path.basename(path_to_file))[0]
@@ -51,7 +52,9 @@ if not table_exists:
     CREATE TABLE [{sql_table_name}] (
         [id] INT IDENTITY(1,1) PRIMARY KEY,
         {', '.join([f"[{header}] NVARCHAR(255)" for header in headers[:-1]])},
+--         {', '.join([f"[{header}] NVARCHAR(255)" for header in headers[:-2]])},
         [last_updated_date] DATETIME
+        ,[isValid] BIT DEFAULT 1
     );
     """
     cursor.execute(create_table_query)
@@ -74,8 +77,10 @@ if  staging_table_exists:
 create_staging_table_query = f"""
 CREATE TABLE [{staging_table_name}] (
     [id] INT IDENTITY(1,1) PRIMARY KEY,
-    {', '.join([f"[{header}] NVARCHAR(255)" for header in headers[:-1]])},
-    [last_updated_date] DATETIME
+     {', '.join([f"[{header}] NVARCHAR(255)" for header in headers[:-2]])},
+--    {', '.join([f"[{header}] NVARCHAR(255)" for header in headers[:-1]])},
+    [last_updated_date] DATETIME,
+     [isValid] BIT DEFAULT 1
 );
 """
 cursor.execute(create_staging_table_query)
@@ -85,6 +90,7 @@ conn.commit()
 insert_staging_query = f"INSERT INTO {staging_table_name} ({', '.join(headers)}) VALUES ({', '.join(['?' for _ in headers])})"
 for _, row in new_data.iterrows():
     row_data = tuple(row[:-1]) + (datetime.now().strftime('%Y-%m-%d %H:%M:%S'),)
+    # row_data = tuple(row[:-2]) + (datetime.now().strftime('%Y-%m-%d %H:%M:%S'), 1,)
     cursor.execute(insert_staging_query, row_data)
 conn.commit()
 
@@ -97,39 +103,79 @@ conn.commit()
 # FROM {sql_table_name};
 # """
 
+# insert_delta_query = f"""
+#
+# IF OBJECT_ID('tempdb..#sql_table_name_tmp') IS NOT NULL DROP TABLE #sql_table_name_tmp;
+# IF OBJECT_ID('tempdb..#staging_table_name_tmp') IS NOT NULL DROP TABLE #staging_table_name_tmp;
+# IF OBJECT_ID('tempdb..#missing_row_indices') IS NOT NULL DROP TABLE #missing_row_indices;
+#
+# -- Create temporary tables
+# SELECT id, {', '.join(headers[:-1])}
+# INTO #sql_table_name_tmp
+# FROM {sql_table_name};
+#
+# SELECT id, {', '.join(headers[:-1])}
+# INTO #staging_table_name_tmp
+# FROM {staging_table_name};
+#
+# -- Find missing rows
+# SELECT stg.id
+# INTO #missing_row_indices
+# FROM #staging_table_name_tmp stg
+# EXCEPT
+# SELECT sql.id
+# FROM #sql_table_name_tmp sql;
+#
+# -- Insert missing rows
+# INSERT INTO {sql_table_name} ({', '.join(headers)})
+# SELECT {', '.join(headers)}
+# FROM {staging_table_name}
+# WHERE id IN (SELECT id FROM #missing_row_indices);
+#
+# -- Clean up temporary tables
+# DROP TABLE #sql_table_name_tmp;
+# DROP TABLE #staging_table_name_tmp;
+# """
+
 insert_delta_query = f"""
+IF OBJECT_ID('tempdb..#tmp_table') IS NOT NULL DROP TABLE #tmp_table;
+IF OBJECT_ID('tempdb..#new_row_ids') IS NOT NULL DROP TABLE #new_row_ids;
 
-IF OBJECT_ID('tempdb..#sql_table_name_tmp') IS NOT NULL DROP TABLE #sql_table_name_tmp;
-IF OBJECT_ID('tempdb..#staging_table_name_tmp') IS NOT NULL DROP TABLE #staging_table_name_tmp;
-IF OBJECT_ID('tempdb..#missing_row_indices') IS NOT NULL DROP TABLE #missing_row_indices;
+CREATE TABLE #tmp_table (
+    {', '.join([f"[{col}] NVARCHAR(255)" for col in headers[:-1]])}
+    -- {', '.join([f"[{col}] NVARCHAR(255)" for col in headers[:-2]])}
+);
 
--- Create temporary tables
-SELECT id, {', '.join(headers[:-1])}
-INTO #sql_table_name_tmp
+INSERT INTO #tmp_table
+-- SELECT {', '.join(headers[:-2])}
+SELECT {', '.join(headers[:-1])}
+FROM {staging_table_name}
+EXCEPT
+-- SELECT {', '.join(headers[:-2])}
+SELECT {', '.join(headers[:-1])}
 FROM {sql_table_name};
 
-SELECT id, {', '.join(headers[:-1])}
-INTO #staging_table_name_tmp
-FROM {staging_table_name};
-
--- Find missing rows
+-- Select IDs of new rows from the staging table based on the temporary table
 SELECT stg.id
-INTO #missing_row_indices
-FROM #staging_table_name_tmp stg
-EXCEPT
-SELECT sql.id
-FROM #sql_table_name_tmp sql;
+INTO #new_row_ids
+FROM {staging_table_name} stg
+JOIN #tmp_table tmp
+ON { ' AND '.join([f'stg.[{col}] = tmp.[{col}]' for col in headers[:-1]]) };
+-- ON { ' AND '.join([f'stg.[{col}] = tmp.[{col}]' for col in headers[:-2]]) };
 
--- Insert missing rows
+-- Insert new rows into the main table
 INSERT INTO {sql_table_name} ({', '.join(headers)})
 SELECT {', '.join(headers)}
 FROM {staging_table_name}
-WHERE id IN (SELECT id FROM #missing_row_indices);
+WHERE id IN (SELECT id FROM #new_row_ids);
 
 -- Clean up temporary tables
-DROP TABLE #sql_table_name_tmp;
-DROP TABLE #staging_table_name_tmp;
+DROP TABLE #tmp_table;
+DROP TABLE #new_row_ids;
+
 """
+
+
 cursor.execute(insert_delta_query)
 conn.commit()
 

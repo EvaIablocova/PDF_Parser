@@ -4,15 +4,13 @@
     "today_file": "today_dates.json",
     "database_config": {
         "server_name": "localhost",
-        "database_name": "ASPdb13",
+        "database_name": "ASPdb17",
         "username": "SA",
         "password": "MyStr0ngPass123"
     },
     "file_configs": [
         {
             "keyword": "Denumirea",
-            "heading_string": "Schimbarea denumirii",
-            "row_in_table": 1,
             "count_columns": 7,
             "sizes": [
                 0,
@@ -53,8 +51,6 @@
         },
         {
             "keyword": "Sediul",
-            "heading_string": "Schimbarea sediului",
-            "row_in_table": 1,
             "count_columns": 7,
             "sizes": [
                 0,
@@ -94,8 +90,6 @@
         },
         {
             "keyword": "Inactive",
-            "heading_string": "Inițierea procedurii de radiere a întreprinzătorilor individuali inactivi, persoanelor juridice inactive și a contribuabililor ale căror obligații fiscale au fost stinse simplificat prin scădere",
-            "row_in_table": 1,
             "count_columns": 6,
             "sizes": [
                 0,
@@ -131,8 +125,6 @@
         },
         {
             "keyword": "Reducere",
-            "heading_string": "Reducerea capitalului social",
-            "row_in_table": 1,
             "count_columns": 7,
             "sizes": [
                 0,
@@ -167,8 +159,6 @@
         },
         {
             "keyword": "Lichidarea",
-            "heading_string": "Reducerea capitalului social",
-            "row_in_table": 1,
             "count_columns": 6,
             "sizes": [
                 0,
@@ -205,8 +195,6 @@
         },
         {
             "keyword": "Init_reorg",
-            "heading_string": "Reducerea capitalului social",
-            "row_in_table": 1,
             "count_columns": 7,
             "sizes": [
                 0,
@@ -241,8 +229,6 @@
         },
         {
             "keyword": "Init_lichid",
-            "heading_string": "Reducerea capitalului social",
-            "row_in_table": 1,
             "count_columns": 5,
             "sizes": [
                 0,
@@ -269,6 +255,28 @@
                 "IDNO",
                 "Name",
                 "Address"
+            ]
+        },
+        {
+            "keyword": "Finaliz_proced_reorg",
+            "count_columns": 6,
+            "sizes": [0, 55, 100, 170, 347, 530, 800],
+            "search_pattern": "black_lines",
+            "address_column_number": null,
+            "equal_columns_numbers": null,
+            "idno_column_number": 2,
+            "date_column_number": [
+                1
+            ],
+            "estimated_rows_count": 10,
+            "need_cleaning_columns": null,
+            "headers": [
+                "No",
+                "Date_of_announcement",
+                "IDNO",
+                "Name",
+                "Type_of_reorganization",
+                "Successors_of_rights"
             ]
         }
     ]

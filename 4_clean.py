@@ -4,8 +4,6 @@ import os
 import json
 
 def clean_text(df, need_cleaning_columns):
-    if not need_cleaning_columns:
-        return df
 
     replacements = {
         'ă': 'ă',
@@ -48,12 +46,17 @@ def clean_text(df, need_cleaning_columns):
 def clean_data(parsed_data_file_name, need_cleaning_columns):
     df = pd.read_csv(parsed_data_file_name, sep='|', header=None)
 
+    if not need_cleaning_columns:
+        return df
+
     pattern = r'\b(\w+)\s*-\s*(\w+)\b'
     replacement = r'\1-\2'
 
-    if need_cleaning_columns:
-        for i in need_cleaning_columns:
-            df[i] = df[i].astype(str).str.replace(pattern, replacement, regex=True)
+    print(df.shape[0])
+
+    for i in need_cleaning_columns:
+        df[i] = df[i].astype(str).str.replace(pattern, replacement, regex=True)
+
 
     df = clean_text(df, need_cleaning_columns)
     return df
