@@ -133,7 +133,7 @@ def extract_table_with_black_lines (pdf_url, x, all_data, black_line_threshold=0
     return all_data
 
 
-def parse_pdf(pdf_url, x, search_pattern, parsed_data_file_name):
+def parse_pdf(pdf_url, x, search_pattern, parsed_data_file_name, count_columns):
     all_data = []
 
     line_tolerance = 2
@@ -141,7 +141,7 @@ def parse_pdf(pdf_url, x, search_pattern, parsed_data_file_name):
 
     if search_pattern == 'no_pattern':
 
-        no_pattern_module.parse_no_pattern(pdf_url, parsed_data_file_name)
+        no_pattern_module.parse_no_pattern(pdf_url, parsed_data_file_name, count_columns)
 
     else:
         md_pattern = re.compile(search_pattern)
@@ -185,6 +185,7 @@ parsed_data_file_name = "parsed_files/" + os.path.splitext(os.path.basename(path
 
 x = file_config['sizes']
 search_pattern = file_config['search_pattern']
+count_columns = file_config['count_columns']
 
-parse_pdf(path_to_file, x, search_pattern, parsed_data_file_name)
+parse_pdf(path_to_file, x, search_pattern, parsed_data_file_name, count_columns)
 

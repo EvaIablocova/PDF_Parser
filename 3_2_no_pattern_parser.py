@@ -86,33 +86,36 @@ def process_csv(input_file, output_file):
         writer = csv.writer(outfile, delimiter='|')
         writer.writerows(result)
 
-def clean(processed_file, cleaned_file):
+def clean(processed_file, cleaned_file, count_columns):
     with open(processed_file, 'r', encoding='utf-8') as infile:
         lines = infile.readlines()  # Read all lines from the file
 
     result = []
     for line in lines:
         line = line.strip()  # Remove any leading/trailing whitespace
-        if "||" in line:
-            # Replace "||" with "|"
-            result.append(line.replace("||", "|"))
+        if line.count('|') == count_columns-1:
+            result.append(line)
         else:
-                        # Split the line into elements
-                        elements = line.split('|')
-                        if len(elements) > 5:
-                            # Move the 5th element to the end of the 6th element and remove the 5th element
-                            try:
-                                elements[5] = elements[5] + " " + elements[4]  # Append the 5th element to the 6th element
-                                result.append('|'.join(elements[:4] + elements[5:]))  # Remove the 5th element
-                            except ValueError:
-                                 result.append(line)  # If conversion fails, keep the line as is
-                        else:
-                            result.append(line)  # If not enough elements, keep the line as is
+            if "||" in line:
+                # Replace "||" with "|"
+                result.append(line.replace("||", "|"))
+            else:
+                            # Split the line into elements
+                            elements = line.split('|')
+                            if len(elements) > 5:
+                                # Move the 5th element to the end of the 6th element and remove the 5th element
+                                try:
+                                    elements[5] = elements[5] + " " + elements[4]  # Append the 5th element to the 6th element
+                                    result.append('|'.join(elements[:4] + elements[5:]))  # Remove the 5th element
+                                except ValueError:
+                                     result.append(line)
+                            else:
+                                result.append(line)
 
     with open(cleaned_file, 'w', encoding='utf-8') as outfile:
         outfile.write('\n'.join(result))  # Write the processed lines back to the file
 
-def parse_no_pattern(file_path, parsed_data_file_name):
+def parse_no_pattern(file_path, parsed_data_file_name, count_columns):
 
     try:
                 tables = camelot.read_pdf(file_path, flavor='stream', pages='all')
@@ -129,13 +132,13 @@ def parse_no_pattern(file_path, parsed_data_file_name):
 
     processed_file = 'processed_combined_tables.csv'
     process_csv(parsed_data_file_name, processed_file)
-    # cleaned_file = 'cleaned_combined_tables.csv'
-    # clean(processed_file, cleaned_file)
-    #
-    # with open(cleaned_file, 'r', encoding='utf-8') as infile, open(parsed_data_file_name, 'w', encoding='utf-8') as outfile:
-    #     outfile.write(infile.read())
+    cleaned_file = 'cleaned_combined_tables.csv'
+    clean(processed_file, cleaned_file, count_columns)
 
-    with open(processed_file, 'r', encoding='utf-8') as infile, open(parsed_data_file_name, 'w', encoding='utf-8') as outfile:
-         outfile.write(infile.read())
+    with open(cleaned_file, 'r', encoding='utf-8') as infile, open(parsed_data_file_name, 'w', encoding='utf-8') as outfile:
+        outfile.write(infile.read())
+
+    # with open(processed_file, 'r', encoding='utf-8') as infile, open(parsed_data_file_name, 'w', encoding='utf-8') as outfile:
+    #      outfile.write(infile.read())
 
 

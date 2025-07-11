@@ -22,8 +22,8 @@ today_file = config["today_file"]
 # subprocess.run([sys.executable, "once_create_json_with_dates.py"])
 
 # files_to_process = ["Denumirea.pdf"]
-files_to_process = ["Finaliz_proced_reorg_2021_2024.pdf"]
-# files_to_process = ["Finaliz_proced_reorg.pdf"]
+# files_to_process = ["Finaliz_proced_reorg_2021_2024.pdf"]
+files_to_process = ["Finaliz_proced_reorg.pdf"]
 # files_to_process = date_module.compare_dates(config_dates, today_file)
 
 if files_to_process:
