@@ -3,6 +3,10 @@ import os
 import json
 
 def check_address_format(df, address_column_numbers):
+
+    if not address_column_numbers:
+        return ["No address columns specified for format check"]
+
     report = []
     pattern = r'^MD-\d{4}'
 

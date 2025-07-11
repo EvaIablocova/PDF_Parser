@@ -13,7 +13,8 @@ source_url = config['source_url']
 download_dir = sys.argv[1]
 os.makedirs(download_dir, exist_ok=True)
 
-files_to_process_str = sys.argv[2:]
+files_to_process_str = sys.argv[2]
+files_to_process = files_to_process_str.split(',')
 
 response = requests.get(source_url)
 response.raise_for_status()
@@ -28,7 +29,7 @@ for link in links:
         file_url = urljoin(source_url, href)
         file_name = os.path.split(file_url)[-1]
 
-        if file_name in files_to_process_str:
+        if file_name in files_to_process:
             file_path = os.path.join(download_dir, file_name)
 
             try:
