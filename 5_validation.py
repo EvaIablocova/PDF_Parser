@@ -1,6 +1,7 @@
 import pandas as pd
 import os
 import json
+import re
 
 def check_address_format(df, address_column_numbers):
 
@@ -108,16 +109,16 @@ def validate_parsed_data(df, estimated_rows_count):
 
     duplicates_mask = df.duplicated(keep=False)
     if duplicates_mask.sum() > 0:
-        df.loc[duplicates_mask, 'isValid'] = 0
-        df.loc[duplicates_mask, 'Error message'] += "Duplicate row; "
+        df.loc[duplicates_mask, 'is_valid'] = 0
+        df.loc[duplicates_mask, 'error_message'] += "Duplicate row; "
         report.append(f"Found {duplicates_mask.sum()} duplicate rows")
     else:
         report.append("No duplicate rows found")
 
     if df.isna().sum().sum() > 0:
         empty_rows_mask = df.isna().any(axis=1)
-        df.loc[empty_rows_mask, 'isValid'] = 0
-        df.loc[empty_rows_mask, 'Error message'] += "Row contains empty cells; "
+        df.loc[empty_rows_mask, 'is_valid'] = 0
+        df.loc[empty_rows_mask, 'error_message'] += "Row contains empty cells; "
         report.append(f"Found {df.isna().sum().sum()} empty cells in the table")
     else:
         report.append("No empty cells found in the table")
@@ -134,14 +135,20 @@ def validate_parsed_data(df, estimated_rows_count):
             breaks_report = find_sequence_breaks(df)
             print("Sequence breaks:", breaks_report)
             non_consecutive_mask = ~df.iloc[:, 0].isin(sorted_col)
-            df.loc[non_consecutive_mask, 'isValid'] = 0
-            df.loc[non_consecutive_mask, 'Error message'] += "Non-consecutive values in the first column; "
+            df.loc[non_consecutive_mask, 'is_valid'] = 0
+            df.loc[non_consecutive_mask, 'error_message'] += "Non-consecutive values in the first column; "
     else:
         report.append("First column is not numeric, cannot check for consecutive values")
-        df['isValid'] = 0
-        df['Error message'] += "Non-numeric values in the first column; "
+        df['is_valid'] = 0
+        df['error_message'] += "Non-numeric values in the first column; "
 
-    return report
+    return report, df
+
+
+
+
+
+
 
 
 
@@ -159,6 +166,9 @@ date_column_number = file_config['date_column_number']
 
 with open('config.json', 'r', encoding='utf-8') as file:
     config = json.load(file)
+
+validated_data_dir = config['validated_data_dir']
+os.makedirs(validated_data_dir, exist_ok=True)
 
 config_last_dates_in_db_path = config.get("config_last_dates_in_db")
 
@@ -178,15 +188,27 @@ end_date = matching_record['end_date']
 
 df = pd.read_csv(parsed_data_file_name, sep='|', header=None)
 
-df['isValid'] = 1
-df['Error message'] = ''
+technical_fields = config['technical_fields']
+field_names = list(technical_fields.keys())
+
+for field in field_names:
+    if field not in df.columns:
+        df[field] = pd.NA
+
+validated_data_file_name = validated_data_dir + "/" + os.path.splitext(os.path.basename(path_to_file))[0] + ".csv"
+
+
+
 
 df.iloc[:, 0] = pd.to_numeric(df.iloc[:, 0], errors='coerce')
-validation_report = validate_parsed_data(df, estimated_rows_count)
+validation_report, df = validate_parsed_data(df, estimated_rows_count)
 print("Validation report:")
 for line in validation_report:
     print(line)
 
+
+
+#  ----------------------------
 
 date_report = check_dates_in_range(df, date_column_number, start_date, end_date)
 print("Date check report:", date_report)
@@ -202,4 +224,8 @@ for line in address_report:
 col_equality_report = check_column_equality(df, equal_columns_numbers)
 for line in col_equality_report:
     print(line)
+
+#  ----------------------------
+
+df.to_csv(validated_data_file_name, sep='|', index=False, header=False)
 

@@ -180,8 +180,13 @@ file_config = json.loads(os.environ['FILE_CONFIG'])
 
 path_to_file = json.loads(os.environ['path_to_file'])
 
-os.makedirs("parsed_files", exist_ok=True)
-parsed_data_file_name = "parsed_files/" + os.path.splitext(os.path.basename(path_to_file))[0] + ".csv"
+with open('config.json', 'r', encoding='utf-8') as file:
+    config = json.load(file)
+
+parsed_data_dir = config ['parsed_data_dir']
+
+os.makedirs(parsed_data_dir, exist_ok=True)
+parsed_data_file_name = parsed_data_dir + "/" + os.path.splitext(os.path.basename(path_to_file))[0] + ".csv"
 
 x = file_config['sizes']
 search_pattern = file_config['search_pattern']
