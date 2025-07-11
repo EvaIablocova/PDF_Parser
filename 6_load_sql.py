@@ -7,7 +7,7 @@ from datetime import datetime
 
 file_config = json.loads(os.environ['FILE_CONFIG'])
 path_to_file = json.loads(os.environ['path_to_file'])
-
+count_columns = file_config['count_columns']
 
 headers = file_config['headers']
 if "last_updated_date" not in headers:
@@ -51,9 +51,8 @@ if not table_exists:
     create_table_query = f"""
     CREATE TABLE [{sql_table_name}] (
         [id] INT IDENTITY(1,1) PRIMARY KEY,
-        {', '.join([f"[{header}] NVARCHAR(255)" for header in headers[:-1]])},
---         {', '.join([f"[{header}] NVARCHAR(255)" for header in headers[:-2]])},
-        [last_updated_date] DATETIME
+        {', '.join([f"[{header}] NVARCHAR(255)" for header in headers[:count_columns]])},
+       [last_updated_date] DATETIME
         ,[isValid] BIT DEFAULT 1
     );
     """
@@ -73,12 +72,12 @@ staging_table_exists = cursor.fetchone()[0] > 0
 if  staging_table_exists:
     drop_staging_table_query = f"DROP TABLE [{staging_table_name}];"
     cursor.execute(drop_staging_table_query)
+    conn.commit()
 
 create_staging_table_query = f"""
 CREATE TABLE [{staging_table_name}] (
     [id] INT IDENTITY(1,1) PRIMARY KEY,
-     {', '.join([f"[{header}] NVARCHAR(255)" for header in headers[:-2]])},
---    {', '.join([f"[{header}] NVARCHAR(255)" for header in headers[:-1]])},
+     {', '.join([f"[{header}] NVARCHAR(255)" for header in headers[:count_columns]])},
     [last_updated_date] DATETIME,
      [isValid] BIT DEFAULT 1
 );
@@ -89,8 +88,7 @@ conn.commit()
 
 insert_staging_query = f"INSERT INTO {staging_table_name} ({', '.join(headers)}) VALUES ({', '.join(['?' for _ in headers])})"
 for _, row in new_data.iterrows():
-    row_data = tuple(row[:-1]) + (datetime.now().strftime('%Y-%m-%d %H:%M:%S'),)
-    # row_data = tuple(row[:-2]) + (datetime.now().strftime('%Y-%m-%d %H:%M:%S'), 1,)
+    row_data = tuple(row[:count_columns]) + (datetime.now().strftime('%Y-%m-%d %H:%M:%S'), 1,)
     cursor.execute(insert_staging_query, row_data)
 conn.commit()
 
@@ -142,26 +140,23 @@ IF OBJECT_ID('tempdb..#tmp_table') IS NOT NULL DROP TABLE #tmp_table;
 IF OBJECT_ID('tempdb..#new_row_ids') IS NOT NULL DROP TABLE #new_row_ids;
 
 CREATE TABLE #tmp_table (
-    {', '.join([f"[{col}] NVARCHAR(255)" for col in headers[:-1]])}
-    -- {', '.join([f"[{col}] NVARCHAR(255)" for col in headers[:-2]])}
+    {', '.join([f"[{col}] NVARCHAR(255)" for col in headers[:count_columns]])}
 );
 
 INSERT INTO #tmp_table
--- SELECT {', '.join(headers[:-2])}
-SELECT {', '.join(headers[:-1])}
+SELECT {', '.join(headers[:count_columns])}
 FROM {staging_table_name}
 EXCEPT
--- SELECT {', '.join(headers[:-2])}
-SELECT {', '.join(headers[:-1])}
+SELECT {', '.join(headers[:count_columns])}
 FROM {sql_table_name};
+
 
 -- Select IDs of new rows from the staging table based on the temporary table
 SELECT stg.id
 INTO #new_row_ids
 FROM {staging_table_name} stg
 JOIN #tmp_table tmp
-ON { ' AND '.join([f'stg.[{col}] = tmp.[{col}]' for col in headers[:-1]]) };
--- ON { ' AND '.join([f'stg.[{col}] = tmp.[{col}]' for col in headers[:-2]]) };
+ON { ' AND '.join([f'stg.[{col}] = tmp.[{col}]' for col in headers[:count_columns]]) };
 
 -- Insert new rows into the main table
 INSERT INTO {sql_table_name} ({', '.join(headers)})
@@ -169,9 +164,25 @@ SELECT {', '.join(headers)}
 FROM {staging_table_name}
 WHERE id IN (SELECT id FROM #new_row_ids);
 
+
+SELECT * INTO #tmp_staging_table
+FROM {staging_table_name}
+WHERE id IN (SELECT id FROM #new_row_ids);
+
+-- Delete all rows from the staging table
+DELETE FROM {staging_table_name};
+
+-- Insert only new rows into the staging table
+INSERT INTO {staging_table_name} ({', '.join(headers)})
+SELECT {', '.join(headers)}
+FROM #tmp_staging_table;
+
+
+
 -- Clean up temporary tables
 DROP TABLE #tmp_table;
 DROP TABLE #new_row_ids;
+DROP TABLE #tmp_staging_table;
 
 """
 
@@ -182,3 +193,5 @@ conn.commit()
 
 cursor.close()
 conn.close()
+
+

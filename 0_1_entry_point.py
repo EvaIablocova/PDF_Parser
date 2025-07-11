@@ -21,9 +21,10 @@ today_file = config["today_file"]
 # for changing dates
 # subprocess.run([sys.executable, "once_create_json_with_dates.py"])
 
-# files_to_process = ["Denumirea.pdf"]
+files_to_process = ["Denumirea.pdf"]
 # files_to_process = ["Finaliz_proced_reorg_2021_2024.pdf"]
-files_to_process = ["Finaliz_proced_reorg.pdf"]
+# files_to_process = ["Finaliz_proced_reorg.pdf"]
+
 # files_to_process = date_module.compare_dates(config_dates, today_file)
 
 if files_to_process:
@@ -32,7 +33,10 @@ else:
     print("No files to process because dates have not changed.")
     sys.exit(0)
 
-# result = subprocess.run([sys.executable, "2_download_all_pdf.py", download_dir], env=os.environ)
+
+files_to_process_str = ','.join(files_to_process)
+
+result = subprocess.run([sys.executable, "2_download_changed_pdf.py", download_dir, files_to_process_str], env=os.environ)
 
 
 # files_to_process = [file for file in os.listdir(download_dir) if file.endswith(".pdf")]
@@ -77,7 +81,7 @@ for keyword in keywords:
         os.environ['path_to_file'] = json.dumps(path_to_file)
 
         scripts = [
-            # "2_download_all_pdf.py",
+            # "2_download_changed_pdf.py",
             "3_1_parser.py",
             "4_clean.py",
             "5_validation.py",
