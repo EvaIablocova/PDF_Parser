@@ -261,7 +261,7 @@
             "keyword": "Finaliz_proced_reorg",
             "count_columns": 6,
             "sizes": [0, 55, 100, 170, 347, 530, 800],
-            "search_pattern": "black_lines",
+            "search_pattern": "no_pattern",
             "address_column_number": null,
             "equal_columns_numbers": null,
             "idno_column_number": 2,

@@ -6,6 +6,9 @@ import time
 import os
 import json
 import csv
+import importlib
+no_pattern_module = importlib.import_module('3_2_no_pattern_parser')
+
 
 # def read_page(y, x, page):
 #     page_data = []
@@ -130,16 +133,15 @@ def extract_table_with_black_lines (pdf_url, x, all_data, black_line_threshold=0
     return all_data
 
 
-def parse_pdf(pdf_url, x, search_pattern):
+def parse_pdf(pdf_url, x, search_pattern, parsed_data_file_name):
     all_data = []
 
     line_tolerance = 2
 
 
-    if search_pattern == 'black_lines':
+    if search_pattern == 'no_pattern':
 
-        all_data = extract_table_with_black_lines(pdf_url, x, all_data)
-
+        no_pattern_module.parse_no_pattern(pdf_url, parsed_data_file_name)
 
     else:
         md_pattern = re.compile(search_pattern)
@@ -166,9 +168,10 @@ def parse_pdf(pdf_url, x, search_pattern):
                 all_data = read_page(y, x, page, all_data)
 
 
+        df = pd.DataFrame(all_data)
 
+        df.to_csv(parsed_data_file_name, sep='|', index=False, header=False)
 
-    return pd.DataFrame(all_data)
 
 
 
@@ -183,6 +186,5 @@ parsed_data_file_name = "parsed_files/" + os.path.splitext(os.path.basename(path
 x = file_config['sizes']
 search_pattern = file_config['search_pattern']
 
-df = parse_pdf(path_to_file, x, search_pattern)
+parse_pdf(path_to_file, x, search_pattern, parsed_data_file_name)
 
-df.to_csv(parsed_data_file_name, sep='|', index=False, header=False)

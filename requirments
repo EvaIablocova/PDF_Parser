@@ -6,3 +6,7 @@ PyPDF2
 sqlalchemy
 bs4
 lxml
+camelot-py[cv]
+tabula-py
+jpype1
+opencv-python

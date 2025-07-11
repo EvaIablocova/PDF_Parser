@@ -6,7 +6,7 @@ import os
 import importlib
 date_module = importlib.import_module('0_2_date')
 
-subprocess.check_call([sys.executable, "-m", "pip", "install", "-r", "requirments"])
+# subprocess.check_call([sys.executable, "-m", "pip", "install", "-r", "requirments"])
 
 
 with open('config.json', 'r', encoding='utf-8') as file:
@@ -21,8 +21,8 @@ today_file = config["today_file"]
 # for changing dates
 # subprocess.run([sys.executable, "once_create_json_with_dates.py"])
 
-files_to_process = ["Denumirea.pdf"]
-# files_to_process = ["Finaliz_proced_reorg_2021_2024.pdf"]
+# files_to_process = ["Denumirea.pdf"]
+files_to_process = ["Finaliz_proced_reorg_2021_2024.pdf"]
 # files_to_process = ["Finaliz_proced_reorg.pdf"]
 # files_to_process = date_module.compare_dates(config_dates, today_file)
 
@@ -78,7 +78,7 @@ for keyword in keywords:
 
         scripts = [
             # "2_download_all_pdf.py",
-            "3_parser.py",
+            "3_1_parser.py",
             "4_clean.py",
             "5_validation.py",
             "6_load_sql.py"
