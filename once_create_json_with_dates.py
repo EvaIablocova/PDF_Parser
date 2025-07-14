@@ -3,7 +3,7 @@ import json
 
 data = [
     {"FileName": "Denumirea.pdf", "start_date": "2025-01-11", "end_date": "2025-06-27"},
-    {"FileName": "Denumirea_2008_2024.pdf", "start_date": "2008-06-01", "end_date": "2024-12-31"},
+    {"FileName": "Denumirea_2008_2024.pdf", "start_date": "2008-06-02", "end_date": "2024-12-31"},
     {"FileName": "Sediul.pdf", "start_date": "2025-01-01", "end_date": "2025-06-27"},
     {"FileName": "Sediul_2008_2024.pdf", "start_date": "2008-06-01", "end_date": "2024-12-31"},
     {"FileName": "Inactive.pdf", "start_date": "2008-06-01", "end_date": "2025-06-27"},

@@ -2,11 +2,12 @@
     "source_url": "https://www.asp.gov.md/ro/date-deschise/avizele-agentilor-economici",
     "download_dir": "downloaded_pdf_files",
     "archive_dir": "archive",
+    "parsed_data_dir": "parsed_files",
     "config_last_dates_in_db": "config_last_dates_in_db.json",
     "today_file": "today_dates.json",
     "database_config": {
         "server_name": "localhost",
-        "database_name": "ASPdb20",
+        "database_name": "ASPdb14",
         "username": "SA",
         "password": "MyStr0ngPass123"
     },
@@ -47,8 +48,8 @@
                 "IDNO",
                 "Name",
                 "Address",
-                "From_name",
-                "Into_name"
+                "Name_From",
+                "Name_Into"
             ]
         },
         {
@@ -235,9 +236,9 @@
             "sizes": [
                 0,
                 60,
-                110,
-                170,
-                370,
+                120,
+                200,
+                470,
                 820
             ],
             "search_pattern": "MD-\\d{4}",

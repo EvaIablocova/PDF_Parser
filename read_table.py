@@ -31,14 +31,33 @@ def extract_table_with_black_lines(pdf_path, column_coords, black_line_threshold
 
     return rows
 
+def extract_table(pdf_path):
+
+    with pdfplumber.open(pdf_path) as pdf:
+        for page_num, page in enumerate(pdf.pages, 1):
+            print(f"Page {page_num}")
+
+            tables = page.extract_tables()
+
+            if tables:
+                for i, table in enumerate(tables):
+                    print(f"Table {i + 1}:")
+                    for row in table:
+                        print(row)
+            else:
+                print("Tables have not found on this page.")
+
 
 pdf_path = "downloaded_pdf_files/Finaliz_proced_reorg.pdf"
-column_coords = [0, 55, 170, 250, 300, 500, 800]
-rows = extract_table_with_black_lines(pdf_path, column_coords)
+# column_coords = [0, 55, 170, 250, 300, 500, 800]
+# rows = extract_table_with_black_lines(pdf_path, column_coords)
 
 # Convert rows to a DataFrame
-df = pd.DataFrame(rows)
+# df = pd.DataFrame(rows)
 
-# Save the DataFrame to a CSV file
-output_csv_path = 'Finaliz_proced_reorg.csv'
-df.to_csv(output_csv_path, sep='|', index=False)
+extract_table(pdf_path)
+
+
+# # Save the DataFrame to a CSV file
+# output_csv_path = 'Finaliz_proced_reorg1.csv'
+# df.to_csv(output_csv_path, sep='|', index=False)

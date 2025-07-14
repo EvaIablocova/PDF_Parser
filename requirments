@@ -10,3 +10,4 @@ camelot-py[cv]
 tabula-py
 jpype1
 opencv-python
+shutil

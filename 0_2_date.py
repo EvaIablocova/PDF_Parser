@@ -3,27 +3,32 @@ from PyPDF2 import PdfReader
 import re
 from datetime import datetime
 
-def update_stored_date_in_config_json(differences, config_dates):
+def update_stored_date_in_config_json(file_name, config_dates, today_file):
+
+    with open(today_file, "r", encoding="utf-8") as f:
+        today_data = json.load(f)
+
+    today_entry = next((item for item in today_data if item["FileName"] == file_name), None)
+    if not today_entry:
+        raise ValueError(f"FileName '{file_name}' not found in {today_file}")
 
     with open(config_dates, "r", encoding="utf-8") as f:
         config_data = json.load(f)
 
-    config_dict = {item["FileName"]: item for item in config_data}
+    all_config_names = {item["FileName"]: item for item in config_data}
 
-    for diff in differences:
-        file_name = diff["FileName"]
-        if file_name in config_dict:
-            config_dict[file_name]["start_date"] = diff["today_start_date"]
-            config_dict[file_name]["end_date"] = diff["today_end_date"]
-        else:
-            config_dict[file_name] = {
+    if file_name in all_config_names:
+            all_config_names[file_name]["start_date"] = today_entry["start_date"]
+            all_config_names[file_name]["end_date"] = today_entry["end_date"]
+    else:
+            all_config_names[file_name] = {
                 "FileName": file_name,
-                "start_date": diff["today_start_date"],
-                "end_date": diff["today_end_date"]
+                "start_date": today_entry["start_date"],
+                "end_date": today_entry["end_date"]
             }
 
     with open(config_dates, "w", encoding="utf-8") as f:
-        json.dump(list(config_dict.values()), f, ensure_ascii=False, indent=4)
+        json.dump(list(all_config_names.values()), f, ensure_ascii=False, indent=4)
 
     print("Dates updated in config_last_dates_in_db.json")
 
@@ -67,7 +72,6 @@ def compare_dates(config_dates, today_file):
 
     if differences:
         files_to_process = [diff["FileName"] for diff in differences]
-        update_stored_date_in_config_json (differences, config_dates)
 
     return files_to_process
 

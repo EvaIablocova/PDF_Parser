@@ -19,12 +19,12 @@ today_file = config["today_file"]
 # subprocess.run([sys.executable, "1_load_dates_from_site.py", today_file], env=os.environ)
 
 # for changing dates
-# subprocess.run([sys.executable, "once_create_json_with_dates.py"])
+subprocess.run([sys.executable, "once_create_json_with_dates.py"])
 
-files_to_process = ["Denumirea.pdf", "Sediul.pdf", "Finaliz_proced_reorg.pdf", "Finaliz_proced_reorg_2021_2024.pdf"]
+# files_to_process = ["Init_lichid.pdf"]
 
 
-# files_to_process = date_module.compare_dates(config_dates, today_file)
+files_to_process = date_module.compare_dates(config_dates, today_file)
 
 if files_to_process:
     print("Dates changed. Files to process: ", files_to_process)
@@ -36,12 +36,6 @@ else:
 files_to_process_str = ','.join(files_to_process)
 
 result = subprocess.run([sys.executable, "2_download_changed_pdf.py", download_dir, files_to_process_str], env=os.environ)
-
-
-# files_to_process = [file for file in os.listdir(download_dir) if file.endswith(".pdf")]
-# files_to_process = ["Finaliz_proced_reord.pdf"]
-
-
 
 keywords = [fc['keyword'] for fc in config['file_configs'] if any(fc['keyword'] in os.path.splitext(file)[0] for file in files_to_process)]
 
@@ -80,12 +74,11 @@ for keyword in keywords:
         os.environ['path_to_file'] = json.dumps(path_to_file)
 
         scripts = [
-            # "2_download_changed_pdf.py",
             "3_1_parser.py",
             "4_clean.py",
-            "5_validation.py",
-            "6_load_sql.py",
-            "7_into_archive.py"
+            "5_load_sql.py",
+            "6_pdf_into_archive.py",
+            "7_change_dates_in_config.py",
         ]
 
         for script in scripts:
