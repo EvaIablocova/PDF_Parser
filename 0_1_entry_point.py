@@ -5,6 +5,7 @@ import json
 import os
 import importlib
 date_module = importlib.import_module('0_2_date')
+write_to_log_module = importlib.import_module('0_3_write_to_log')
 
 # subprocess.check_call([sys.executable, "-m", "pip", "install", "-r", "requirments"])
 
@@ -21,10 +22,16 @@ today_file = config["today_file"]
 # for changing dates
 subprocess.run([sys.executable, "once_create_json_with_dates.py"])
 
-# files_to_process = ["Init_lichid.pdf"]
+# files_to_process = ["Lichidarea.pdf", "Lichidarea_term_exp.pdf"
+# ,"Sediul.pdf", "Reducere.pdf",
+# "Init_lichid_2014_2024_MO.pdf",
+# "Denumirea.pdf", "Denumirea_2008_2024.pdf",
+# "Finaliz_proced_reorg.pdf","Finaliz_proced_reorg_2021_2024.pdf",
+#                     "Inactive.pdf", "Init_reorg.pdf"]
 
+files_to_process=["Init_reorg.pdf"]
 
-files_to_process = date_module.compare_dates(config_dates, today_file)
+# files_to_process = date_module.compare_dates(config_dates, today_file)
 
 if files_to_process:
     print("Dates changed. Files to process: ", files_to_process)
@@ -35,6 +42,7 @@ else:
 
 files_to_process_str = ','.join(files_to_process)
 
+write_to_log_module.write_step_message("Py.Loader", f"Identified {len(files_to_process)} files to be loaded: {files_to_process_str}")
 result = subprocess.run([sys.executable, "2_download_changed_pdf.py", download_dir, files_to_process_str], env=os.environ)
 
 keywords = [fc['keyword'] for fc in config['file_configs'] if any(fc['keyword'] in os.path.splitext(file)[0] for file in files_to_process)]
@@ -79,6 +87,7 @@ for keyword in keywords:
             "5_load_sql.py",
             "6_pdf_into_archive.py",
             "7_change_dates_in_config.py",
+            "8_call_job.py",
         ]
 
         for script in scripts:

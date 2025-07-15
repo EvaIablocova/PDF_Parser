@@ -1,8 +1,11 @@
 import camelot
 import re
 import csv
+import shutil
 
 def process_csv(input_file, output_file):
+    shutil.copy(input_file, 'debug_no_pattern.csv')
+
     with open(input_file, 'r', encoding='utf-8') as infile:
         reader = list(csv.reader(infile, delimiter='|'))
         result = []

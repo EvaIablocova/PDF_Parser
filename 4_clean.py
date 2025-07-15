@@ -105,6 +105,13 @@ def clean_data_by_type (df, keyword):
 
             df = pd.concat([df.iloc[:717], new_row, df.iloc[717:]]).reset_index(drop=True)
 
+
+    elif keyword == 'Lichidarea':
+       df[4] = df[4].str.replace(r'.*MD-', r'MD-', regex=True)
+
+    elif keyword == 'Init_reorg':
+       df[6] = df[6].str.replace(r'.*MD-', r'MD-', regex=True)
+
     return df
 
 

@@ -4,24 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="93ca5b42-e6fc-4b64-8f92-a42f9495dfe5" name="Changes" comment="Validation">
-      <change afterPath="$PROJECT_DIR$/5_load_sql.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/6_pdf_into_archive.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/7_change_dates_in_config.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Camelot.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Camelot1.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pdf_as_list.py" afterDir="false" />
+    <list default="true" id="93ca5b42-e6fc-4b64-8f92-a42f9495dfe5" name="Changes" comment="Validation in SQL job. Parse -&gt; change dates. Archive PDFs">
+      <change afterPath="$PROJECT_DIR$/0_3_write_to_log.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/8_call_job.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/0_1_entry_point.py" beforeDir="false" afterPath="$PROJECT_DIR$/0_1_entry_point.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/0_2_date.py" beforeDir="false" afterPath="$PROJECT_DIR$/0_2_date.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/5_validation.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/6_load_sql.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/7_into_archive.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/7_into_csv.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/3_1_parser.py" beforeDir="false" afterPath="$PROJECT_DIR$/3_1_parser.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/3_2_no_pattern_parser.py" beforeDir="false" afterPath="$PROJECT_DIR$/3_2_no_pattern_parser.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/4_clean.py" beforeDir="false" afterPath="$PROJECT_DIR$/4_clean.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/5_load_sql.py" beforeDir="false" afterPath="$PROJECT_DIR$/5_load_sql.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/config.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/once_create_json_with_dates.py" beforeDir="false" afterPath="$PROJECT_DIR$/once_create_json_with_dates.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/read_table.py" beforeDir="false" afterPath="$PROJECT_DIR$/read_table.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirments" beforeDir="false" afterPath="$PROJECT_DIR$/requirments" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,46 +54,46 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.0_0_1_load_data_from_site.executor": "Run",
-    "Python.0_0_1_load_dates_from_site.executor": "Run",
-    "Python.0_1_1_download_all_pdf.executor": "Run",
-    "Python.0_1_2_create_json_dates_updated.executor": "Run",
-    "Python.0_1_entry_point.executor": "Run",
-    "Python.0_2_date.executor": "Run",
-    "Python.0_entry_point.executor": "Run",
-    "Python.1_download_pdf.executor": "Run",
-    "Python.2_create_xlsx.executor": "Run",
-    "Python.3_parser.executor": "Run",
-    "Python.4_validation.executor": "Run",
-    "Python.5_load_sql.executor": "Run",
-    "Python.7_into_csv.executor": "Run",
-    "Python.Camelot.executor": "Run",
-    "Python.Camelot1.executor": "Run",
-    "Python.CamelotStream.executor": "Run",
-    "Python.Tabula.executor": "Run",
-    "Python.create_xlsx_dates_updated.executor": "Run",
-    "Python.extract_one_page.executor": "Run",
-    "Python.horisontal_lines.executor": "Run",
-    "Python.once_create_json_with_dates.executor": "Run",
-    "Python.once_create_xlsx.executor": "Run",
-    "Python.pdf_as_list.executor": "Run",
-    "Python.read_table.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "database.data.extractors.current.export.id": "Comma-separated (CSV)_id",
-    "database.data.extractors.current.id": "Comma-separated (CSV)_id",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "/Users/evaiablocova/PycharmProjects/PDF_Parser",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.0_0_1_load_data_from_site.executor&quot;: &quot;Run&quot;,
+    &quot;Python.0_0_1_load_dates_from_site.executor&quot;: &quot;Run&quot;,
+    &quot;Python.0_1_1_download_all_pdf.executor&quot;: &quot;Run&quot;,
+    &quot;Python.0_1_2_create_json_dates_updated.executor&quot;: &quot;Run&quot;,
+    &quot;Python.0_1_entry_point.executor&quot;: &quot;Run&quot;,
+    &quot;Python.0_2_date.executor&quot;: &quot;Run&quot;,
+    &quot;Python.0_entry_point.executor&quot;: &quot;Run&quot;,
+    &quot;Python.1_download_pdf.executor&quot;: &quot;Run&quot;,
+    &quot;Python.2_create_xlsx.executor&quot;: &quot;Run&quot;,
+    &quot;Python.3_parser.executor&quot;: &quot;Run&quot;,
+    &quot;Python.4_validation.executor&quot;: &quot;Run&quot;,
+    &quot;Python.5_load_sql.executor&quot;: &quot;Run&quot;,
+    &quot;Python.7_into_csv.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Camelot.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Camelot1.executor&quot;: &quot;Run&quot;,
+    &quot;Python.CamelotStream.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Tabula.executor&quot;: &quot;Run&quot;,
+    &quot;Python.create_xlsx_dates_updated.executor&quot;: &quot;Run&quot;,
+    &quot;Python.extract_one_page.executor&quot;: &quot;Run&quot;,
+    &quot;Python.horisontal_lines.executor&quot;: &quot;Run&quot;,
+    &quot;Python.once_create_json_with_dates.executor&quot;: &quot;Run&quot;,
+    &quot;Python.once_create_xlsx.executor&quot;: &quot;Run&quot;,
+    &quot;Python.pdf_as_list.executor&quot;: &quot;Run&quot;,
+    &quot;Python.read_table.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;database.data.extractors.current.export.id&quot;: &quot;Comma-separated (CSV)_id&quot;,
+    &quot;database.data.extractors.current.id&quot;: &quot;Comma-separated (CSV)_id&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/evaiablocova/PycharmProjects/PDF_Parser&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
@@ -256,7 +249,8 @@
       <workItem from="1751784996614" duration="59477000" />
       <workItem from="1751990859665" duration="57529000" />
       <workItem from="1752167302382" duration="37130000" />
-      <workItem from="1752477038827" duration="4559000" />
+      <workItem from="1752477038827" duration="10486000" />
+      <workItem from="1752496052490" duration="24816000" />
     </task>
     <task id="LOCAL-00001" summary="parser - 788 sec">
       <option name="closed" value="true" />
@@ -506,7 +500,15 @@
       <option name="project" value="LOCAL" />
       <updated>1752260184650</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="Validation in SQL job. Parse -&gt; change dates. Archive PDFs">
+      <option name="closed" value="true" />
+      <created>1752481680843</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1752481680843</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -537,7 +539,8 @@
     <MESSAGE value="In staging_table oly delta. Download only changed files" />
     <MESSAGE value="Archive" />
     <MESSAGE value="Validation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Validation" />
+    <MESSAGE value="Validation in SQL job. Parse -&gt; change dates. Archive PDFs" />
+    <option name="LAST_COMMIT_MESSAGE" value="Validation in SQL job. Parse -&gt; change dates. Archive PDFs" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -559,19 +562,29 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/3_1_parser.py</url>
-          <line>25</line>
+          <line>26</line>
           <option name="timeStamp" value="118" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/5_load_sql.py</url>
+          <line>59</line>
+          <option name="timeStamp" value="129" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/3_2_no_pattern_parser.py</url>
-          <line>132</line>
-          <option name="timeStamp" value="124" />
+          <line>13</line>
+          <option name="timeStamp" value="131" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/3_1_parser.py</url>
+          <line>186</line>
+          <option name="timeStamp" value="134" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/PDF_Parser$0_1_entry_point.coverage" NAME="0_1_entry_point Coverage Results" MODIFIED="1752481588541" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/PDF_Parser$0_1_entry_point.coverage" NAME="0_1_entry_point Coverage Results" MODIFIED="1752580418191" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/PDF_Parser$2_create_xlsx.coverage" NAME="2_create_xlsx Coverage Results" MODIFIED="1751781403545" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/PDF_Parser$0_0_1_load_data_from_site.coverage" NAME="0_0_1_load_dates_from_site Coverage Results" MODIFIED="1752081047270" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/PDF_Parser$3_parser.coverage" NAME="3_parser Coverage Results" MODIFIED="1751781516344" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

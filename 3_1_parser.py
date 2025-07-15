@@ -8,6 +8,7 @@ import json
 import csv
 import importlib
 no_pattern_module = importlib.import_module('3_2_no_pattern_parser')
+write_to_log_module = importlib.import_module('0_3_write_to_log')
 
 
 # def read_page(y, x, page):
@@ -192,5 +193,12 @@ x = file_config['sizes']
 search_pattern = file_config['search_pattern']
 count_columns = file_config['count_columns']
 
-parse_pdf(path_to_file, x, search_pattern, parsed_data_file_name, count_columns)
+write_to_log_module.write_step_message("Py.Parser", f"Parsing file [start] {os.path.splitext(os.path.basename(path_to_file))[0]} ")
 
+try:
+    parse_pdf(path_to_file, x, search_pattern, parsed_data_file_name, count_columns)
+
+    write_to_log_module.write_step_message("Py.Parser", f"Parsing file [done] {os.path.splitext(os.path.basename(path_to_file))[0]} ")
+except Exception as e:
+    write_to_log_module.write_step_message("Py.Parser", f"Parsing file [failed] {os.path.splitext(os.path.basename(path_to_file))[0]} ", "error")
+    raise

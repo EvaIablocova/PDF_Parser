@@ -18,7 +18,7 @@ data = [
     {"FileName": "Init_lichid.pdf", "start_date": "2025-09-01", "end_date": "2025-06-27"},
     {"FileName": "Init_lichid_2014_2024_MO.pdf", "start_date": "2014-06-27", "end_date": "2024-12-31"},
     {"FileName": "Finaliz_proced_reorg.pdf", "start_date": "2025-01-01", "end_date": "2025-06-04"},
-    {"FileName": "Finaliz_proced_reorg_2021_2024.pdf", "start_date": "2021-01-01", "end_date": "2024-12-31"},
+    {"FileName": "Finaliz_proced_reorg_2021_2024.pdf", "start_date": "2021-01-02", "end_date": "2024-12-31"},
 ]
 
 output_file = "config_last_dates_in_db.json"

@@ -5,11 +5,13 @@
     "parsed_data_dir": "parsed_files",
     "config_last_dates_in_db": "config_last_dates_in_db.json",
     "today_file": "today_dates.json",
+    "log_table_name": "Logs",
     "database_config": {
         "server_name": "localhost",
-        "database_name": "ASPdb14",
+        "database_name": "ASPdb15",
         "username": "SA",
-        "password": "MyStr0ngPass123"
+        "password": "MyStr0ngPass123",
+        "job_name": "validate_and_insert_data"
     },
     "file_configs": [
         {
@@ -87,8 +89,8 @@
                 "IDNO",
                 "Name",
                 "Address",
-                "From_address",
-                "Into_address"
+                "Address_From",
+                "Address_Into"
             ]
         },
         {
@@ -156,8 +158,8 @@
                 "IDNO",
                 "Name",
                 "Address",
-                "From_price",
-                "Into_price"
+                "Price_From",
+                "Price_Into"
             ]
         },
         {
@@ -167,7 +169,7 @@
                 0,
                 60,
                 110,
-                170,
+                175,
                 370,
                 680,
                 820
@@ -263,7 +265,7 @@
         {
             "keyword": "Finaliz_proced_reorg",
             "count_columns": 6,
-            "sizes": [0, 55, 100, 170, 347, 530, 800],
+            "sizes": [0, 55, 100, 175, 300, 530, 800],
             "search_pattern": "no_pattern",
             "address_column_number": null,
             "equal_columns_numbers": null,
