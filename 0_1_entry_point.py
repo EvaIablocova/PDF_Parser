@@ -6,6 +6,7 @@ import os
 import importlib
 date_module = importlib.import_module('0_2_date')
 write_to_log_module = importlib.import_module('0_3_write_to_log')
+download_changed_pdfs_module = importlib.import_module('2_download_changed_pdf')
 
 def check_config(file_config, file_to_process):
     if 'Init_lichid_' in file_to_process:
@@ -52,7 +53,10 @@ subprocess.run([sys.executable, "once_create_json_with_dates.py"])
 
 # files_to_process=["Lichidarea.pdf", "Lichidarea_term_exp.pdf", "Lichidarea_2008_2024.pdf", "Lichidarea_term_exp_2018_2024.pdf"]
 
-files_to_process = ["Sediul_2008_2024_1.pdf"]
+files_to_process = ["Finaliz_proced_reorg.pdf","Finaliz_proced_reorg_2021_2024.pdf", "Inactive.pdf"]
+# files_to_process = ["Denumirea.pdf"]
+
+# files_to_process = ["Sediul_2008_2024_1.pdf"]
 
 # files_to_process = date_module.compare_dates(config_dates, today_file)
 
@@ -66,7 +70,9 @@ else:
 files_to_process_str = ','.join(files_to_process)
 
 write_to_log_module.write_step_message("Py.Loader", f"Identified {len(files_to_process)} files to be loaded: {files_to_process_str}")
-result = subprocess.run([sys.executable, "2_download_changed_pdf.py", download_dir, files_to_process_str], env=os.environ)
+count = download_changed_pdfs_module.download_changed_pdfs(download_dir, files_to_process_str)
+write_to_log_module.write_step_message("Py.Loader", f"Downloaded {count} files")
+
 
 keywords = [fc['keyword'] for fc in config['file_configs'] if any(fc['keyword'] in os.path.splitext(file)[0] for file in files_to_process)]
 

@@ -5,38 +5,43 @@ from urllib.parse import urljoin
 import sys
 import json
 
-with open('config.json', 'r', encoding='utf-8') as file:
-    config = json.load(file)
+def download_changed_pdfs(download_dir, files_to_process_str):
 
-source_url = config['source_url']
+    with open('config.json', 'r', encoding='utf-8') as file:
+        config = json.load(file)
 
-download_dir = sys.argv[1]
-os.makedirs(download_dir, exist_ok=True)
+    source_url = config['source_url']
 
-files_to_process_str = sys.argv[2]
-files_to_process = files_to_process_str.split(',')
+    os.makedirs(download_dir, exist_ok=True)
 
-response = requests.get(source_url)
-response.raise_for_status()
+    files_to_process = files_to_process_str.split(',')
 
-soup = BeautifulSoup(response.text, "html.parser")
+    response = requests.get(source_url)
+    response.raise_for_status()
 
-links = soup.find_all("a")
+    soup = BeautifulSoup(response.text, "html.parser")
 
-for link in links:
-    href = link.get("href")
-    if href and href.lower().endswith(".pdf"):
-        file_url = urljoin(source_url, href)
-        file_name = os.path.split(file_url)[-1]
+    links = soup.find_all("a")
 
-        if file_name in files_to_process:
-            file_path = os.path.join(download_dir, file_name)
 
-            try:
-                file_response = requests.get(file_url)
-                file_response.raise_for_status()
-                with open(file_path, "wb") as file:
-                    file.write(file_response.content)
-                print(f"Downloaded: {file_name}")
-            except Exception as e:
-                print(f"Failed to download {file_url}: {e}")
+    count = 0
+    for link in links:
+        href = link.get("href")
+        if href and href.lower().endswith(".pdf"):
+            file_url = urljoin(source_url, href)
+            file_name = os.path.split(file_url)[-1]
+
+            if file_name in files_to_process:
+                file_path = os.path.join(download_dir, file_name)
+
+                try:
+                    file_response = requests.get(file_url)
+                    file_response.raise_for_status()
+                    with open(file_path, "wb") as file:
+                        file.write(file_response.content)
+                    print(f"Downloaded: {file_name}")
+                    count += 1
+                except Exception as e:
+                    print(f"Failed to download {file_url}: {e}")
+
+    return count
