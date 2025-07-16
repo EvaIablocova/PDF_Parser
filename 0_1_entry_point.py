@@ -7,6 +7,27 @@ import importlib
 date_module = importlib.import_module('0_2_date')
 write_to_log_module = importlib.import_module('0_3_write_to_log')
 
+def check_config(file_config, file_to_process):
+    if 'Init_lichid_' in file_to_process:
+        file_config ['sizes']= [
+                0,
+                60,
+                105,
+                170,
+                370,
+                600
+            ]
+    else:
+        file_config ['sizes'] = [
+            0,
+            60,
+            120,
+            200,
+            470,
+            820
+        ]
+    return file_config
+
 # subprocess.check_call([sys.executable, "-m", "pip", "install", "-r", "requirments"])
 
 
@@ -29,7 +50,9 @@ subprocess.run([sys.executable, "once_create_json_with_dates.py"])
 # "Finaliz_proced_reorg.pdf","Finaliz_proced_reorg_2021_2024.pdf",
 #                     "Inactive.pdf", "Init_reorg.pdf"]
 
-files_to_process=["Init_reorg.pdf"]
+# files_to_process=["Lichidarea.pdf", "Lichidarea_term_exp.pdf", "Lichidarea_2008_2024.pdf", "Lichidarea_term_exp_2018_2024.pdf"]
+
+files_to_process = ["Sediul_2008_2024_1.pdf"]
 
 # files_to_process = date_module.compare_dates(config_dates, today_file)
 
@@ -77,6 +100,10 @@ for keyword in keywords:
 
         print(f"\n{'*' * 50}")
         print(f"Processing file: {file_to_process}")
+
+        if keyword == 'Init_lichid':
+            file_config = check_config(file_config, file_to_process)
+            os.environ['FILE_CONFIG'] = json.dumps(file_config)
 
         path_to_file = os.path.join(download_dir, file_to_process)
         os.environ['path_to_file'] = json.dumps(path_to_file)

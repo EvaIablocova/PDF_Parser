@@ -27,6 +27,6 @@ def extract_one_page(input_pdf_path, output_pdf_path):
     print(f"One page saved into {output_pdf_path}")
 
 
-input_pdf = "downloaded_pdf_files/Init_reorg.pdf"
-output_pdf = "downloaded_pdf_files/Init_reorg_1.pdf"
+input_pdf = "downloaded_pdf_files/Sediul_2008_2024.pdf"
+output_pdf = "downloaded_pdf_files/Sediul_2008_2024_1.pdf"
 extract_one_page(input_pdf, output_pdf)
