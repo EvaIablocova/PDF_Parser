@@ -133,10 +133,13 @@ def parse_no_pattern(file_path, parsed_data_file_name, count_columns):
     except Exception as e:
         print(f"Error ocured: {e}")
 
-    processed_file = 'processed_combined_tables.csv'
-    process_csv(parsed_data_file_name, processed_file)
-    cleaned_file = 'cleaned_combined_tables.csv'
-    clean(processed_file, cleaned_file, count_columns)
+    try:
+        processed_file = 'processed_combined_tables.csv'
+        process_csv(parsed_data_file_name, processed_file)
+        cleaned_file = 'cleaned_combined_tables.csv'
+        clean(processed_file, cleaned_file, count_columns)
+    except Exception as e:
+        print(f"Error ocured: {e}")
 
     with open(cleaned_file, 'r', encoding='utf-8') as infile, open(parsed_data_file_name, 'w', encoding='utf-8') as outfile:
         outfile.write(infile.read())

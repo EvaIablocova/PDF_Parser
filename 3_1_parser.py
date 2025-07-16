@@ -58,80 +58,80 @@ def read_page(y, x, page, all_data):
 #
 #     return y_coordinates
 
-def extract_y_coordinates_from_page(page):
-    y_values = []
-    edges = page.edges
-
-    horizontal_lines = [edge for edge in edges if abs(edge['y1'] - edge['y0']) < 1 and edge['x1'] > edge['x0']]
-    horizontal_lines = horizontal_lines[::2]
-
-    for line in horizontal_lines:
-        y = line['y0']
-        y_values.append(round(y))
-
-    return sorted(set(y_values))
-
-def find_start_y (page):
-    pattern = r'\d{13}'
-
-    first_row_pattern = re.compile(pattern)
-    words = page.extract_words()
-    for word in words:
-        if first_row_pattern.search(word['text']):
-            return word['top']
-    return None
-
-def find_last_y (page):
-    pattern = r'\d{13}'
-    last_y = None
-
-    first_row_pattern = re.compile(pattern)
-    words = page.extract_words()
-    for word in words:
-        if first_row_pattern.search(word['text']):
-            last_y = word['top']
-
-    return last_y
-
-def cut_y(y, y0, y_last):
-    y = [val - 40 for val in y]
-
-    y_filtered = [val for val in y if y0 < val <= y_last]
-    y_not_fit = [val for val in y if y0 > val]
-    max_not_fit = max(y_not_fit) if y_not_fit else None
-    y_filtered.append(max_not_fit)
-
-    y_not_fit = [val for val in y if val > y_last]
-    min_not_fit = min(y_not_fit) if y_not_fit else None
-
-    if not min_not_fit:
-        min_not_fit = y_last + 10
-
-    y_filtered.append(round(min_not_fit))
-
-
-    y_filtered = sorted(y_filtered)
-
-    print(y_filtered)
-    return y_filtered
-
-def extract_table_with_black_lines (pdf_url, x, all_data, black_line_threshold=0.9):
-    with pdfplumber.open(pdf_url) as pdf:
-        for page in pdf.pages:
-            # y = find_y_coordinates_from_page(page)
-
-            # y1 = page.height
-            # y = [199, 201, 224, 248, 272, 297, 321, 345, 369, 393, 417, 439, 440, 442, 481, 482, 484, 499, 521]
-
-            y = extract_y_coordinates_from_page(page)
-
-            y0 = find_start_y(page)
-            y_last = find_last_y(page)
-            y = cut_y(y, y0, y_last)
-
-            page_data = read_page(y, x, page)
-            all_data.append(page_data)
-    return all_data
+# def extract_y_coordinates_from_page(page):
+#     y_values = []
+#     edges = page.edges
+#
+#     horizontal_lines = [edge for edge in edges if abs(edge['y1'] - edge['y0']) < 1 and edge['x1'] > edge['x0']]
+#     horizontal_lines = horizontal_lines[::2]
+#
+#     for line in horizontal_lines:
+#         y = line['y0']
+#         y_values.append(round(y))
+#
+#     return sorted(set(y_values))
+#
+# def find_start_y (page):
+#     pattern = r'\d{13}'
+#
+#     first_row_pattern = re.compile(pattern)
+#     words = page.extract_words()
+#     for word in words:
+#         if first_row_pattern.search(word['text']):
+#             return word['top']
+#     return None
+#
+# def find_last_y (page):
+#     pattern = r'\d{13}'
+#     last_y = None
+#
+#     first_row_pattern = re.compile(pattern)
+#     words = page.extract_words()
+#     for word in words:
+#         if first_row_pattern.search(word['text']):
+#             last_y = word['top']
+#
+#     return last_y
+#
+# def cut_y(y, y0, y_last):
+#     y = [val - 40 for val in y]
+#
+#     y_filtered = [val for val in y if y0 < val <= y_last]
+#     y_not_fit = [val for val in y if y0 > val]
+#     max_not_fit = max(y_not_fit) if y_not_fit else None
+#     y_filtered.append(max_not_fit)
+#
+#     y_not_fit = [val for val in y if val > y_last]
+#     min_not_fit = min(y_not_fit) if y_not_fit else None
+#
+#     if not min_not_fit:
+#         min_not_fit = y_last + 10
+#
+#     y_filtered.append(round(min_not_fit))
+#
+#
+#     y_filtered = sorted(y_filtered)
+#
+#     print(y_filtered)
+#     return y_filtered
+#
+# def extract_table_with_black_lines (pdf_url, x, all_data, black_line_threshold=0.9):
+#     with pdfplumber.open(pdf_url) as pdf:
+#         for page in pdf.pages:
+#             # y = find_y_coordinates_from_page(page)
+#
+#             # y1 = page.height
+#             # y = [199, 201, 224, 248, 272, 297, 321, 345, 369, 393, 417, 439, 440, 442, 481, 482, 484, 499, 521]
+#
+#             y = extract_y_coordinates_from_page(page)
+#
+#             y0 = find_start_y(page)
+#             y_last = find_last_y(page)
+#             y = cut_y(y, y0, y_last)
+#
+#             page_data = read_page(y, x, page)
+#             all_data.append(page_data)
+#     return all_data
 
 
 def parse_pdf(pdf_url, x, search_pattern, parsed_data_file_name, count_columns):

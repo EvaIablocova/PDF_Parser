@@ -113,8 +113,7 @@ for keyword in keywords:
             "4_clean.py",
             "5_load_sql.py",
             "6_pdf_into_archive.py",
-            "7_change_dates_in_config.py",
-            "8_call_job.py",
+            "7_change_dates_in_config.py"
         ]
 
         for script in scripts:
@@ -126,6 +125,10 @@ for keyword in keywords:
                 print(f"Script {script} failed with exit code {result.returncode}")
                 sys.exit(result.returncode)
             print(f"{script} finished successfully in {elapsed:.2f} seconds.\n")
+
+
+subprocess.run([sys.executable, "8_call_job.py"])
+
 
 
 
