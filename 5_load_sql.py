@@ -2,8 +2,6 @@ import pandas as pd
 import pyodbc
 import os
 import json
-from sqlalchemy import create_engine
-from datetime import datetime
 import importlib
 write_to_log_module = importlib.import_module('0_3_write_to_log')
 

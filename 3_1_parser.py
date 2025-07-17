@@ -9,6 +9,10 @@ import csv
 import importlib
 no_pattern_module = importlib.import_module('3_2_no_pattern_parser')
 write_to_log_module = importlib.import_module('0_3_write_to_log')
+import warnings
+from cryptography.utils import CryptographyDeprecationWarning
+
+warnings.filterwarnings("ignore", category=CryptographyDeprecationWarning)
 
 
 # def read_page(y, x, page):

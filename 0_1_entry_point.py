@@ -39,7 +39,7 @@ download_dir = config['download_dir']
 config_dates = config["config_last_dates_in_db"]
 today_file = config["today_file"]
 
-# subprocess.run([sys.executable, "1_load_dates_from_site.py", today_file], env=os.environ)
+subprocess.run([sys.executable, "1_load_dates_from_site.py", today_file], env=os.environ)
 
 # for changing dates
 subprocess.run([sys.executable, "once_create_json_with_dates.py"])
@@ -48,15 +48,14 @@ subprocess.run([sys.executable, "once_create_json_with_dates.py"])
 # ,"Sediul.pdf", "Reducere.pdf",
 # "Init_lichid_2014_2024_MO.pdf",
 # "Denumirea.pdf", "Denumirea_2008_2024.pdf",
-# "Finaliz_proced_reorg.pdf","Finaliz_proced_reorg_2021_2024.pdf",
 #                     "Inactive.pdf", "Init_reorg.pdf"]
 
 # files_to_process=["Lichidarea_term_exp.pdf", "Denumirea.pdf"]
 
-files_to_process = ["Finaliz_proced_reorg.pdf","Finaliz_proced_reorg_2021_2024.pdf"]
+# files_to_process = ["Finaliz_proced_reorg.pdf","Finaliz_proced_reorg_2021_2024.pdf"]
 # files_to_process = ["Denumirea.pdf"]
 
-# files_to_process = ["Sediul_2008_2024_1.pdf"]
+files_to_process = ["Sediul_2008_2024.pdf"]
 
 # files_to_process = date_module.compare_dates(config_dates, today_file)
 

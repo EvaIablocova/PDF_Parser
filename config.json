@@ -8,7 +8,7 @@
     "log_table_name": "Logs",
     "database_config": {
         "server_name": "localhost",
-        "database_name": "ASPdb15",
+        "database_name": "PDFparser",
         "username": "NewUser2",
         "password": "MyStr0ngPass123",
         "job_name": "validate_and_insert_data"
