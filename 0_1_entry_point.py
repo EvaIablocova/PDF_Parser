@@ -51,9 +51,9 @@ subprocess.run([sys.executable, "once_create_json_with_dates.py"])
 # "Finaliz_proced_reorg.pdf","Finaliz_proced_reorg_2021_2024.pdf",
 #                     "Inactive.pdf", "Init_reorg.pdf"]
 
-# files_to_process=["Lichidarea.pdf", "Lichidarea_term_exp.pdf", "Lichidarea_2008_2024.pdf", "Lichidarea_term_exp_2018_2024.pdf"]
+# files_to_process=["Lichidarea_term_exp.pdf", "Denumirea.pdf"]
 
-files_to_process = ["Finaliz_proced_reorg.pdf","Finaliz_proced_reorg_2021_2024.pdf", "Inactive.pdf"]
+files_to_process = ["Finaliz_proced_reorg.pdf","Finaliz_proced_reorg_2021_2024.pdf"]
 # files_to_process = ["Denumirea.pdf"]
 
 # files_to_process = ["Sediul_2008_2024_1.pdf"]
@@ -69,6 +69,7 @@ else:
 
 files_to_process_str = ','.join(files_to_process)
 
+write_to_log_module.write_step_message("Py.Loader", f"Started time: { time.strftime('%Y-%m-%d %H:%M:%S', time.localtime()) }")
 write_to_log_module.write_step_message("Py.Loader", f"Identified {len(files_to_process)} files to be loaded: {files_to_process_str}")
 count = download_changed_pdfs_module.download_changed_pdfs(download_dir, files_to_process_str)
 write_to_log_module.write_step_message("Py.Loader", f"Downloaded {count} files")

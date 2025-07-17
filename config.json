@@ -9,7 +9,7 @@
     "database_config": {
         "server_name": "localhost",
         "database_name": "ASPdb15",
-        "username": "SA",
+        "username": "NewUser2",
         "password": "MyStr0ngPass123",
         "job_name": "validate_and_insert_data"
     },
@@ -60,7 +60,7 @@
             "sizes": [
                 0,
                 58,
-                100,
+                105,
                 170,
                 313,
                 473,

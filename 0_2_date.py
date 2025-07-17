@@ -1,5 +1,4 @@
 import json
-from PyPDF2 import PdfReader
 import re
 from datetime import datetime
 

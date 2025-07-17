@@ -3,6 +3,18 @@ import re
 import csv
 import shutil
 
+def delete_empty_rows(parsed_data_file_name):
+    rows = []
+    with open(parsed_data_file_name, 'r', encoding='utf-8') as infile:
+        reader = csv.reader(infile, delimiter='|')
+        for row in reader:
+            if any(field.strip() for field in row):
+                rows.append(row)
+    with open(parsed_data_file_name, 'w', encoding='utf-8', newline='') as outfile:
+        writer = csv.writer(outfile, delimiter='|')
+        writer.writerows(rows)
+
+
 def process_csv(input_file, output_file):
     shutil.copy(input_file, 'debug_no_pattern.csv')
 
@@ -79,9 +91,9 @@ def process_csv(input_file, output_file):
             else:
                 i += 1
 
-    if re.match(r'^\d+$', reader[len(reader) - 2][0]) and re.match(r'^\d+$', reader[len(reader) - 1][0]):
-        result.append(reader[len(reader) - 2])
-        result.append(reader[len(reader) - 1])
+        if re.match(r'^\d+$', reader[len(reader) - 2][0]) and re.match(r'^\d+$', reader[len(reader) - 1][0]):
+            result.append(reader[len(reader) - 2])
+            result.append(reader[len(reader) - 1])
 
 
     # Write the processed rows to the output file
@@ -134,6 +146,7 @@ def parse_no_pattern(file_path, parsed_data_file_name, count_columns):
         print(f"Error ocured: {e}")
 
     try:
+        delete_empty_rows(parsed_data_file_name)
         processed_file = 'processed_combined_tables.csv'
         process_csv(parsed_data_file_name, processed_file)
         cleaned_file = 'cleaned_combined_tables.csv'
