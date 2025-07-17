@@ -106,15 +106,24 @@ def clean_data_by_type (df, keyword):
             df = pd.concat([df.iloc[:717], new_row, df.iloc[717:]]).reset_index(drop=True)
 
 
-    elif keyword == 'Lichidarea':
-       df[4] = df[4].str.replace(r'.*MD-', r'MD-', regex=True)
-
-    elif keyword == 'Init_reorg':
-       df[6] = df[6].str.replace(r'.*MD-', r'MD-', regex=True)
+    # elif keyword == 'Lichidarea':
+    #    df[4] = df[4].str.replace(r'.*MD-', r'MD-', regex=True)
+    #
+    # elif keyword == 'Init_reorg':
+    #    df[6] = df[6].str.replace(r'.*MD-', r'MD-', regex=True)
+    #
+    # elif keyword == 'Sediul':
+    #    df[6] = df[6].str.replace(r'.*MD-', r'MD-', regex=True)
 
     return df
 
-
+def clean_address (df, address_columns):
+    if not address_columns:
+        return df
+    for col in address_columns:
+        if col in df.columns:
+            df[col] = df[col].str.replace(r'.*MD-', r'MD-', regex=True)
+    return df
 
 file_config = json.loads(os.environ['FILE_CONFIG'])
 path_to_file = json.loads(os.environ['path_to_file'])
@@ -127,5 +136,7 @@ keyword = file_config['keyword']
 df = clean_data(parsed_data_file_name, need_cleaning_columns)
 
 df = clean_data_by_type(df, keyword)
+
+df = clean_address(df, file_config['address_column_number'])
 
 df.to_csv(parsed_data_file_name, sep='|', index=False, header=False)
