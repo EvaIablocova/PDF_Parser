@@ -4,16 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="93ca5b42-e6fc-4b64-8f92-a42f9495dfe5" name="Changes" comment="write to log before downloading">
+    <list default="true" id="93ca5b42-e6fc-4b64-8f92-a42f9495dfe5" name="Changes" comment="server">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/0_1_entry_point.py" beforeDir="false" afterPath="$PROJECT_DIR$/0_1_entry_point.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/1_load_dates_from_site.py" beforeDir="false" afterPath="$PROJECT_DIR$/1_load_dates_from_site.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2_download_changed_pdf.py" beforeDir="false" afterPath="$PROJECT_DIR$/2_download_changed_pdf.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/4_clean.py" beforeDir="false" afterPath="$PROJECT_DIR$/4_clean.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/6_pdf_into_archive.py" beforeDir="false" afterPath="$PROJECT_DIR$/6_pdf_into_archive.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/7_change_dates_in_config.py" beforeDir="false" afterPath="$PROJECT_DIR$/7_change_dates_in_config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/8_call_job.py" beforeDir="false" afterPath="$PROJECT_DIR$/8_call_job.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/once_create_json_with_dates.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -531,20 +525,14 @@
       <option name="project" value="LOCAL" />
       <updated>1752759778725</updated>
     </task>
-    <task id="LOCAL-00036" summary="write to log before downloading">
-      <created>1752817266005</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1752817266005</updated>
-    </task>
-    <option name="localTasksCounter" value="37" />
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
+    <MESSAGE value="JSON. Sediul" />
     <MESSAGE value="Inactive" />
     <MESSAGE value="files: Denumirea, Denumirea_2008_2024, Sediul, Sediul_2008_2024, Inactive, Reducere, Reducere_2007_2024" />
     <MESSAGE value="merge delta" />
@@ -569,8 +557,7 @@
     <MESSAGE value="Call SQL job. Write to log table" />
     <MESSAGE value="Job is called once" />
     <MESSAGE value="server" />
-    <MESSAGE value="write to log before downloading" />
-    <option name="LAST_COMMIT_MESSAGE" value="write to log before downloading" />
+    <option name="LAST_COMMIT_MESSAGE" value="server" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -624,6 +611,11 @@
           <url>file://$PROJECT_DIR$/5_load_sql.py</url>
           <line>47</line>
           <option name="timeStamp" value="150" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/5_load_sql.py</url>
+          <line>66</line>
+          <option name="timeStamp" value="151" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/5_load_sql.py</url>

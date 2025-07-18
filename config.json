@@ -1,6 +1,6 @@
 {
     "source_url": "https://www.asp.gov.md/ro/date-deschise/avizele-agentilor-economici",
-    "download_dir": "downloaded_pdf_files",
+    "download_dir": "files_to_parse",
     "archive_dir": "archive",
     "parsed_data_dir": "parsed_files",
     "config_last_dates_in_db": "config_last_dates_in_db.json",
