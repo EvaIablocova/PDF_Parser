@@ -42,22 +42,21 @@ today_file = config["today_file"]
 subprocess.run([sys.executable, "1_load_dates_from_site.py", today_file], env=os.environ)
 
 # for changing dates
-subprocess.run([sys.executable, "once_create_json_with_dates.py"])
+# subprocess.run([sys.executable, "once_create_json_with_dates.py"])
 
 # files_to_process = ["Lichidarea.pdf", "Lichidarea_term_exp.pdf"
 # ,"Sediul.pdf", "Reducere.pdf",
 # "Init_lichid_2014_2024_MO.pdf",
 # "Denumirea.pdf", "Denumirea_2008_2024.pdf",
-#                     "Inactive.pdf", "Init_reorg.pdf"]
+#                     "Inactive.pdf", "Init_reorg.pdf", "Lichidarea_term_exp.pdf",
+#                     "Denumirea.pdf", "Finaliz_proced_reorg.pdf","Finaliz_proced_reorg_2021_2024.pdf"
+# ,"Sediul_2008_2024.pdf"]
 
-# files_to_process=["Lichidarea_term_exp.pdf", "Denumirea.pdf"]
+files_to_process = date_module.compare_dates(config_dates, today_file)
+files_to_process_str = ','.join(files_to_process)
 
-# files_to_process = ["Finaliz_proced_reorg.pdf","Finaliz_proced_reorg_2021_2024.pdf"]
-# files_to_process = ["Denumirea.pdf"]
-
-files_to_process = ["Sediul_2008_2024.pdf"]
-
-# files_to_process = date_module.compare_dates(config_dates, today_file)
+write_to_log_module.write_step_message("Py.Loader", f"Started time: { time.strftime('%Y-%m-%d %H:%M:%S', time.localtime()) }")
+write_to_log_module.write_step_message("Py.Loader", f"Identified {len(files_to_process)} files to be loaded: {files_to_process_str}")
 
 if files_to_process:
     print("Dates changed. Files to process: ", files_to_process)
@@ -66,10 +65,6 @@ else:
     sys.exit(0)
 
 
-files_to_process_str = ','.join(files_to_process)
-
-write_to_log_module.write_step_message("Py.Loader", f"Started time: { time.strftime('%Y-%m-%d %H:%M:%S', time.localtime()) }")
-write_to_log_module.write_step_message("Py.Loader", f"Identified {len(files_to_process)} files to be loaded: {files_to_process_str}")
 count = download_changed_pdfs_module.download_changed_pdfs(download_dir, files_to_process_str)
 write_to_log_module.write_step_message("Py.Loader", f"Downloaded {count} files")
 

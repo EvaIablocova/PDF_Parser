@@ -4,18 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="93ca5b42-e6fc-4b64-8f92-a42f9495dfe5" name="Changes" comment="Job is called once">
-      <change beforePath="$PROJECT_DIR$/.idea/PDF_Parser.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/PDF_Parser.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="93ca5b42-e6fc-4b64-8f92-a42f9495dfe5" name="Changes" comment="server">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/0_1_entry_point.py" beforeDir="false" afterPath="$PROJECT_DIR$/0_1_entry_point.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/3_1_parser.py" beforeDir="false" afterPath="$PROJECT_DIR$/3_1_parser.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/5_load_sql.py" beforeDir="false" afterPath="$PROJECT_DIR$/5_load_sql.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Camelot.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Camelot1.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/extract_one_page.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirments" beforeDir="false" afterPath="$PROJECT_DIR$/requirments" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,47 +49,47 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.0_0_1_load_data_from_site.executor": "Run",
-    "Python.0_0_1_load_dates_from_site.executor": "Run",
-    "Python.0_1_1_download_all_pdf.executor": "Run",
-    "Python.0_1_2_create_json_dates_updated.executor": "Run",
-    "Python.0_1_entry_point.executor": "Run",
-    "Python.0_2_date.executor": "Run",
-    "Python.0_entry_point.executor": "Run",
-    "Python.1_download_pdf.executor": "Run",
-    "Python.2_create_xlsx.executor": "Run",
-    "Python.3_parser.executor": "Run",
-    "Python.4_validation.executor": "Run",
-    "Python.5_load_sql.executor": "Run",
-    "Python.7_into_csv.executor": "Run",
-    "Python.Camelot.executor": "Run",
-    "Python.Camelot1.executor": "Run",
-    "Python.CamelotStream.executor": "Run",
-    "Python.Tabula.executor": "Run",
-    "Python.create_xlsx_dates_updated.executor": "Run",
-    "Python.extract_one_page.executor": "Run",
-    "Python.horisontal_lines.executor": "Run",
-    "Python.once_create_json_with_dates.executor": "Run",
-    "Python.once_create_xlsx.executor": "Run",
-    "Python.pdf_as_list.executor": "Run",
-    "Python.read_table.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "database.data.extractors.current.export.id": "Comma-separated (CSV)_id",
-    "database.data.extractors.current.id": "Comma-separated (CSV)_id",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "/Users/evaiablocova/PycharmProjects/PDF_Parser",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.keymap",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.0_0_1_load_data_from_site.executor&quot;: &quot;Run&quot;,
+    &quot;Python.0_0_1_load_dates_from_site.executor&quot;: &quot;Run&quot;,
+    &quot;Python.0_1_1_download_all_pdf.executor&quot;: &quot;Run&quot;,
+    &quot;Python.0_1_2_create_json_dates_updated.executor&quot;: &quot;Run&quot;,
+    &quot;Python.0_1_entry_point.executor&quot;: &quot;Run&quot;,
+    &quot;Python.0_2_date.executor&quot;: &quot;Run&quot;,
+    &quot;Python.0_entry_point.executor&quot;: &quot;Run&quot;,
+    &quot;Python.1_download_pdf.executor&quot;: &quot;Run&quot;,
+    &quot;Python.2_create_xlsx.executor&quot;: &quot;Run&quot;,
+    &quot;Python.3_parser.executor&quot;: &quot;Run&quot;,
+    &quot;Python.4_validation.executor&quot;: &quot;Run&quot;,
+    &quot;Python.5_load_sql.executor&quot;: &quot;Run&quot;,
+    &quot;Python.7_into_csv.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Camelot.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Camelot1.executor&quot;: &quot;Run&quot;,
+    &quot;Python.CamelotStream.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Tabula.executor&quot;: &quot;Run&quot;,
+    &quot;Python.create_xlsx_dates_updated.executor&quot;: &quot;Run&quot;,
+    &quot;Python.extract_one_page.executor&quot;: &quot;Run&quot;,
+    &quot;Python.horisontal_lines.executor&quot;: &quot;Run&quot;,
+    &quot;Python.once_create_json_with_dates.executor&quot;: &quot;Run&quot;,
+    &quot;Python.once_create_xlsx.executor&quot;: &quot;Run&quot;,
+    &quot;Python.pdf_as_list.executor&quot;: &quot;Run&quot;,
+    &quot;Python.read_table.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;database.data.extractors.current.export.id&quot;: &quot;Comma-separated (CSV)_id&quot;,
+    &quot;database.data.extractors.current.id&quot;: &quot;Comma-separated (CSV)_id&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/evaiablocova/PycharmProjects/PDF_Parser&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
@@ -526,14 +517,20 @@
       <option name="project" value="LOCAL" />
       <updated>1752658050073</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="server">
+      <created>1752759778725</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1752759778725</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="ETL" />
     <MESSAGE value="JSON. Sediul" />
     <MESSAGE value="Inactive" />
     <MESSAGE value="files: Denumirea, Denumirea_2008_2024, Sediul, Sediul_2008_2024, Inactive, Reducere, Reducere_2007_2024" />
@@ -558,7 +555,8 @@
     <MESSAGE value="Validation in SQL job. Parse -&gt; change dates. Archive PDFs" />
     <MESSAGE value="Call SQL job. Write to log table" />
     <MESSAGE value="Job is called once" />
-    <option name="LAST_COMMIT_MESSAGE" value="Job is called once" />
+    <MESSAGE value="server" />
+    <option name="LAST_COMMIT_MESSAGE" value="server" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
