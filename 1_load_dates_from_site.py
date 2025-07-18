@@ -8,7 +8,11 @@ import importlib
 write_to_log_module = importlib.import_module('0_3_write_to_log')
 
 try:
-    url = "https://www.asp.gov.md/ro/date-deschise/avizele-agentilor-economici"
+
+    with open('config.json', 'r', encoding='utf-8') as file:
+        config = json.load(file)
+
+    url = config['source_url']
 
     response = requests.get(url)
     response.raise_for_status()
@@ -56,5 +60,5 @@ try:
     with open(today_file, "w", encoding="utf-8") as json_file:
         json.dump(result, json_file, ensure_ascii=False, indent=4)
 except Exception as e:
-    write_to_log_module.write_step_message("Py.Loader", f"Loading dates from site [failed]", "error")
+    write_to_log_module.write_step_message("Py.Loader", f"Loading dates from site [failed]")
     raise

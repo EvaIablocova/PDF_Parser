@@ -8,6 +8,7 @@ date_module = importlib.import_module('0_2_date')
 write_to_log_module = importlib.import_module('0_3_write_to_log')
 download_changed_pdfs_module = importlib.import_module('2_download_changed_pdf')
 
+
 def check_config(file_config, file_to_process):
     if 'Init_lichid_' in file_to_process:
         file_config ['sizes']= [
@@ -31,6 +32,7 @@ def check_config(file_config, file_to_process):
 
 # subprocess.check_call([sys.executable, "-m", "pip", "install", "-r", "requirments"])
 
+write_to_log_module.write_step_message("Py.Loader", f"Started time: { time.strftime('%Y-%m-%d %H:%M:%S', time.localtime()) }")
 
 with open('config.json', 'r', encoding='utf-8') as file:
     config = json.load(file)
@@ -52,12 +54,12 @@ subprocess.run([sys.executable, "1_load_dates_from_site.py", today_file], env=os
 #                     "Denumirea.pdf", "Finaliz_proced_reorg.pdf","Finaliz_proced_reorg_2021_2024.pdf"
 # ,"Sediul_2008_2024.pdf"]
 
-files_to_process = ["Denumirea.pdf", "Lichidarea_1.pdf"]
+# files_to_process = ["Denumirea.pdf"]
+# files_to_process = ["Denumirea.pdf", "Lichidarea_1.pdf"]
 
-# files_to_process = date_module.compare_dates(config_dates, today_file)
+files_to_process = date_module.compare_dates(config_dates, today_file)
 files_to_process_str = ','.join(files_to_process)
 
-write_to_log_module.write_step_message("Py.Loader", f"Started time: { time.strftime('%Y-%m-%d %H:%M:%S', time.localtime()) }")
 write_to_log_module.write_step_message("Py.Loader", f"Identified {len(files_to_process)} files to be loaded: {files_to_process_str}")
 
 if files_to_process:
