@@ -52,7 +52,9 @@ subprocess.run([sys.executable, "1_load_dates_from_site.py", today_file], env=os
 #                     "Denumirea.pdf", "Finaliz_proced_reorg.pdf","Finaliz_proced_reorg_2021_2024.pdf"
 # ,"Sediul_2008_2024.pdf"]
 
-files_to_process = date_module.compare_dates(config_dates, today_file)
+files_to_process = ["Denumirea.pdf", "Lichidarea_1.pdf"]
+
+# files_to_process = date_module.compare_dates(config_dates, today_file)
 files_to_process_str = ','.join(files_to_process)
 
 write_to_log_module.write_step_message("Py.Loader", f"Started time: { time.strftime('%Y-%m-%d %H:%M:%S', time.localtime()) }")
@@ -62,11 +64,18 @@ if files_to_process:
     print("Dates changed. Files to process: ", files_to_process)
 else:
     print("No files to process because dates have not changed.")
+    write_to_log_module.write_step_message("Py.Loader",
+                                           f"Finished time: {time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())}")
+
     sys.exit(0)
 
+try:
+    count, files_to_process = download_changed_pdfs_module.download_changed_pdfs(download_dir, files_to_process_str)
+    write_to_log_module.write_step_message("Py.Loader", f"Downloaded {count} files")
+except Exception as e:
+    write_to_log_module.write_step_message("Py.Loader", f"Downloading files from site [failed]")
+    raise
 
-count = download_changed_pdfs_module.download_changed_pdfs(download_dir, files_to_process_str)
-write_to_log_module.write_step_message("Py.Loader", f"Downloaded {count} files")
 
 
 keywords = [fc['keyword'] for fc in config['file_configs'] if any(fc['keyword'] in os.path.splitext(file)[0] for file in files_to_process)]

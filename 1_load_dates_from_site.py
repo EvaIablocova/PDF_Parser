@@ -4,51 +4,57 @@ import json
 from urllib.parse import urlparse
 from datetime import datetime
 import sys
+import importlib
+write_to_log_module = importlib.import_module('0_3_write_to_log')
 
-url = "https://www.asp.gov.md/ro/date-deschise/avizele-agentilor-economici"
+try:
+    url = "https://www.asp.gov.md/ro/date-deschise/avizele-agentilor-economici"
 
-response = requests.get(url)
-response.raise_for_status()
+    response = requests.get(url)
+    response.raise_for_status()
 
-soup = BeautifulSoup(response.text, "html.parser")
+    soup = BeautifulSoup(response.text, "html.parser")
 
-rows = soup.select("table.table tbody tr")
+    rows = soup.select("table.table tbody tr")
 
-result = []
+    result = []
 
-for row in rows:
-    cells = row.find_all("td")
+    for row in rows:
+        cells = row.find_all("td")
 
-    if len(cells) < 3:
-        continue
+        if len(cells) < 3:
+            continue
 
-    date_column = row.find_all("td")[1].get_text(strip=True)
-    try:
-        start_date, end_date = date_column.split(" - ")
-    except ValueError:
-        continue
+        date_column = row.find_all("td")[1].get_text(strip=True)
+        try:
+            start_date, end_date = date_column.split(" - ")
+        except ValueError:
+            continue
 
-    start_date = datetime.strptime(start_date, "%d.%m.%Y").strftime("%Y-%m-%d")
-    end_date = datetime.strptime(end_date, "%d.%m.%Y").strftime("%Y-%m-%d")
+        start_date = datetime.strptime(start_date, "%d.%m.%Y").strftime("%Y-%m-%d")
+        end_date = datetime.strptime(end_date, "%d.%m.%Y").strftime("%Y-%m-%d")
 
-    # Extract the third column (link)
-    link_tag = row.find_all("td")[2].find("a", href=True)
-    if not link_tag:
-        continue
-
-
-    last_part = urlparse(link_tag["href"]).path.split("/")[-1]
-
-
-    record = {
-        "FileName": last_part,
-        "start_date": start_date.strip(),
-        "end_date": end_date.strip()
-    }
-    result.append(record)
+        # Extract the third column (link)
+        link_tag = row.find_all("td")[2].find("a", href=True)
+        if not link_tag:
+            continue
 
 
-today_file = sys.argv[1]
+        last_part = urlparse(link_tag["href"]).path.split("/")[-1]
 
-with open(today_file, "w", encoding="utf-8") as json_file:
-    json.dump(result, json_file, ensure_ascii=False, indent=4)
+
+        record = {
+            "FileName": last_part,
+            "start_date": start_date.strip(),
+            "end_date": end_date.strip()
+        }
+        result.append(record)
+
+
+    today_file = sys.argv[1]
+
+    with open(today_file, "w", encoding="utf-8") as json_file:
+        json.dump(result, json_file, ensure_ascii=False, indent=4)
+except Exception as e:
+    write_to_log_module.write_step_message("Py.Loader", f"Loading dates from site [failed]", "error")
+    raise

@@ -1,5 +1,7 @@
 import pyodbc
 import json
+import importlib
+write_to_log_module = importlib.import_module('0_3_write_to_log')
 
 def run_sql_job():
     try:
@@ -34,5 +36,8 @@ def run_sql_job():
         if 'connection' in locals():
             conn.close()
 
-
-run_sql_job()
+try:
+    run_sql_job()
+except Exception as e:
+    write_to_log_module.write_step_message("Py.Staging", f"Calling for SQL job [failed]")
+    raise

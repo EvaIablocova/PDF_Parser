@@ -4,44 +4,53 @@ from bs4 import BeautifulSoup
 from urllib.parse import urljoin
 import sys
 import json
+import importlib
+write_to_log_module = importlib.import_module('0_3_write_to_log')
+
 
 def download_changed_pdfs(download_dir, files_to_process_str):
 
-    with open('config.json', 'r', encoding='utf-8') as file:
-        config = json.load(file)
+        with open('config.json', 'r', encoding='utf-8') as file:
+            config = json.load(file)
 
-    source_url = config['source_url']
+        source_url = config['source_url']
 
-    os.makedirs(download_dir, exist_ok=True)
+        os.makedirs(download_dir, exist_ok=True)
 
-    files_to_process = files_to_process_str.split(',')
+        files_to_process = files_to_process_str.split(',')
+        files_to_process_downloaded = []
 
-    response = requests.get(source_url)
-    response.raise_for_status()
+        response = requests.get(source_url)
+        response.raise_for_status()
 
-    soup = BeautifulSoup(response.text, "html.parser")
+        soup = BeautifulSoup(response.text, "html.parser")
 
-    links = soup.find_all("a")
+        links = soup.find_all("a")
 
 
-    count = 0
-    for link in links:
-        href = link.get("href")
-        if href and href.lower().endswith(".pdf"):
-            file_url = urljoin(source_url, href)
-            file_name = os.path.split(file_url)[-1]
+        count = 0
+        for link in links:
+            href = link.get("href")
+            if href and href.lower().endswith(".pdf"):
+                file_url = urljoin(source_url, href)
+                file_name = os.path.split(file_url)[-1]
 
-            if file_name in files_to_process:
-                file_path = os.path.join(download_dir, file_name)
+                if file_name in files_to_process:
+                    file_path = os.path.join(download_dir, file_name)
 
-                try:
-                    file_response = requests.get(file_url)
-                    file_response.raise_for_status()
-                    with open(file_path, "wb") as file:
-                        file.write(file_response.content)
-                    print(f"Downloaded: {file_name}")
-                    count += 1
-                except Exception as e:
-                    print(f"Failed to download {file_url}: {e}")
+                    try:
+                        file_response = requests.get(file_url)
+                        file_response.raise_for_status()
+                        with open(file_path, "wb") as file:
+                            file.write(file_response.content)
+                        print(f"Downloaded: {file_name}")
+                        files_to_process_downloaded.append(file_name)
+                        count += 1
+                    except Exception as e:
+                        print(f"Failed to download {file_url}: {e}")
+                        write_to_log_module.write_step_message("Py.Loader",
+                                                               f"Downloading file from site [failed] {os.path.splitext(os.path.basename(file_url))[0]}")
 
-    return count
+        return count, files_to_process_downloaded
+
+

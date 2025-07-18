@@ -2,6 +2,8 @@ import pandas as pd
 import re
 import os
 import json
+import importlib
+write_to_log_module = importlib.import_module('0_3_write_to_log')
 
 def clean_text(df, need_cleaning_columns):
 
@@ -133,10 +135,15 @@ parsed_data_file_name = "parsed_files/" + os.path.splitext(os.path.basename(path
 need_cleaning_columns = file_config['need_cleaning_columns']
 keyword = file_config['keyword']
 
-df = clean_data(parsed_data_file_name, need_cleaning_columns)
 
-df = clean_data_by_type(df, keyword)
+try:
+    df = clean_data(parsed_data_file_name, need_cleaning_columns)
 
-df = clean_address(df, file_config['address_column_number'])
+    df = clean_data_by_type(df, keyword)
 
-df.to_csv(parsed_data_file_name, sep='|', index=False, header=False)
+    df = clean_address(df, file_config['address_column_number'])
+
+    df.to_csv(parsed_data_file_name, sep='|', index=False, header=False)
+except Exception as e:
+    write_to_log_module.write_step_message("Py.Parser", f"Cleaning file [failed] {os.path.splitext(os.path.basename(path_to_file))[0]} ")
+    raise
