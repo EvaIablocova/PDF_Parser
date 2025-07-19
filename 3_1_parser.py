@@ -91,6 +91,9 @@ file_config = json.loads(os.environ['FILE_CONFIG'])
 
 path_to_file = json.loads(os.environ['path_to_file'])
 
+# file_base = os.path.splitext(os.path.basename(path_to_file))[0]
+# file_name = '_'.join(file_base.split('_')[2:]) + ".pdf"
+
 with open('config.json', 'r', encoding='utf-8') as file:
     config = json.load(file)
 

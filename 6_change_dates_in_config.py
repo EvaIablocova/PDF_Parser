@@ -1,13 +1,21 @@
 import os
 import json
+import re
 import importlib
 date_module = importlib.import_module('0_2_date')
 write_to_log_module = importlib.import_module('0_3_write_to_log')
 
 try:
     path_to_file = json.loads(os.environ['path_to_file'])
+
     file_base = os.path.splitext(os.path.basename(path_to_file))[0]
-    file_name = '_'.join(file_base.split('_')[2:]) + ".pdf"
+    timestamp_pattern = r'\d{8}_\d{4}'
+
+    if not re.search(timestamp_pattern, file_base):
+        file_name = file_base  + ".pdf"
+    else:
+        file_name = '_'.join(file_base.split('_')[2:]) + ".pdf"
+
 
 
     with open('config.json', 'r', encoding='utf-8') as file:

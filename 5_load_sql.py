@@ -82,3 +82,4 @@ cursor.close()
 conn.close()
 
 
+os.remove(parsed_data_file_name)
