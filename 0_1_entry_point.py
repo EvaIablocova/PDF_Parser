@@ -99,9 +99,12 @@ if start_step == "parse":
 
         print(f"Files to process: {files_to_process}")
         write_to_log_module.write_step_message("Py.Loader", f"Files to process: {files_to_process}")
+        write_to_log_module.write_step_message("Py.Loader",
+                                               f"Finished time: {time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())}")
 
         if not files_to_process:
             print("No files to process.")
+
             sys.exit(0)
 
         keywords = [fc['keyword'] for fc in config['file_configs'] if any(fc['keyword'] in os.path.splitext(file)[0] for file in files_to_process)]
