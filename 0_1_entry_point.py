@@ -52,7 +52,7 @@ subprocess.run([sys.executable, "1_load_dates_from_site.py", today_file], env=os
 #                     "Denumirea.pdf", "Finaliz_proced_reorg.pdf","Finaliz_proced_reorg_2021_2024.pdf"
 # ,"Sediul_2008_2024.pdf"]
 
-files_to_process = ["Denumirea.pdf"]
+files_to_process = ["Lichidarea_1.pdf", "Denumirea.pdf"]
 
 # files_to_process = date_module.compare_dates(config_dates, today_file)
 files_to_process_str = ','.join(files_to_process)
@@ -69,15 +69,23 @@ else:
 
 
 
-count = download_changed_pdfs_module.download_changed_pdfs(download_dir, files_to_process_str)
+count, files_to_process = download_changed_pdfs_module.download_changed_pdfs(download_dir, files_to_process_str)
 write_to_log_module.write_step_message("Py.Loader", f"Downloaded {count} files")
 
+all_files = [f for f in os.listdir(download_dir) if os.path.isfile(os.path.join(download_dir, f))]
+files_to_process += [f for f in all_files if f not in files_to_process]
+
+write_to_log_module.write_step_message("Py.Loader", f"Files to process: {files_to_process}")
 
 keywords = [fc['keyword'] for fc in config['file_configs'] if any(fc['keyword'] in os.path.splitext(file)[0] for file in files_to_process)]
 
 print("keywords: ", keywords)
 
 missing_keywords = [file for file in files_to_process if not any(fc['keyword'] in os.path.splitext(file)[0] for fc in config['file_configs'])]
+
+if not keywords:
+    print("No parsing settings found for the provided files.")
+    sys.exit(0)
 
 if missing_keywords:
     print("Parsing settings have not been found for the following files:")
@@ -86,9 +94,7 @@ if missing_keywords:
 else:
     print("Parsing settings have been found for all files.")
 
-if not keywords:
-    print("No parsing settings found for the provided files.")
-    sys.exit(0)
+
 
 for keyword in keywords:
     print(f"\n{'*' * 50}")
@@ -122,14 +128,18 @@ for keyword in keywords:
         ]
 
         for script in scripts:
-            print(f"Running {script}...")
-            start_time = time.time()
-            result = subprocess.run([sys.executable, script, keyword], env=os.environ)
-            elapsed = time.time() - start_time
-            if result.returncode != 0:
-                print(f"Script {script} failed with exit code {result.returncode}")
-                sys.exit(result.returncode)
-            print(f"{script} finished successfully in {elapsed:.2f} seconds.\n")
+            try:
+                print(f"Running {script}...")
+                start_time = time.time()
+                result = subprocess.run([sys.executable, script, keyword], env=os.environ)
+                elapsed = time.time() - start_time
+                if result.returncode != 0:
+                    print(f"Script {script} failed with exit code {result.returncode}")
+                    sys.exit(result.returncode)
+                print(f"{script} finished successfully in {elapsed:.2f} seconds.\n")
+                pass
+            except Exception as e:
+                print(e)
 
 
 subprocess.run([sys.executable, "8_call_job.py"])

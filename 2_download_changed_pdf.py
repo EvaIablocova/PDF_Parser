@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 from urllib.parse import urljoin
 import sys
 import json
+from datetime import datetime
 import importlib
 write_to_log_module = importlib.import_module('0_3_write_to_log')
 
@@ -36,6 +37,9 @@ def download_changed_pdfs(download_dir, files_to_process_str):
                 file_name = os.path.split(file_url)[-1]
 
                 if file_name in files_to_process:
+                    file_name = datetime.now().strftime('%Y%m%d_%H%M') + "_" + \
+                                            os.path.splitext(os.path.basename(file_name))[0] + ".pdf"
+
                     file_path = os.path.join(download_dir, file_name)
 
                     try:
