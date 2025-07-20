@@ -99,11 +99,11 @@ if start_step == "parse":
 
         print(f"Files to process: {files_to_process}")
         write_to_log_module.write_step_message("Py.Loader", f"Files to process: {files_to_process}")
-        write_to_log_module.write_step_message("Py.Loader",
-                                               f"Finished time: {time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())}")
 
         if not files_to_process:
             print("No files to process.")
+            write_to_log_module.write_step_message("Py.Loader",
+                                                   f"Finished time: {time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())}")
 
             sys.exit(0)
 
