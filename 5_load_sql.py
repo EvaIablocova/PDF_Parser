@@ -73,9 +73,16 @@ try:
 
     conn.commit()
 
-    # deduplicate_exec_query = f"EXEC [PDFparser].dbo.sp_deduplicate_staging_table '{staging_table_name}'"
-    # cursor.execute(deduplicate_exec_query)
-    # conn.commit()
+    try:
+        deduplicate_exec_query = f"EXEC PDFparser.dbo.Dedupe_Staging_Records '{staging_table_name}'"
+        cursor.execute(deduplicate_exec_query)
+        conn.commit()
+        write_to_log_module.write_step_message("Py.Staging",
+                                               f"Deduplicated [done] {staging_table_name} ")
+    except Exception as e:
+        write_to_log_module.write_step_message("Py.Staging",
+                                               f"Deduplicated [failed] {staging_table_name} ")
+        raise
 
     write_to_log_module.write_step_message("Py.Staging", f"Staging file [done] {os.path.splitext(os.path.basename(path_to_file))[0]} ")
 except Exception as e:
