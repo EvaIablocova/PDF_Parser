@@ -1,0 +1,1 @@
+EXEC [PDFparser].dbo.Monitor_Logs 

@@ -2,7 +2,7 @@
     {
         "FileName": "Denumirea.pdf",
         "start_date": "2025-01-01",
-        "end_date": "2025-07-09"
+        "end_date": "2025-07-18"
     },
     {
         "FileName": "Denumirea_2008_2024.pdf",
@@ -12,7 +12,7 @@
     {
         "FileName": "Sediul.pdf",
         "start_date": "2025-01-01",
-        "end_date": "2025-07-09"
+        "end_date": "2025-07-18"
     },
     {
         "FileName": "Sediul_2008_2024.pdf",
@@ -22,12 +22,12 @@
     {
         "FileName": "Inactive.pdf",
         "start_date": "2008-06-01",
-        "end_date": "2025-07-09"
+        "end_date": "2025-07-18"
     },
     {
         "FileName": "Lichidarea.pdf",
         "start_date": "2025-01-01",
-        "end_date": "2025-07-09"
+        "end_date": "2025-07-18"
     },
     {
         "FileName": "Lichidarea_2008_2024.pdf",
@@ -37,7 +37,7 @@
     {
         "FileName": "Lichidarea_term_exp.pdf",
         "start_date": "2025-01-01",
-        "end_date": "2025-07-09"
+        "end_date": "2025-07-18"
     },
     {
         "FileName": "Lichidarea_term_exp_2018_2024.pdf",
@@ -47,7 +47,7 @@
     {
         "FileName": "Reducere.pdf",
         "start_date": "2025-01-01",
-        "end_date": "2025-07-09"
+        "end_date": "2025-07-18"
     },
     {
         "FileName": "Reducere_2007_2024.pdf",
@@ -57,7 +57,7 @@
     {
         "FileName": "Init_reorg.pdf",
         "start_date": "2025-01-01",
-        "end_date": "2025-07-09"
+        "end_date": "2025-07-18"
     },
     {
         "FileName": "Init_reorg_2014_2024_MO.pdf",
@@ -67,7 +67,7 @@
     {
         "FileName": "Init_lichid.pdf",
         "start_date": "2025-01-01",
-        "end_date": "2025-07-09"
+        "end_date": "2025-07-18"
     },
     {
         "FileName": "Init_lichid_2014_2024_MO.pdf",
