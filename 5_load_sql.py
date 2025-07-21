@@ -59,9 +59,9 @@ staging_table_name = f"staging_{keyword}"
 
 # staging_table_name = f"staging_{sql_table_name}"
 
-truncate_query = f"TRUNCATE TABLE {staging_table_name}"
-cursor.execute(truncate_query)
-conn.commit()
+# truncate_query = f"TRUNCATE TABLE {staging_table_name}"
+# cursor.execute(truncate_query)
+# conn.commit()
 
 
 write_to_log_module.write_step_message("Py.Staging", f"Staging file [start] {os.path.splitext(os.path.basename(path_to_file))[0]} ")
@@ -73,13 +73,16 @@ try:
 
     conn.commit()
 
+    # deduplicate_exec_query = f"EXEC [PDFparser].dbo.sp_deduplicate_staging_table '{staging_table_name}'"
+    # cursor.execute(deduplicate_exec_query)
+    # conn.commit()
+
     write_to_log_module.write_step_message("Py.Staging", f"Staging file [done] {os.path.splitext(os.path.basename(path_to_file))[0]} ")
 except Exception as e:
-    write_to_log_module.write_step_message("Py.Staging", f"Staging file [failed] {os.path.splitext(os.path.basename(path_to_file))[0]} ", "error")
+    write_to_log_module.write_step_message("Py.Staging", f"Staging file [failed] {os.path.splitext(os.path.basename(path_to_file))[0]} ")
     raise
 
 cursor.close()
 conn.close()
-
 
 os.remove(parsed_data_file_name)

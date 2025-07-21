@@ -73,10 +73,12 @@ if start_step == "download":
 
     # files_to_process = ["Lichidarea_1.pdf", "Denumirea.pdf"]
 
-    files_to_process = date_module.compare_dates(config_dates, today_file)
+    files_to_process, date_from, date_into = date_module.compare_dates(config_dates, today_file)
     files_to_process_str = ','.join(files_to_process)
 
     write_to_log_module.write_step_message("Py.Loader", f"Identified {len(files_to_process)} files to be loaded: {files_to_process_str}")
+    write_to_log_module.write_step_message("Py.Loader", f"Date_from: {date_from}")
+    write_to_log_module.write_step_message("Py.Loader", f"Date_into: {date_into}")
 
     if files_to_process:
         print("Dates changed. Files to process: ", files_to_process)

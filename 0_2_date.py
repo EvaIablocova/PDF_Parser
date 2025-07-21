@@ -68,11 +68,15 @@ def compare_dates(config_dates, today_file):
             })
 
     files_to_process = []
+    date_from = ''
+    date_into = ''
 
     if differences:
         files_to_process = [diff["FileName"] for diff in differences]
+        date_from = differences[0]["config_start_date"] + ' - ' + differences[0]["config_end_date"]
+        date_into = differences[0]["today_start_date"] + ' - ' + differences[0]["today_end_date"]
 
-    return files_to_process
+    return files_to_process, date_from, date_into
 
 
 
