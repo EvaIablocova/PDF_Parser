@@ -1,4 +1,4 @@
-USE [PDFparser]
+USE [PDFparser1]
 GO
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Sediul]') AND type in (N'U'))
 ALTER TABLE [dbo].[Sediul] DROP CONSTRAINT IF EXISTS [DF_Sediul_DateUpdated]
@@ -119,6 +119,30 @@ ALTER TABLE [dbo].[Denumirea] DROP CONSTRAINT IF EXISTS [DF_Denumirea_error_mess
 GO
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Denumirea]') AND type in (N'U'))
 ALTER TABLE [dbo].[Denumirea] DROP CONSTRAINT IF EXISTS [DF_Denumirea_is_valid]
+GO
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[staging_Denumirea]') AND type in (N'U'))
+ALTER TABLE [dbo].[staging_Denumirea] DROP CONSTRAINT IF EXISTS [DF_staging_Denumirea_DateCreated]
+GO
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[staging_Finaliz_proced_reorg]') AND type in (N'U'))
+ALTER TABLE [dbo].[staging_Finaliz_proced_reorg] DROP CONSTRAINT IF EXISTS [DF_staging_Finaliz_proced_reorg_DateCreated]
+GO
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[staging_Inactive]') AND type in (N'U'))
+ALTER TABLE [dbo].[staging_Inactive] DROP CONSTRAINT IF EXISTS [DF_staging_Inactive_DateCreated]
+GO
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[staging_Init_lichid]') AND type in (N'U'))
+ALTER TABLE [dbo].[staging_Init_lichid] DROP CONSTRAINT IF EXISTS [DF_staging_Init_lichid_DateCreated]
+GO
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[staging_Init_reorg]') AND type in (N'U'))
+ALTER TABLE [dbo].[staging_Init_reorg] DROP CONSTRAINT IF EXISTS [DF_staging_Init_reorg_DateCreated]
+GO
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[staging_Lichidarea]') AND type in (N'U'))
+ALTER TABLE [dbo].[staging_Lichidarea] DROP CONSTRAINT IF EXISTS [DF_staging_Lichidarea_DateCreated]
+GO
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[staging_Reducere]') AND type in (N'U'))
+ALTER TABLE [dbo].[staging_Reducere] DROP CONSTRAINT IF EXISTS [DF_staging_Reducere_DateCreated]
+GO
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[staging_Sediul]') AND type in (N'U'))
+ALTER TABLE [dbo].[staging_Sediul] DROP CONSTRAINT IF EXISTS [DF_staging_Sediul_DateCreated]
 GO
 DROP TABLE IF EXISTS [dbo].[staging_Sediul]
 GO
@@ -610,4 +634,3 @@ ALTER TABLE [dbo].[staging_Finaliz_proced_reorg] ADD  CONSTRAINT [DF_staging_Fin
 GO
 ALTER TABLE [dbo].[staging_Denumirea] ADD  CONSTRAINT [DF_staging_Denumirea_DateCreated]  DEFAULT (getdate()) FOR [DateCreated]
 GO
-
