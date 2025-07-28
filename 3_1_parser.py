@@ -11,6 +11,8 @@ no_pattern_module = importlib.import_module('3_2_no_pattern_parser')
 write_to_log_module = importlib.import_module('0_3_write_to_log')
 import warnings
 from cryptography.utils import CryptographyDeprecationWarning
+import shutil
+
 
 warnings.filterwarnings("ignore", category=CryptographyDeprecationWarning)
 
@@ -37,10 +39,18 @@ def read_page(y, x, page, all_data):
                         bbox = (x[j], y[i], x[j + 1], y[i + 1])
                         cell = page.within_bbox(bbox)
                         text = cell.extract_text(x_tolerance=1, y_tolerance=1) if cell else ''
+
+                        if re.search(r'-\n', text):
+                            if re.search(r' -\n', text):
+                                text = re.sub(r'-\n', '- ', text)
+                            else:
+                                text = re.sub(r'-\n', '-', text)
+
                         if '\n' in text:
-                            text = re.sub(r'-(\n)', '-', text)
                             text = text.replace('\n', ' ')
+
                         row_data.append(text)
+
                     all_data.append(row_data)
             return all_data
 
@@ -79,6 +89,8 @@ def parse_pdf(pdf_url, x, search_pattern, parsed_data_file_name, count_columns):
                 all_data = read_page(y, x, page, all_data)
 
 
+
+
         df = pd.DataFrame(all_data)
 
         df.to_csv(parsed_data_file_name, sep='|', index=False, header=False)
@@ -110,6 +122,9 @@ write_to_log_module.write_step_message("Py.Parser", f"Parsing file [start] {os.p
 
 try:
     parse_pdf(path_to_file, x, search_pattern, parsed_data_file_name, count_columns)
+
+    copy_path = parsed_data_file_name.replace('.csv', '_copy_debug.csv')
+    shutil.copy(parsed_data_file_name, copy_path)
 
     write_to_log_module.write_step_message("Py.Parser", f"Parsing file [done] {os.path.splitext(os.path.basename(path_to_file))[0]} ")
 except Exception as e:

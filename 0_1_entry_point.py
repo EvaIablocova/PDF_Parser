@@ -8,26 +8,26 @@ date_module = importlib.import_module('0_2_date')
 write_to_log_module = importlib.import_module('0_3_write_to_log')
 download_changed_pdfs_module = importlib.import_module('2_download_changed_pdf')
 
-def check_config(file_config, file_to_process):
-    if 'Init_lichid_' in file_to_process:
-        file_config ['sizes']= [
-                0,
-                60,
-                105,
-                170,
-                370,
-                600
-            ]
-    else:
-        file_config ['sizes'] = [
-            0,
-            60,
-            120,
-            200,
-            470,
-            820
-        ]
-    return file_config
+# def check_config(file_config, file_to_process):
+#     # if 'Init_lichid_' in file_to_process:
+#     #     file_config ['sizes']= [
+#     #             0,
+#     #             60,
+#     #             105,
+#     #             170,
+#     #             370,
+#     #             600
+#     #         ]
+#     # else:
+#     #     file_config ['sizes'] = [
+#     #         0,
+#     #         60,
+#     #         120,
+#     #         200,
+#     #         470,
+#     #         820
+#     #     ]
+#     return file_config
 
 
 write_to_log_module.write_step_message("Py.Loader",
@@ -144,9 +144,9 @@ if start_step == "parse":
                 print(f"\n{'*' * 50}")
                 print(f"Processing file: {file_to_process}")
 
-                if keyword == 'Init_lichid':
-                    file_config = check_config(file_config, file_to_process)
-                    os.environ['FILE_CONFIG'] = json.dumps(file_config)
+                # if keyword == 'Init_lichid':
+                #     file_config = check_config(file_config, file_to_process)
+                #     os.environ['FILE_CONFIG'] = json.dumps(file_config)
 
                 path_to_file = os.path.join(download_dir, file_to_process)
                 os.environ['path_to_file'] = json.dumps(path_to_file)

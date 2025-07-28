@@ -14,8 +14,8 @@ def clean_text(df, need_cleaning_columns):
         'Ţ': 'Ţ',
         'Î': 'Î'
     }
-    space_pattern = r'\s*-\s*'
-    space_replacement = ' - '
+    # space_pattern = r'\s*-\s*'
+    # space_replacement = ' - '
 
     for col_a, col_b in zip(need_cleaning_columns[:-1], need_cleaning_columns[1:]):
         diff_mask = df[col_a] != df[col_b]
@@ -35,9 +35,9 @@ def clean_text(df, need_cleaning_columns):
                 if changed:
                     col_b_value = ''.join(new_col_b_value)
 
-            # Replace space patterns
-            col_a_value = re.sub(space_pattern, space_replacement, col_a_value)
-            col_b_value = re.sub(space_pattern, space_replacement, col_b_value)
+            # # Replace space patterns
+            # col_a_value = re.sub(space_pattern, space_replacement, col_a_value)
+            # col_b_value = re.sub(space_pattern, space_replacement, col_b_value)
 
             # Update the DataFrame
             df.at[idx, col_a] = col_a_value
@@ -51,13 +51,13 @@ def clean_data(parsed_data_file_name, need_cleaning_columns):
     if not need_cleaning_columns:
         return df
 
-    pattern = r'\b(\w+)\s*-\s*(\w+)\b'
-    replacement = r'\1-\2'
-
-    print(df.shape[0])
-
-    for i in need_cleaning_columns:
-        df[i] = df[i].astype(str).str.replace(pattern, replacement, regex=True)
+    # pattern = r'\b(\w+)\s*-\s*(\w+)\b'
+    # replacement = r'\1-\2'
+    #
+    # print(df.shape[0])
+    #
+    # for i in need_cleaning_columns:
+    #     df[i] = df[i].astype(str).str.replace(pattern, replacement, regex=True)
 
 
     df = clean_text(df, need_cleaning_columns)
