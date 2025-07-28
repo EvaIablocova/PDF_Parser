@@ -32,7 +32,50 @@ warnings.filterwarnings("ignore", category=CryptographyDeprecationWarning)
 #         page_data.append('|'.join(row_data))  # Join row data with '|'
 #     return '\n'.join(page_data)  # Join all rows with a newline
 
-def read_page(y, x, page, all_data):
+def hyphenate_text(text, page, j, y, i, x, equal_columns_with_dash):
+# 1 way
+    # if re.search(r'-\n', text):
+    #     if re.search(r' -\n', text):
+    #         text = re.sub(r'-\n', '- ', text)
+    #     else:
+    #         text = re.sub(r'-\n', '-', text)
+    #
+    # if '\n' in text:
+    #     text = text.replace('\n', ' ')
+
+# 2 way
+
+    switch_column = 0
+    letterBeforeHyphen = []
+
+    if re.search(r'-\n', text):
+        letterBeforeHyphen = re.findall(r'(.)-\n', text)
+        if j == equal_columns_with_dash[0]:
+            switch_column = equal_columns_with_dash[1]
+        elif j == equal_columns_with_dash[1]:
+            switch_column = equal_columns_with_dash[0]
+
+        bbox = (x[switch_column], y[i], x[switch_column + 1], y[i + 1])
+        cell = page.within_bbox(bbox)
+        switched_text = cell.extract_text(x_tolerance=1, y_tolerance=1) if cell else ''
+
+        for symbol in letterBeforeHyphen:
+            pattern_with_space = re.escape(symbol) + r'- '
+            pattern_no_space = re.escape(symbol) + r'-'
+            replace_pattern = re.escape(symbol) + r'-\n'
+            if re.search(pattern_with_space, switched_text):
+                text = re.sub(replace_pattern, symbol + '- ', text)
+                # break
+            else:
+                if re.search(pattern_no_space, switched_text):
+                    text = re.sub(replace_pattern, symbol + '-', text)
+
+    if '\n' in text:
+        text = text.replace('\n', ' ')
+
+    return text
+
+def read_page(y, x, page, all_data, equal_columns_with_dash):
             for i in range(len(y) - 1):
                     row_data = []
                     for j in range(len(x) - 1):
@@ -40,21 +83,15 @@ def read_page(y, x, page, all_data):
                         cell = page.within_bbox(bbox)
                         text = cell.extract_text(x_tolerance=1, y_tolerance=1) if cell else ''
 
-                        if re.search(r'-\n', text):
-                            if re.search(r' -\n', text):
-                                text = re.sub(r'-\n', '- ', text)
-                            else:
-                                text = re.sub(r'-\n', '-', text)
-
                         if '\n' in text:
-                            text = text.replace('\n', ' ')
+                            text = hyphenate_text(text, page, j, y, i, x, equal_columns_with_dash)
 
                         row_data.append(text)
 
                     all_data.append(row_data)
             return all_data
 
-def parse_pdf(pdf_url, x, search_pattern, parsed_data_file_name, count_columns):
+def parse_pdf(pdf_url, x, search_pattern, parsed_data_file_name, count_columns, equal_columns_with_dash):
     all_data = []
 
     line_tolerance = 2
@@ -86,7 +123,7 @@ def parse_pdf(pdf_url, x, search_pattern, parsed_data_file_name, count_columns):
                 if y and y[-1] < page.height:
                     y.append(page.height - 40)
 
-                all_data = read_page(y, x, page, all_data)
+                all_data = read_page(y, x, page, all_data, equal_columns_with_dash)
 
 
 
@@ -117,11 +154,12 @@ parsed_data_file_name = parsed_data_dir + "/" + os.path.splitext(os.path.basenam
 x = file_config['sizes']
 search_pattern = file_config['search_pattern']
 count_columns = file_config['count_columns']
+equal_columns_with_dash = file_config['equal_columns_with_dash']
 
 write_to_log_module.write_step_message("Py.Parser", f"Parsing file [start] {os.path.splitext(os.path.basename(path_to_file))[0]} ")
 
 try:
-    parse_pdf(path_to_file, x, search_pattern, parsed_data_file_name, count_columns)
+    parse_pdf(path_to_file, x, search_pattern, parsed_data_file_name, count_columns, equal_columns_with_dash)
 
     copy_path = parsed_data_file_name.replace('.csv', '_copy_debug.csv')
     shutil.copy(parsed_data_file_name, copy_path)

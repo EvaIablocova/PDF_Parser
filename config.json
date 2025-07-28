@@ -44,6 +44,10 @@
                 3,
                 6
             ],
+            "equal_columns_with_dash": [
+                3,
+                6
+            ],
             "headers": [
                 "No",
                 "Date_of_announcement",
@@ -63,7 +67,7 @@
                 105,
                 170,
                 313,
-                473,
+                475,
                 640,
                 820
             ],
