@@ -56,6 +56,15 @@
                 "Address",
                 "Name_From",
                 "Name_Into"
+            ],
+            "validate_headers": [
+                "N/o",
+                "Data anunţului",
+                "IDNO",
+                "Denumirea",
+                "Adresa",
+                "din",
+                "in"
             ]
         },
         {
@@ -99,6 +108,15 @@
                 "Address",
                 "Address_From",
                 "Address_Into"
+            ],
+            "validate_headers": [
+                "N/o",
+                "Data anunţului",
+                "IDNO",
+                "Denumirea",
+                "Adresa",
+                "din",
+                "in"
             ]
         },
         {
@@ -135,6 +153,14 @@
                 "Name",
                 "Address",
                 "Date_of_dissolution"
+            ],
+            "validate_headers": [
+                "N/o",
+                "Data anunţului",
+                "IDNO",
+                "Denumirea",
+                "Adresa",
+                "Persoana juridică se află în proces de dizolvare"
             ]
         },
         {
@@ -170,6 +196,15 @@
                 "Address",
                 "Price_From",
                 "Price_Into"
+            ],
+            "validate_headers": [
+                "N/o",
+                "Data anunţului",
+                "IDNO",
+                "Denumirea",
+                "Adresa",
+                "de la",
+                "până la"
             ]
         },
         {
@@ -207,6 +242,14 @@
                 "Name",
                 "Address",
                 "Date_of_deregistretion"
+            ],
+            "validate_headers": [
+                "N/o",
+                "Data anunţului",
+                "IDNO",
+                "Denumirea",
+                "Adresa",
+                "Persoana juridică a fost radiată la data de"
             ]
         },
         {
@@ -242,6 +285,14 @@
                 "Type_of_reorganization_1",
                 "Type_of_reorganization_2",
                 "Address"
+            ],
+            "validate_headers": [
+                "N/o",
+                "Data anunţului",
+                "IDNO",
+                "Denumirea",
+                "Tipul reorganizării",
+                "Creanţele se vor adresa la"
             ]
         },
         {
@@ -273,6 +324,13 @@
                 "IDNO",
                 "Name",
                 "Address"
+            ],
+            "validate_headers": [
+                "N/o",
+                "Data anunţului",
+                "IDNO",
+                "Denumirea",
+                "Adresa"
             ]
         },
         {
@@ -296,6 +354,14 @@
                 "Name",
                 "Type_of_reorganization",
                 "Successors_of_rights"
+            ],
+            "validate_headers": [
+                "N/o",
+                "Data anunţului",
+                "IDNO",
+                "Denumirea persoanei reorganizate",
+                "Tipul reorganizării",
+                "Succesori de drepturi"
             ]
         }
     ]

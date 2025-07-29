@@ -7,6 +7,7 @@ import importlib
 date_module = importlib.import_module('0_2_date')
 write_to_log_module = importlib.import_module('0_3_write_to_log')
 download_changed_pdfs_module = importlib.import_module('2_download_changed_pdf')
+validate_headers_module = importlib.import_module('3_0_validate_headers')
 
 # def check_config(file_config, file_to_process):
 #     # if 'Init_lichid_' in file_to_process:
@@ -151,27 +152,34 @@ if start_step == "parse":
                 path_to_file = os.path.join(download_dir, file_to_process)
                 os.environ['path_to_file'] = json.dumps(path_to_file)
 
-                scripts = [
-                    "3_1_parser.py",
-                    "4_clean.py",
-                    "5_load_sql.py",
-                    "6_change_dates_in_config.py",
-                    "7_pdf_into_archive.py"
-                ]
+                if validate_headers_module.validate_headers(file_config, path_to_file):
+                    write_to_log_module.write_step_message("Py.Parser",
+                                                           f"Headers validation [done] for file: {file_to_process}")
 
-                for script in scripts:
-                    try:
-                        print(f"Running {script}...")
-                        start_time = time.time()
-                        result = subprocess.run([sys.executable, script, keyword], env=os.environ)
-                        elapsed = time.time() - start_time
-                        if result.returncode != 0:
-                            print(f"Script {script} failed with exit code {result.returncode}")
-                            sys.exit(result.returncode)
-                        print(f"{script} finished successfully in {elapsed:.2f} seconds.\n")
-                        pass
-                    except Exception as e:
-                        print(e)
+                    scripts = [
+                        "3_1_parser.py",
+                        "4_clean.py",
+                        "5_load_sql.py",
+                        "6_change_dates_in_config.py",
+                        "7_pdf_into_archive.py"
+                    ]
+
+                    for script in scripts:
+                        try:
+                            print(f"Running {script}...")
+                            start_time = time.time()
+                            result = subprocess.run([sys.executable, script, keyword], env=os.environ)
+                            elapsed = time.time() - start_time
+                            if result.returncode != 0:
+                                print(f"Script {script} failed with exit code {result.returncode}")
+                                sys.exit(result.returncode)
+                            print(f"{script} finished successfully in {elapsed:.2f} seconds.\n")
+                            pass
+                        except Exception as e:
+                            print(e)
+                else:
+                    print(f"Headers validation failed for file: {file_to_process}")
+                    write_to_log_module.write_step_message("Py.Parser", f"Headers validation [failed] for file: {file_to_process}")
 
 
 if start_step == "stage":
