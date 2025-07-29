@@ -87,6 +87,10 @@
             ],
             "estimated_rows_count": 933,
             "need_cleaning_columns": null,
+            "equal_columns_with_dash": [
+                4,
+                6
+            ],
             "headers": [
                 "No",
                 "Date_of_announcement",
@@ -123,6 +127,7 @@
             ],
             "estimated_rows_count": 2314,
             "need_cleaning_columns": null,
+            "equal_columns_with_dash": [],
             "headers": [
                 "No",
                 "Date_of_announcement",
@@ -156,6 +161,7 @@
             ],
             "estimated_rows_count": 89,
             "need_cleaning_columns": null,
+            "equal_columns_with_dash": [],
             "headers": [
                 "No",
                 "Date_of_announcement",
@@ -193,6 +199,7 @@
             ],
             "estimated_rows_count": 2975,
             "need_cleaning_columns": null,
+            "equal_columns_with_dash": [],
             "headers": [
                 "No",
                 "Date_of_announcement",
@@ -226,6 +233,7 @@
             ],
             "estimated_rows_count": 53,
             "need_cleaning_columns": null,
+            "equal_columns_with_dash": [],
             "headers": [
                 "No",
                 "Date_of_announcement",
@@ -258,6 +266,7 @@
             ],
             "estimated_rows_count": 599,
             "need_cleaning_columns": null,
+            "equal_columns_with_dash": [],
             "headers": [
                 "No",
                 "Date_of_announcement",
@@ -279,6 +288,7 @@
             ],
             "estimated_rows_count": 10,
             "need_cleaning_columns": null,
+            "equal_columns_with_dash": [],
             "headers": [
                 "No",
                 "Date_of_announcement",
