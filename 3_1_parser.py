@@ -83,8 +83,17 @@ def read_page(y, x, page, all_data, equal_columns_with_dash):
                         cell = page.within_bbox(bbox)
                         text = cell.extract_text(x_tolerance=1, y_tolerance=1) if cell else ''
 
-                        if '\n' in text:
+                        if '\n' in text and j in equal_columns_with_dash:
                             text = hyphenate_text(text, page, j, y, i, x, equal_columns_with_dash)
+                        else:
+                            if re.search(r'-\n', text):
+                                if re.search(r' -\n', text):
+                                    text = re.sub(r'-\n', '- ', text)
+                                else:
+                                    text = re.sub(r'-\n', '-', text)
+
+                            if '\n' in text:
+                                text = text.replace('\n', ' ')
 
                         row_data.append(text)
 
