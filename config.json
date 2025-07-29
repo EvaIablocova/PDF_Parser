@@ -95,7 +95,10 @@
                 1
             ],
             "estimated_rows_count": 933,
-            "need_cleaning_columns": null,
+            "need_cleaning_columns": [
+                4,
+                6
+            ],
             "equal_columns_with_dash": [
                 4,
                 6

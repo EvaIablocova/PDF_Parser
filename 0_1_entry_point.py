@@ -153,6 +153,7 @@ if start_step == "parse":
                 os.environ['path_to_file'] = json.dumps(path_to_file)
 
                 if validate_headers_module.validate_headers(file_config, path_to_file):
+                    print(f"Headers validation done for file: {file_to_process}")
                     write_to_log_module.write_step_message("Py.Parser",
                                                            f"Headers validation [done] for file: {file_to_process}")
 

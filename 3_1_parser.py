@@ -32,18 +32,8 @@ warnings.filterwarnings("ignore", category=CryptographyDeprecationWarning)
 #         page_data.append('|'.join(row_data))  # Join row data with '|'
 #     return '\n'.join(page_data)  # Join all rows with a newline
 
-def hyphenate_text(text, page, j, y, i, x, equal_columns_with_dash):
-# 1 way
-    # if re.search(r'-\n', text):
-    #     if re.search(r' -\n', text):
-    #         text = re.sub(r'-\n', '- ', text)
-    #     else:
-    #         text = re.sub(r'-\n', '-', text)
-    #
-    # if '\n' in text:
-    #     text = text.replace('\n', ' ')
 
-# 2 way
+def hyphenate_text(text, page, j, y, i, x, equal_columns_with_dash):
 
     switch_column = 0
     letterBeforeHyphen = []
@@ -141,7 +131,7 @@ def parse_pdf(pdf_url, x, search_pattern, parsed_data_file_name, count_columns, 
 
         df.to_csv(parsed_data_file_name, sep='|', index=False, header=False)
 
-
+# MD-2069, str. Calea Iesilor 34, mun. Chisinau, R e p u b l ic a M o l d o v a
 
 
 
