@@ -57,8 +57,8 @@ BEGIN
 	END
 	ELSE
 	BEGIN
-		SET @TextBody = N'There is no data for export';
-		SET @LogMessage = 'No data to export in ' + @File_name;
+		SET @TextBody = N'There is no data for export SQL';
+		SET @LogMessage = 'No data to export SQL in ' + @File_name;
 	END
 
 

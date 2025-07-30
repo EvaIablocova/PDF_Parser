@@ -11,7 +11,7 @@ GO
  Input Parameters  : @File_name
 
  Output Parameters  : returns 0 if no rows are exported
-					  returns 1 if export was performed
+					  returns 1 if export SQL was performed
 
  Usage        : EXEC [PDFparser].dbo.Export_Delta_To_CSV 'Lichidarea'
 
@@ -51,7 +51,7 @@ BEGIN
   IF @Date_last_exported = @Today
     RETURN 0;
 
-  -- Check if there are rows to export
+  -- Check if there are rows to export SQL
 	SET @sql = N'
 	  SELECT @RowCount_OUT = COUNT(*)
 	  FROM [PDFparser].[dbo].[' + @File_name + N']
