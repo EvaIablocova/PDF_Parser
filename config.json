@@ -131,7 +131,7 @@
                 110,
                 170,
                 370,
-                680,
+                628,
                 820
             ],
             "search_pattern": "MD-\\d{4}",
@@ -340,7 +340,7 @@
         {
             "keyword": "Finaliz_proced_reorg",
             "count_columns": 6,
-            "sizes": [0, 55, 100, 175, 300, 530, 800],
+            "sizes": [0, 55, 100, 175, 343, 530, 800],
             "search_pattern": "no_pattern",
             "address_column_number": null,
             "equal_columns_numbers": null,
@@ -361,7 +361,7 @@
             ],
             "validate_headers": [
                 "N/o",
-                "Data anunţului",
+                "Data finalizării",
                 "IDNO",
                 "Denumirea persoanei reorganizate",
                 "Tipul reorganizării",
