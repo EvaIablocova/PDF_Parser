@@ -38,7 +38,7 @@ conn = pyodbc.connect(
 )
 cursor = conn.cursor()
 
-new_data = pd.read_csv(parsed_data_file_name, sep='|', header=None, names=headers)
+new_data = pd.read_csv(parsed_data_file_name, sep='|', header=None, names=headers, dtype=str)
 # # Ensure all columns are explicitly cast to string if needed
 # for col in new_data.columns[1:count_columns]:
 #     if new_data[col].dtype != 'object':  # 'object' is the dtype for strings in pandas

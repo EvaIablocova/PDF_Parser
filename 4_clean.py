@@ -154,7 +154,7 @@ keyword = file_config['keyword']
 
 try:
 
-    df = pd.read_csv(parsed_data_file_name, sep='|', header=None)
+    df = pd.read_csv(parsed_data_file_name, sep='|', header=None, dtype=str)
 
     df = clean_data(df, need_cleaning_columns)
 
