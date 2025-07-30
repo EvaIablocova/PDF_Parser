@@ -8,7 +8,7 @@ def validate_headers(file_config, path_to_file):
         page = doc[0]
         header_row = []
         for i in range(len(x) - 1):
-            bbox = (x[i], 0, x[i + 1], page.rect.height)
+            bbox = (x[i], 0, x[i + 1], page.rect.height-60)
             cell = page.get_textbox(bbox)
             header_row.append(cell.strip() if cell else '')
 

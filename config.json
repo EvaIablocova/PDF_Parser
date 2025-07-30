@@ -207,7 +207,7 @@
                 "Denumirea",
                 "Adresa",
                 "de la",
-                "până la"
+                "pînă la"
             ]
         },
         {
@@ -219,7 +219,7 @@
                 110,
                 175,
                 370,
-                680,
+                637,
                 820
             ],
             "search_pattern": "MD-\\d{4}",
