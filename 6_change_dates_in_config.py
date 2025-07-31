@@ -2,6 +2,7 @@ import os
 import json
 import re
 import importlib
+import time
 date_module = importlib.import_module('0_2_date')
 write_to_log_module = importlib.import_module('0_3_write_to_log')
 
@@ -27,4 +28,6 @@ try:
     date_module.update_stored_date_in_config_json(file_name, config_last_dates_in_db, today_file)
 except Exception as e:
     write_to_log_module.write_step_message("Py.Staging", f"Changing dates in config file [failed] {os.path.splitext(os.path.basename(path_to_file))[0]} ")
+    write_to_log_module.write_step_message("Py.Parser",
+                                           f"[ERROR] Finished time: {time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())}")
     raise

@@ -3,6 +3,7 @@ import pyodbc
 import os
 import json
 import importlib
+import time
 write_to_log_module = importlib.import_module('0_3_write_to_log')
 
 file_config = json.loads(os.environ['FILE_CONFIG'])
@@ -87,6 +88,8 @@ try:
     write_to_log_module.write_step_message("Py.Staging", f"Staging file [done] {os.path.splitext(os.path.basename(path_to_file))[0]} ")
 except Exception as e:
     write_to_log_module.write_step_message("Py.Staging", f"Staging file [failed] {os.path.splitext(os.path.basename(path_to_file))[0]} ")
+    write_to_log_module.write_step_message("Py.Parser",
+                                           f"[ERROR] Finished time: {time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())}")
     raise
 
 cursor.close()

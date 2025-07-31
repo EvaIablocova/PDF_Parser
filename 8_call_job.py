@@ -1,6 +1,7 @@
 import pyodbc
 import json
 import importlib
+import time
 write_to_log_module = importlib.import_module('0_3_write_to_log')
 
 def run_sql_job():
@@ -40,4 +41,6 @@ try:
     run_sql_job()
 except Exception as e:
     write_to_log_module.write_step_message("Py.Staging", f"Calling for SQL job [failed]")
+    write_to_log_module.write_step_message("Py.Parser",
+                                           f"[ERROR] Finished time: {time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())}")
     raise

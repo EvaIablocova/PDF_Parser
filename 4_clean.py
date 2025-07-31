@@ -5,6 +5,7 @@ import json
 import importlib
 write_to_log_module = importlib.import_module('0_3_write_to_log')
 import shutil
+import time
 
 import re
 
@@ -168,4 +169,6 @@ try:
     shutil.copy(parsed_data_file_name, copy_path)
 except Exception as e:
     write_to_log_module.write_step_message("Py.Parser", f"Cleaning file [failed] {os.path.splitext(os.path.basename(path_to_file))[0]} ")
+    write_to_log_module.write_step_message("Py.Parser",
+                                           f"[ERROR] Finished time: {time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())}")
     raise

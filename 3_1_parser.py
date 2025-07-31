@@ -172,4 +172,7 @@ try:
     write_to_log_module.write_step_message("Py.Parser", f"Parsing file [done] {os.path.splitext(os.path.basename(path_to_file))[0]} ")
 except Exception as e:
     write_to_log_module.write_step_message("Py.Parser", f"Parsing file [failed] {os.path.splitext(os.path.basename(path_to_file))[0]} ")
+    write_to_log_module.write_step_message("Py.Parser",
+                                           f"[ERROR] Finished time: {time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())}")
+
     raise
