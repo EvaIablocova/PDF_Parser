@@ -9,27 +9,6 @@ write_to_log_module = importlib.import_module('0_3_write_to_log')
 download_changed_pdfs_module = importlib.import_module('2_download_changed_pdf')
 validate_headers_module = importlib.import_module('3_0_validate_headers')
 
-# def check_config(file_config, file_to_process):
-#     # if 'Init_lichid_' in file_to_process:
-#     #     file_config ['sizes']= [
-#     #             0,
-#     #             60,
-#     #             105,
-#     #             170,
-#     #             370,
-#     #             600
-#     #         ]
-#     # else:
-#     #     file_config ['sizes'] = [
-#     #         0,
-#     #         60,
-#     #         120,
-#     #         200,
-#     #         470,
-#     #         820
-#     #     ]
-#     return file_config
-
 
 write_to_log_module.write_step_message("Py.Loader",
                                        f"Started time: {time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())}")
@@ -61,19 +40,6 @@ files_to_stage=[]
 if start_step == "download":
     subprocess.run([sys.executable, "1_load_dates_from_site.py", today_file], env=os.environ)
 
-    # for changing dates
-    # subprocess.run([sys.executable, "once_create_json_with_dates.py"])
-
-    # files_to_process = ["Lichidarea.pdf", "Lichidarea_term_exp.pdf"
-    # ,"Sediul.pdf", "Reducere.pdf",
-    # "Init_lichid_2014_2024_MO.pdf",
-    # "Denumirea.pdf", "Denumirea_2008_2024.pdf",
-    #                     "Inactive.pdf", "Init_reorg.pdf", "Lichidarea_term_exp.pdf",
-    #                     "Denumirea.pdf", "Finaliz_proced_reorg.pdf","Finaliz_proced_reorg_2021_2024.pdf"
-    # ,"Sediul_2008_2024.pdf"]
-
-    # files_to_process = ["Lichidarea_1.pdf", "Denumirea.pdf"]
-
     files_to_process, date_from, date_into = date_module.compare_dates(config_dates, today_file)
     files_to_process_str = ','.join(files_to_process)
 
@@ -86,7 +52,6 @@ if start_step == "download":
     else:
         print("Dates have not changed.")
         # sys.exit(0)
-
 
 
     count, files_to_process = download_changed_pdfs_module.download_changed_pdfs(download_dir, files_to_process_str)
@@ -144,10 +109,6 @@ if start_step == "parse":
 
                 print(f"\n{'*' * 50}")
                 print(f"Processing file: {file_to_process}")
-
-                # if keyword == 'Init_lichid':
-                #     file_config = check_config(file_config, file_to_process)
-                #     os.environ['FILE_CONFIG'] = json.dumps(file_config)
 
                 path_to_file = os.path.join(download_dir, file_to_process)
                 os.environ['path_to_file'] = json.dumps(path_to_file)

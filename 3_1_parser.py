@@ -68,8 +68,8 @@ def hyphenate_text(text, page, j, y, i, x, equal_columns_with_dash):
 def read_page(y, x, page, all_data, equal_columns_with_dash):
             for i in range(len(y) - 1):
 
-                    if i == 2 or i==11 or i==14 or i==16:
-                        print(1)
+                    # if i == 2 or i==11 or i==14 or i==16:
+                    #     print(1)
 
 
                     row_data = []
@@ -122,7 +122,7 @@ def parse_pdf(pdf_url, x, search_pattern, parsed_data_file_name, count_columns, 
                     text_line = " ".join(word['text'] for word in line_words)
                     other.append({'top': top, 'text': text_line})
 
-                md_tops = [entry['top'] - 2 for entry in other if md_pattern.search(entry['text'])]
+                md_tops = [entry['top'] - 1 for entry in other if md_pattern.search(entry['text'])]
                 # md_tops = [entry['top'] - 1 for entry in other if md_pattern.search(entry['text'])]
                 y = sorted(set(md_tops))
                 if y and y[-1] < page.height:
