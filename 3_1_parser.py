@@ -16,23 +16,6 @@ import shutil
 
 warnings.filterwarnings("ignore", category=CryptographyDeprecationWarning)
 
-
-# def read_page(y, x, page):
-#     page_data = []
-#     for i in range(len(y) - 1):
-#         row_data = []  # Collect data for a single row
-#         for j in range(len(x) - 1):
-#             bbox = (x[j], y[i], x[j + 1], y[i + 1])
-#             cell = page.within_bbox(bbox)
-#             text = cell.extract_text(x_tolerance=1, y_tolerance=1) if cell else ''
-#             if '\n' in text:
-#                 text = re.sub(r'-(\n)', '-', text)
-#                 text = text.replace('\n', ' ')
-#             row_data.append(text)  # Append text without adding quotes
-#         page_data.append('|'.join(row_data))  # Join row data with '|'
-#     return '\n'.join(page_data)  # Join all rows with a newline
-
-
 def hyphenate_text(text, page, j, y, i, x, equal_columns_with_dash):
 
     switch_column = 0
@@ -80,7 +63,51 @@ def hyphenate_texts(text, page, y, x, j, i, equal_columns_with_dash):
             text = text.replace('\n', ' ')
     return text
 
+def detect_the_diff_in_columns (row_data, page, y, x, i):
+    isChanged = False
+
+    for j in range(len(x) - 1):
+
+        bbox = (x[j + 1] - 20, y[i], x[j + 1] + 10, y[i + 1])
+        cell = page.within_bbox(bbox)
+        textOverlap = cell.extract_text(x_tolerance=1, y_tolerance=1) if cell else ''
+
+        match = re.search(r'-', textOverlap)
+        if match:
+            substring_with_dash = textOverlap[:match.end()]
+
+            bbox2 = (x[j], y[i], x[j + 1], y[i + 1])
+            cell2 = page.within_bbox(bbox2)
+            textReal = cell2.extract_text(x_tolerance=1, y_tolerance=1) if cell else ''
+
+            substring_no_dash = substring_with_dash[:-1]
+            textReal = textReal.replace(substring_no_dash, substring_with_dash)
+            isChanged = True
+
+            row_data[j] = textReal
+
+    return row_data, isChanged
+
+
+
+
+def row_compare(row_data, page, y, x, i):
+    isChanged = False
+    bbox = (x[0], y[i], x[len(x)-1], y[i + 1])
+    cell = page.within_bbox(bbox)
+    textRow = cell.extract_text(x_tolerance=1, y_tolerance=1) if cell else ''
+
+    if sorted(''.join(row_data).replace(' ', '').replace('\n', '')) != sorted(textRow.replace(' ', '').replace('\n', '')):
+        row_data, isChanged = detect_the_diff_in_columns (row_data, page, y, x, i)
+
+    return row_data, isChanged
+
+
+
+
 def read_page(y, x, page, all_data, equal_columns_with_dash):
+
+            isChanged = False
             for i in range(len(y) - 1):
 
                     # if i == 2 or i==11 or i==14 or i==16:
@@ -96,6 +123,14 @@ def read_page(y, x, page, all_data, equal_columns_with_dash):
                         text = hyphenate_texts(text, page, y, x, j, i, equal_columns_with_dash)
 
                         row_data.append(text)
+
+                    row_data, isChanged = row_compare(row_data, page, y, x, i)
+                    if isChanged:
+                        row_data = [
+                            hyphenate_texts(text, page, y, x, j, i, equal_columns_with_dash)
+                            for j, text in enumerate(row_data)
+                        ]
+
 
                     all_data.append(row_data)
             return all_data
