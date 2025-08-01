@@ -65,6 +65,21 @@ def hyphenate_text(text, page, j, y, i, x, equal_columns_with_dash):
 
     return text
 
+
+def hyphenate_texts(text, page, y, x, j, i, equal_columns_with_dash):
+    if '\n' in text and j in equal_columns_with_dash:
+        text = hyphenate_text(text, page, j, y, i, x, equal_columns_with_dash)
+    else:
+        if re.search(r'-\n', text):
+            if re.search(r' -\n', text):
+                text = re.sub(r'-\n', '- ', text)
+            else:
+                text = re.sub(r'-\n', '-', text)
+
+        if '\n' in text:
+            text = text.replace('\n', ' ')
+    return text
+
 def read_page(y, x, page, all_data, equal_columns_with_dash):
             for i in range(len(y) - 1):
 
@@ -78,17 +93,7 @@ def read_page(y, x, page, all_data, equal_columns_with_dash):
                         cell = page.within_bbox(bbox)
                         text = cell.extract_text(x_tolerance=1, y_tolerance=1) if cell else ''
 
-                        if '\n' in text and j in equal_columns_with_dash:
-                            text = hyphenate_text(text, page, j, y, i, x, equal_columns_with_dash)
-                        else:
-                            if re.search(r'-\n', text):
-                                if re.search(r' -\n', text):
-                                    text = re.sub(r'-\n', '- ', text)
-                                else:
-                                    text = re.sub(r'-\n', '-', text)
-
-                            if '\n' in text:
-                                text = text.replace('\n', ' ')
+                        text = hyphenate_texts(text, page, y, x, j, i, equal_columns_with_dash)
 
                         row_data.append(text)
 
@@ -171,8 +176,8 @@ try:
 
     write_to_log_module.write_step_message("Py.Parser", f"Parsing file [done] {os.path.splitext(os.path.basename(path_to_file))[0]} ")
 except Exception as e:
+    print(f"Error parsing PDF file: {e}")
     write_to_log_module.write_step_message("Py.Parser", f"Parsing file [failed] {os.path.splitext(os.path.basename(path_to_file))[0]} ")
     write_to_log_module.write_step_message("Py.Parser",
                                            f"[ERROR] Finished time: {time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())}")
 
-    raise

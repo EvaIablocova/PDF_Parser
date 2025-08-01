@@ -94,12 +94,24 @@ def process_csv(input_file, output_file):
         if re.match(r'^\d+$', reader[len(reader) - 2][0]) and re.match(r'^\d+$', reader[len(reader) - 1][0]):
             result.append(reader[len(reader) - 2])
             result.append(reader[len(reader) - 1])
-
-
     # Write the processed rows to the output file
     with open(output_file, 'w', encoding='utf-8') as outfile:
         writer = csv.writer(outfile, delimiter='|')
         writer.writerows(result)
+
+def transformare_check(cleaned_file):
+    result = []
+    with open(cleaned_file, 'r', encoding='utf-8') as infile:
+        for line in infile:
+            elements = line.strip().split('|')
+            if len(elements) >= 5 and 'Transformare' in elements[3]:
+                elements[4] = (elements[4] + ' Transformare').strip()
+                elements[3] = elements[3].replace('Transformare', '').strip()
+            result.append('|'.join(elements))
+    with open(cleaned_file, 'w', encoding='utf-8') as outfile:
+        outfile.write('\n'.join(result))
+
+
 
 def clean(processed_file, cleaned_file, count_columns):
     with open(processed_file, 'r', encoding='utf-8') as infile:
@@ -151,6 +163,7 @@ def parse_no_pattern(file_path, parsed_data_file_name, count_columns):
         process_csv(parsed_data_file_name, processed_file)
         cleaned_file = 'cleaned_combined_tables.csv'
         clean(processed_file, cleaned_file, count_columns)
+        transformare_check(cleaned_file)
     except Exception as e:
         print(f"Error ocured: {e}")
 
