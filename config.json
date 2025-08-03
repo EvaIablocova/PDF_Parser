@@ -301,14 +301,15 @@
         },
         {
             "keyword": "Init_lichid",
-            "count_columns": 5,
+            "count_columns": 6,
             "sizes": [
                 0,
                 60,
                 105,
                 170,
                 370,
-                600
+                619,
+                820
             ],
             "search_pattern": "MD-\\d{4}",
             "address_column_number": [
@@ -327,14 +328,16 @@
                 "Date_of_announcement",
                 "IDNO",
                 "Name",
-                "Address"
+                "Address",
+                "Date_from"
             ],
             "validate_headers": [
                 "N/o",
                 "Data anunţului",
                 "IDNO",
                 "Denumirea",
-                "Adresa"
+                "Adresa",
+                "Persoana juridică se află în proces de dizolvare"
             ]
         },
         {

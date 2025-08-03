@@ -121,9 +121,6 @@ def read_page(y, x, page, all_data, equal_columns_with_dash):
             isChanged = False
             for i in range(len(y) - 1):
 
-                    # if i == 2 or i==11 or i==14 or i==16:
-                    #     print(1)
-
 
                     row_data = []
                     for j in range(len(x) - 1):
