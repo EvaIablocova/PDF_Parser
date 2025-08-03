@@ -111,6 +111,22 @@ def transformare_check(cleaned_file):
     with open(cleaned_file, 'w', encoding='utf-8') as outfile:
         outfile.write('\n'.join(result))
 
+def one_space(cleaned_file):
+    with open(cleaned_file, 'r', encoding='utf-8') as infile:
+        lines = infile.readlines()
+
+    cleaned_lines = []
+    for line in lines:
+        # Step 1: Replace multiple spaces with one
+        line = re.sub(r' {2,}', ' ', line)
+        # Step 2: Handle dash at end of line
+        line = re.sub(r'- ', '-', line)
+        line = re.sub(r'; ', ';', line)
+
+        cleaned_lines.append(line)
+
+    with open(cleaned_file, 'w', encoding='utf-8') as outfile:
+        outfile.writelines(cleaned_lines)
 
 
 def clean(processed_file, cleaned_file, count_columns):
@@ -164,6 +180,7 @@ def parse_no_pattern(file_path, parsed_data_file_name, count_columns):
         cleaned_file = 'cleaned_combined_tables.csv'
         clean(processed_file, cleaned_file, count_columns)
         transformare_check(cleaned_file)
+        one_space(cleaned_file)
     except Exception as e:
         print(f"Error ocured: {e}")
 
