@@ -68,11 +68,11 @@ def detect_the_diff_in_columns (row_data, page, y, x, i):
 
     for j in range(len(x) - 1):
 
-        bbox = (x[j + 1] - 20, y[i], x[j + 1] + 10, y[i + 1])
+        bbox = (x[j + 1] - 30, y[i], x[j + 1] + 10, y[i + 1])
         cell = page.within_bbox(bbox)
         textOverlap = cell.extract_text(x_tolerance=1, y_tolerance=1) if cell else ''
 
-        match = re.search(r'-', textOverlap)
+        match = re.search(r'-', textOverlap) or re.search(r'"', textOverlap)
         if match:
             substring_with_dash = textOverlap[:match.end()]
 
@@ -80,9 +80,10 @@ def detect_the_diff_in_columns (row_data, page, y, x, i):
             cell2 = page.within_bbox(bbox2)
             textReal = cell2.extract_text(x_tolerance=1, y_tolerance=1) if cell else ''
 
-            substring_no_dash = substring_with_dash[:-1]
-            textReal = textReal.replace(substring_no_dash, substring_with_dash)
-            isChanged = True
+            if not re.search(substring_with_dash, textReal):
+                substring_no_dash = substring_with_dash[:-1]
+                textReal = textReal.replace(substring_no_dash, substring_with_dash)
+                isChanged = True
 
             row_data[j] = textReal
 
@@ -102,7 +103,17 @@ def row_compare(row_data, page, y, x, i):
 
     return row_data, isChanged
 
+def overlap_row_read(page, y, x, i):
+    new_row_data = []
 
+    for j in range(len(x) - 1):
+        bbox = (x[j], y[i]-1, x[j + 1], y[i + 1])
+        cell = page.within_bbox(bbox)
+        text = cell.extract_text(x_tolerance=1, y_tolerance=1) if cell else ''
+
+        new_row_data.append(text)
+
+    return new_row_data
 
 
 def read_page(y, x, page, all_data, equal_columns_with_dash):
@@ -126,6 +137,13 @@ def read_page(y, x, page, all_data, equal_columns_with_dash):
 
                     row_data, isChanged = row_compare(row_data, page, y, x, i)
                     if isChanged:
+                        row_data = [
+                            hyphenate_texts(text, page, y, x, j, i, equal_columns_with_dash)
+                            for j, text in enumerate(row_data)
+                        ]
+
+                    if None in row_data or '' in row_data:
+                        row_data = overlap_row_read(page, y, x, i)
                         row_data = [
                             hyphenate_texts(text, page, y, x, j, i, equal_columns_with_dash)
                             for j, text in enumerate(row_data)
