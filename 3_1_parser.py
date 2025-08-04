@@ -5,6 +5,7 @@ import re
 import time
 import os
 import json
+import sys
 import csv
 import importlib
 no_pattern_module = importlib.import_module('3_2_no_pattern_parser')
@@ -80,7 +81,8 @@ def detect_the_diff_in_columns (row_data, page, y, x, i):
             cell2 = page.within_bbox(bbox2)
             textReal = cell2.extract_text(x_tolerance=1, y_tolerance=1) if cell else ''
 
-            if not re.search(substring_with_dash, textReal):
+            pattern = re.escape(substring_with_dash)
+            if not re.search(pattern, textReal):
                 substring_no_dash = substring_with_dash[:-1]
                 textReal = textReal.replace(substring_no_dash, substring_with_dash)
                 isChanged = True
@@ -230,4 +232,4 @@ except Exception as e:
     write_to_log_module.write_step_message("Py.Parser", f"Parsing file [failed] {os.path.splitext(os.path.basename(path_to_file))[0]} ")
     write_to_log_module.write_step_message("Py.Parser",
                                            f"[ERROR] Finished time: {time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())}")
-
+    sys.exit(1)

@@ -134,11 +134,12 @@ if start_step == "parse":
                             elapsed = time.time() - start_time
                             if result.returncode != 0:
                                 print(f"Script {script} failed with exit code {result.returncode}")
-                                sys.exit(result.returncode)
+                                break
                             print(f"{script} finished successfully in {elapsed:.2f} seconds.\n")
                             pass
                         except Exception as e:
                             print(e)
+                            break
                 else:
                     print(f"Headers validation failed for file: {file_to_process}")
                     write_to_log_module.write_step_message("Py.Parser", f"Headers validation [failed] for file: {file_to_process}")
