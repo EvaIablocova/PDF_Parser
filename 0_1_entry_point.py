@@ -101,7 +101,6 @@ if start_step == "parse":
                 config = json.load(file)
 
             file_config = next((fc for fc in config['file_configs'] if fc['keyword'] == keyword), None)
-            os.environ['FILE_CONFIG'] = json.dumps(file_config)
 
             files_to_process_keyword = [file for file in files_to_process if keyword in file]
 
@@ -113,10 +112,21 @@ if start_step == "parse":
                 path_to_file = os.path.join(download_dir, file_to_process)
                 os.environ['path_to_file'] = json.dumps(path_to_file)
 
-                if validate_headers_module.validate_headers(file_config, path_to_file):
+                isValid, file_config, isChanged = validate_headers_module.validate_headers(file_config, path_to_file)
+
+                if isChanged:
+                    print(f"Headers have changed for file: {file_to_process}")
+                    write_to_log_module.write_step_message("Py.Parser",
+                                                           f"Headers validation [changed] for file: {file_to_process}")
+                    isValid, file_config, isChanged = validate_headers_module.validate_headers(file_config,
+                                                                                               path_to_file)
+
+
+                if isValid:
                     print(f"Headers validation done for file: {file_to_process}")
                     write_to_log_module.write_step_message("Py.Parser",
                                                            f"Headers validation [done] for file: {file_to_process}")
+                    print (f"Count columns: {file_config['count_columns']}")
 
                     scripts = [
                         "3_1_parser.py",
@@ -125,6 +135,8 @@ if start_step == "parse":
                         "6_change_dates_in_config.py",
                         "7_pdf_into_archive.py"
                     ]
+
+                    os.environ['FILE_CONFIG'] = json.dumps(file_config)
 
                     for script in scripts:
                         try:
