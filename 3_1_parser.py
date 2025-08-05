@@ -84,8 +84,15 @@ def detect_the_diff_in_columns (row_data, page, y, x, i):
             pattern = re.escape(substring_with_dash)
             if not re.search(pattern, textReal):
                 substring_no_dash = substring_with_dash[:-1]
-                textReal = textReal.replace(substring_no_dash, substring_with_dash)
-                isChanged = True
+                if re.search(substring_no_dash, textReal):
+                    textReal = textReal.replace(substring_no_dash, substring_with_dash)
+                    isChanged = True
+                else:
+                    substring_no_dash_newline = substring_no_dash.rstrip(' ') + '\n'
+                    if re.search(substring_no_dash_newline, textReal):
+                        substring_no_dash_no_sapce = substring_no_dash.rstrip(' ')
+                        textReal = textReal.replace(substring_no_dash_no_sapce, substring_with_dash)
+                        isChanged = True
 
             row_data[j] = textReal
 
