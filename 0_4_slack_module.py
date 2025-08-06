@@ -3,7 +3,7 @@ import json
 
 
 def send_slack_message(message):
-    with open('config.json', 'r', encoding='utf-8') as file:
+    with open('sec_config.json', 'r', encoding='utf-8') as file:
         config = json.load(file)
 
     webhook_url = config['webhook_url']
@@ -15,3 +15,4 @@ def send_slack_message(message):
         print("Message to Slack sent successfully.")
     else:
         print(f"Failed to send message to Slack: {response.text}")
+
