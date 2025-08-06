@@ -121,40 +121,44 @@ if start_step == "parse":
                     isValid, file_config, isChanged = validate_headers_module.validate_headers(file_config,
                                                                                                path_to_file)
 
-
                 if isValid:
                     print(f"Headers validation done for file: {file_to_process}")
                     write_to_log_module.write_step_message("Py.Parser",
                                                            f"Headers validation [done] for file: {file_to_process}")
-                    print (f"Count columns: {file_config['count_columns']}")
-
-                    scripts = [
-                        "3_1_parser.py",
-                        "4_clean.py",
-                        "5_load_sql.py",
-                        "6_change_dates_in_config.py",
-                        "7_pdf_into_archive.py"
-                    ]
+                    print(f"Count columns: {file_config['count_columns']}")
 
                     os.environ['FILE_CONFIG'] = json.dumps(file_config)
 
+                    scripts = [
+                            "3_1_parser.py",
+                            "4_clean.py",
+                            "5_load_sql.py",
+                            "6_change_dates_in_config.py",
+                            "7_pdf_into_archive.py"
+                        ]
+
+                    os.environ['FILE_CONFIG'] = json.dumps(file_config)
+
+
                     for script in scripts:
                         try:
-                            print(f"Running {script}...")
-                            start_time = time.time()
-                            result = subprocess.run([sys.executable, script, keyword], env=os.environ)
-                            elapsed = time.time() - start_time
-                            if result.returncode != 0:
-                                print(f"Script {script} failed with exit code {result.returncode}")
-                                break
-                            print(f"{script} finished successfully in {elapsed:.2f} seconds.\n")
-                            pass
+                                print(f"Running {script}...")
+                                start_time = time.time()
+                                result = subprocess.run([sys.executable, script, keyword], env=os.environ)
+                                elapsed = time.time() - start_time
+                                if result.returncode != 0:
+                                    print(f"Script {script} failed with exit code {result.returncode}")
+                                    break
+                                print(f"{script} finished successfully in {elapsed:.2f} seconds.\n")
+
                         except Exception as e:
                             print(e)
                             break
+
                 else:
                     print(f"Headers validation failed for file: {file_to_process}")
-                    write_to_log_module.write_step_message("Py.Parser", f"Headers validation [failed] for file: {file_to_process}")
+                    write_to_log_module.write_step_message("Py.Parser",
+                                                                   f"Headers validation [failed] for file: {file_to_process}")
 
 
 if start_step == "stage":

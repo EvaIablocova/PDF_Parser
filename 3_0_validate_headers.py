@@ -1,4 +1,5 @@
 import fitz  # PyMuPDF
+import re
 
 def change_config_init_lichid(file_config, path_to_file):
     isChanged = False
@@ -96,6 +97,8 @@ def validate_headers(file_config, path_to_file):
         cell_text = header_row[idx].replace('\n', '').strip() if idx < len(header_row) else ''
         if expected.replace('\n', '').strip() not in cell_text:
            isValid  = False
+        if expected == 'Denumirea' and re.search(r'MD-\d{4}', cell_text):
+            isValid = False
 
     if (not isValid) and file_config['keyword'] == 'Init_lichid':
         file_config, isChanged = change_config_init_lichid(file_config, path_to_file)
