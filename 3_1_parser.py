@@ -10,6 +10,7 @@ import csv
 import importlib
 no_pattern_module = importlib.import_module('3_2_no_pattern_parser')
 write_to_log_module = importlib.import_module('0_3_write_to_log')
+slack_module = importlib.import_module('0_4_slack_module')
 import warnings
 from cryptography.utils import CryptographyDeprecationWarning
 import shutil
@@ -239,4 +240,6 @@ except Exception as e:
     write_to_log_module.write_step_message("Py.Parser", f"Parsing file [failed] {os.path.splitext(os.path.basename(path_to_file))[0]} ")
     write_to_log_module.write_step_message("Py.Parser",
                                            f"[ERROR] Finished time: {time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())}")
+    slack_module.send_slack_message(
+        f"-------------[ERROR]--------------------\n Error parsing PDF file: {e}")
     sys.exit(1)

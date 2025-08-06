@@ -1,5 +1,6 @@
 {
     "source_url": "https://www.asp.gov.md/ro/date-deschise/avizele-agentilor-economici",
+    "webhook_url": "https://hooks.slack.com/services/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",
     "download_dir": "files_to_parse",
     "archive_dir": "archive",
     "parsed_data_dir": "parsed_files",

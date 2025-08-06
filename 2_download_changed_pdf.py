@@ -7,6 +7,7 @@ import json
 from datetime import datetime
 import importlib
 write_to_log_module = importlib.import_module('0_3_write_to_log')
+slack_module = importlib.import_module('0_4_slack_module')
 
 
 def download_changed_pdfs(download_dir, files_to_process_str):
@@ -54,6 +55,9 @@ def download_changed_pdfs(download_dir, files_to_process_str):
                         print(f"Failed to download {file_url}: {e}")
                         write_to_log_module.write_step_message("Py.Loader",
                                                                f"Downloading file from site [failed] {os.path.splitext(os.path.basename(file_url))[0]}")
+
+                        slack_module.send_slack_message(
+                            f"-------------[ERROR]--------------------\n Failed to download {file_url}: {e}")
 
         return count, files_to_process_downloaded
 

@@ -6,6 +6,7 @@ from datetime import datetime
 import sys
 import importlib
 write_to_log_module = importlib.import_module('0_3_write_to_log')
+slack_module = importlib.import_module('0_4_slack_module')
 
 try:
 
@@ -61,4 +62,7 @@ try:
         json.dump(result, json_file, ensure_ascii=False, indent=4)
 except Exception as e:
     write_to_log_module.write_step_message("Py.Loader", f"Loading dates from site [failed]")
-    raise
+    write_to_log_module.write_step_message("Py.Loader",
+                                           f"[ERROR] Finished time: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    slack_module.send_slack_message(
+        f"-------------[ERROR]--------------------\n Loading dates from site [failed]")

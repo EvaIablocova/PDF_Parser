@@ -8,6 +8,7 @@ date_module = importlib.import_module('0_2_date')
 write_to_log_module = importlib.import_module('0_3_write_to_log')
 download_changed_pdfs_module = importlib.import_module('2_download_changed_pdf')
 validate_headers_module = importlib.import_module('3_0_validate_headers')
+slack_module = importlib.import_module('0_4_slack_module')
 
 
 write_to_log_module.write_step_message("Py.Loader",
@@ -148,6 +149,7 @@ if start_step == "parse":
                                 elapsed = time.time() - start_time
                                 if result.returncode != 0:
                                     print(f"Script {script} failed with exit code {result.returncode}")
+                                    slack_module.send_slack_message(f"-------------[ERROR]--------------------\nScript {script} failed with exit code {result.returncode}")
                                     break
                                 print(f"{script} finished successfully in {elapsed:.2f} seconds.\n")
 
@@ -159,6 +161,7 @@ if start_step == "parse":
                     print(f"Headers validation failed for file: {file_to_process}")
                     write_to_log_module.write_step_message("Py.Parser",
                                                                    f"Headers validation [failed] for file: {file_to_process}")
+                    slack_module.send_slack_message(f"-------------[ERROR]--------------------\n Headers validation failed for file: {file_to_process}")
 
 
 if start_step == "stage":

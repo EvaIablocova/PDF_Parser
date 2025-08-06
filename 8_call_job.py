@@ -3,6 +3,7 @@ import json
 import importlib
 import time
 write_to_log_module = importlib.import_module('0_3_write_to_log')
+slack_module = importlib.import_module('0_4_slack_module')
 
 def run_sql_job():
     try:
@@ -43,4 +44,7 @@ except Exception as e:
     write_to_log_module.write_step_message("Py.Staging", f"Calling for SQL job [failed]")
     write_to_log_module.write_step_message("Py.Parser",
                                            f"[ERROR] Finished time: {time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())}")
-    raise
+    slack_module.send_slack_message(
+        f"-------------[ERROR]--------------------\n Calling for SQL job [failed]")
+
+    sys.exit(1)

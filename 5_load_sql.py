@@ -7,6 +7,7 @@ import sys
 import time
 import subprocess
 write_to_log_module = importlib.import_module('0_3_write_to_log')
+slack_module = importlib.import_module('0_4_slack_module')
 
 file_config = json.loads(os.environ['FILE_CONFIG'])
 path_to_file = json.loads(os.environ['path_to_file'])
@@ -98,6 +99,8 @@ except Exception as e:
     write_to_log_module.write_step_message("Py.Parser",
                                            f"[ERROR] Finished time: {time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())}")
 
+    slack_module.send_slack_message(
+        f"-------------[ERROR]--------------------\n Error staging data: {e}")
     sys.exit(1)
 
 cursor.close()
